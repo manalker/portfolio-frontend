@@ -1,0 +1,20 @@
+<div class="projects-container">
+  <h1>Mes Projets</h1>
+
+  <div *ngIf="projects.length === 0" class="no-projects">
+    Aucun projet disponible pour le moment.
+  </div>
+
+  <div class="projects-grid" *ngIf="projects.length > 0">
+    <div class="project-card" *ngFor="let project of projects">
+      <div class="image-container">
+            <img [src]="'http://localhost:8081/uploads/' + project.imageUrl" [alt]="project.title" />
+        </div>
+      <div class="project-info">
+        <h2>{{ project.title }}</h2>
+        <p class="description">{{ project.description }}</p>
+        <p class="tech">{{ project.technologies }}</p>
+      </div>
+    </div>
+  </div>
+</div>
