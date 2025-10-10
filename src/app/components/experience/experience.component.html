@@ -1,1 +1,52 @@
-<p>experience works!</p>
+<header class="header">
+  <div class="logo">Manal Kerroumi</div>
+  <nav>
+    <ul>
+      <li><a routerLink="/" routerLinkActive="active">À propos</a></li>
+      <li><a routerLink="/project" routerLinkActive="active">Projets</a></li>
+      <li><a routerLink="/certification" routerLinkActive="active">Certifications</a></li>
+      <li><a routerLink="/formation" routerLinkActive="active">Formations</a></li>
+      <li><a routerLink="/experience" routerLinkActive="active">Expérience</a></li>
+      <li><a routerLink="/skills" routerLinkActive="active">Compétences</a></li>
+      <li><a routerLink="/contact" routerLinkActive="active">Contact</a></li>
+      <li><a href="assets/docs/CV_Manal_Kerroumi.pdf" download class="cv-btn">CV</a></li>
+    </ul>
+  </nav>
+  <div class="header-right">
+    <i class="fa-solid fa-globe header-globe"></i>
+    <select class="language-select">
+      <option value="fr">FR</option>
+      <option value="en">EN</option>
+    </select>
+  </div>
+</header>
+
+<!-- Timeline des expériences -->
+<div class="experience-container">
+  <h1>Mes Expériences</h1>
+
+  <div *ngIf="experiences.length === 0" class="no-experience">
+    Aucune expérience disponible.
+  </div>
+
+  <div class="timeline">
+    <div *ngFor="let exp of experiences; let i = index" class="timeline-item" [ngClass]="{'left': i % 2 === 0, 'right': i % 2 !== 0}">
+      <div class="timeline-point"></div>
+      <div class="timeline-content">
+        <h2>{{ exp.title }}</h2>
+        <p class="company">{{ exp.company }}</p>
+        <p class="duration">{{ exp.startDate }} - {{ exp.endDate }}</p>
+        <p class="tech"><strong>Technologies :</strong> {{ exp.technologies }}</p>
+
+        <button class="details-btn" (click)="toggleDetails(i)">
+          {{ exp.showDetails ? 'Fermer' : 'Détails' }}
+        </button>
+
+        <ul class="task-list" [style.display]="exp.showDetails ? 'block' : 'none'">
+          <li *ngFor="let t of exp.tasks.split(';')">{{ t }}</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
