@@ -1,1 +1,41 @@
-<p>certification works!</p>
+<header class="header">
+  <div class="logo">Manal Kerroumi</div>
+  <nav>
+    <ul>
+      <li><a routerLink="/" routerLinkActive="active">À propos</a></li>
+      <li><a routerLink="/project" routerLinkActive="active">Projets</a></li>
+      <li><a routerLink="/certification" routerLinkActive="active">Certifications</a></li>
+      <li><a routerLink="/" routerLinkActive="active">Formations</a></li>
+      <li><a routerLink="/" routerLinkActive="active">Expérience</a></li>
+      <li><a routerLink="/" routerLinkActive="active">Compétences</a></li>
+      <li><a routerLink="/" routerLinkActive="active">Contact</a></li>
+      <li><a href="assets/docs/CV_Manal_Kerroumi.pdf" download class="cv-btn">CV</a></li>
+    </ul>
+  </nav>
+  <div class="header-right">
+    <i class="fa-solid fa-globe header-globe"></i>
+    <select class="language-select">
+      <option value="fr">FR</option>
+      <option value="en">EN</option>
+    </select>
+  </div>
+</header>
+
+<div class="projects-container">
+  <h1>Mes Certifications</h1>
+
+  <div *ngIf="certifications.length === 0" class="no-projects">
+    Aucune certification disponible.
+  </div>
+
+  <div class="projects-grid">
+    <div class="project-card" *ngFor="let cert of certifications">
+      <div class="project-info">
+        <h2>{{ cert.title }}</h2>
+        <p class="description">{{ cert.description }}</p>
+        <p class="tech"><strong>Émis par :</strong> {{ cert.issuer }}</p>
+        <p class="tech"><strong>Date :</strong> {{ cert.dateObtained }}</p>
+      </div>
+    </div>
+  </div>
+</div>
