@@ -1,1 +1,57 @@
-<p>home works!</p>
+<!-- Header avec navigation -->
+<header class="header">
+  <div class="logo">Manal Kerroumi</div>
+  <nav>
+    <ul>
+      <li><a routerLink="/" routerLinkActive="active" [fragment]="'about'">À propos</a></li>
+      <li><a routerLink="/project" routerLinkActive="active">Projets</a></li>
+      <li><a routerLink="/" routerLinkActive="active" [fragment]="'certifications'">Certifications</a></li>
+      <li><a routerLink="/" routerLinkActive="active" [fragment]="'formations'">Formations</a></li>
+      <li><a routerLink="/" routerLinkActive="active" [fragment]="'experience'">Expérience</a></li>
+      <li><a routerLink="/" routerLinkActive="active" [fragment]="'skills'">Compétences</a></li>
+      <li><a routerLink="/" routerLinkActive="active" [fragment]="'contact'">Contact</a></li>
+      <li><a href="assets/docs/CV_Manal_Kerroumi.pdf" download class="cv-btn">CV</a></li>
+    </ul>
+  </nav>
+  <div class="header-right">
+    <i class="fa-solid fa-globe header-globe"></i>
+    <select class="language-select">
+      <option value="fr">FR</option>
+      <option value="en">EN</option>
+    </select>
+  </div>
+</header>
+
+
+<!-- Section principale -->
+<section class="home-section">
+  <div class="home-content">
+    <div class="photo-container">
+      <img src="assets/images/profile.jpg" alt="Photo de profil" class="profile-photo" />
+
+      <!-- Cercles autour de la photo -->
+      <div class="circle circle1"></div>
+      <div class="circle circle2"></div>
+      <div class="circle circle3"></div>
+      <div class="circle circle4"></div>
+    </div>
+
+
+    <div class="description">
+      <h1>Bonjour <span class="hand-emoji">👋</span>, je suis <span class="name">Manal Kerroumi</span></h1>
+      <h2 class="typing-text">Ingénieure en Informatique & Réseaux (MIAGE)</h2>
+      <p>
+        Ingénieure en informatique et réseaux (option MIAGE), avec une solide expérience dans le développement
+        et la mise en œuvre de solutions digitales. Grâce à mes stages et projets, j’ai développé des compétences
+        en gestion de projets IT, de la conception à la livraison, en m’appuyant sur des méthodologies agiles et
+        des outils collaboratifs (Azure DevOps, GitHub, Microsoft Teams). <br /><br />
+        Dotée d’un esprit analytique et d’une forte capacité d’adaptation, je souhaite contribuer à la réussite de
+        projets innovants en assurant le lien entre besoins métiers et solutions techniques.
+      </p>
+
+      <div class="action-buttons">
+        <a href="assets/docs/CV_Manal_Kerroumi.pdf" download class="btn cv-btn">📄 Télécharger mon CV</a>
+      </div>
+    </div>
+  </div>
+</section>

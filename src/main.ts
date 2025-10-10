@@ -1,36 +1,27 @@
 import { bootstrapApplication } from '@angular/platform-browser';
-import { AppComponent } from './app/app.component';
 import { importProvidersFrom } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
-import { provideHttpClient } from '@angular/common/http';
-import 'zone.js';
-
-// Importe tous tes composants standalone
+import { AppComponent } from './app/app.component';
 import { HomeComponent } from './app/components/home/home.component';
-import { AboutComponent } from './app/components/about/about.component';
-import { FormationComponent } from './app/components/formation/formation.component';
-import { ExperienceComponent } from './app/components/experience/experience.component';
-import { CertificationComponent } from './app/components/certification/certification.component';
-import { SkillComponent } from './app/components/skill/skill.component';
 import { ProjectComponent } from './app/components/project/project.component';
-import { ContactComponent } from './app/components/contact/contact.component';
+import 'zone.js';
+import { provideHttpClient } from '@angular/common/http';
 
+// ✅ ROUTES
 const routes: Routes = [
   { path: '', component: HomeComponent },
-  { path: 'about', component: AboutComponent },
-  { path: 'formation', component: FormationComponent },
-  { path: 'experience', component: ExperienceComponent },
-  { path: 'certification', component: CertificationComponent },
-  { path: 'skill', component: SkillComponent },
-  { path: 'project', component: ProjectComponent },
-  { path: 'contact', component: ContactComponent },
+  { path: 'project', component: ProjectComponent }
 ];
 
+// ✅ BOOTSTRAP APPLICATION
 bootstrapApplication(AppComponent, {
   providers: [
-    importProvidersFrom(CommonModule, RouterModule.forRoot(routes)),
-    provideHttpClient()
+    provideHttpClient(),  // <-- rend HttpClient disponible pour tous les composants standalone
+    importProvidersFrom(
+      RouterModule.forRoot(routes, {
+        anchorScrolling: 'enabled',
+        scrollPositionRestoration: 'enabled',
+      })
+    )
   ]
-})
-.catch(err => console.error(err));
+});

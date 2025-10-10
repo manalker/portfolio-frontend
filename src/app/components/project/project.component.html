@@ -1,15 +1,37 @@
-<div class="projects-container">
-  <h1>Mes Projets</h1>
+<header class="header">
+  <div class="logo">Manal Kerroumi</div>
+  <nav>
+    <ul>
+      <li><a routerLink="/" routerLinkActive="active">À propos</a></li>
+      <li><a routerLink="/project" routerLinkActive="active">Projets</a></li>
+      <li><a routerLink="/certification" routerLinkActive="active">Certifications</a></li>
+      <li><a routerLink="/formation" routerLinkActive="active">Formations</a></li>
+      <li><a routerLink="/experience" routerLinkActive="active">Expérience</a></li>
+      <li><a routerLink="/skills" routerLinkActive="active">Compétences</a></li>
+      <li><a routerLink="/contact" routerLinkActive="active">Contact</a></li>
+      <li><a href="assets/docs/CV_Manal_Kerroumi.pdf" download class="cv-btn">CV</a></li>
+    </ul>
+  </nav>
+  <div class="header-right">
+    <i class="fa-solid fa-globe header-globe"></i>
+    <select class="language-select">
+      <option value="fr">FR</option>
+      <option value="en">EN</option>
+    </select>
+  </div>
+</header>
 
+<!-- Le reste de ton contenu page project -->
+<div class="projects-container">
+  <h1 class="projects-title">Mes Projets</h1>
   <div *ngIf="projects.length === 0" class="no-projects">
     Aucun projet disponible pour le moment.
   </div>
-
   <div class="projects-grid" *ngIf="projects.length > 0">
     <div class="project-card" *ngFor="let project of projects">
       <div class="image-container">
-            <img [src]="'http://localhost:8081/uploads/' + project.imageUrl" [alt]="project.title" />
-        </div>
+        <img [src]="'http://localhost:8081/uploads/' + project.imageUrl" [alt]="project.title" />
+      </div>
       <div class="project-info">
         <h2>{{ project.title }}</h2>
         <p class="description">{{ project.description }}</p>
