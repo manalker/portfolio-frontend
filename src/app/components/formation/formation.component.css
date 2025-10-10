@@ -1,0 +1,317 @@
+/* --- Animations globales --- */
+@keyframes gradientMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* --- Header / Navbar --- */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 70px;
+  background: rgba(10, 10, 20, 0.7);
+  backdrop-filter: blur(12px);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 3rem;
+  z-index: 100;
+  font-family: 'Inter', sans-serif;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+}
+
+.header .logo {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #00e0ff;
+}
+
+.header nav ul {
+  display: flex;
+  gap: 1.2rem;
+  list-style: none;
+}
+
+.header nav ul li a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 500;
+  transition: 0.3s;
+}
+
+.header nav ul li a:hover {
+  color: #00e0ff;
+  text-shadow: 0 0 10px #00e0ff;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.header-globe {
+  font-size: 1.6rem;
+  color: #00e0ff;
+  cursor: pointer;
+  transition: 0.3s;
+  margin-left: 0.5rem;
+}
+
+.header-globe:hover {
+  color: #00c0d0;
+}
+
+.language-select {
+  padding: 0.3rem 0.6rem;
+  border-radius: 5px;
+  border: none;
+  background: #00e0ff;
+  color: #000;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+  margin-left: 0.3rem;
+}
+
+.language-select:hover {
+  background: #00c0d0;
+}
+
+.cv-btn {
+  padding: 0.8rem 1.8rem;
+  border-radius: 50px;
+  background: #00e0ff;
+  color: #000;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.cv-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 0 20px #00e0ff;
+}
+
+/* --- Conteneur principal --- */
+.projects-container {
+  max-width: 1200px;
+  margin: 100px auto 50px; /* espace sous le header */
+  padding: 0 20px;
+  text-align: center;
+  font-family: 'Inter', sans-serif;
+  color: #fff;
+  position: relative;
+  z-index: 1;
+}
+
+/* --- Background animé subtil --- */
+.projects-container::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #1f1f3d, #232347, #1a1a2e, #1e1e2f);
+  background-size: 400% 400%;
+  animation: gradientMove 25s ease infinite;
+  z-index: -1;
+}
+
+/* --- Titre "Mes Formations" --- */
+.projects-container h1 {
+  font-size: 3rem;
+  font-weight: 800;
+  color: #00e0ff;
+  margin-bottom: 60px;
+  letter-spacing: 1px;
+  position: relative;
+  display: inline-block;
+  text-shadow: 0 0 10px rgba(0, 224, 255, 0.7);
+}
+
+.projects-container h1::after {
+  content: '';
+  width: 100px;
+  height: 4px;
+  background: linear-gradient(90deg, #ff6a00, #ee0979);
+  display: block;
+  margin: 12px auto 0;
+  border-radius: 2px;
+}
+
+/* --- Message si aucune formation --- */
+.no-projects {
+  font-size: 1.2rem;
+  color: #aaa;
+  margin-top: 30px;
+}
+
+/* --- Timeline container --- */
+.timeline-container {
+  max-width: 900px;
+  margin: 20px auto 2px; /* réduit l'espace entre le titre et le contenu */
+  padding: 0 20px;
+  position: relative;
+  color: #fff;
+  font-family: 'Inter', sans-serif;
+}
+
+/* --- Timeline vertical line --- */
+.timeline-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 4px;
+  height: 100%;
+  background: linear-gradient(to bottom, #00e0ff, #6f42c1);
+  border-radius: 2px;
+  z-index: 0;
+}
+
+/* --- Timeline item --- */
+.timeline-item {
+  position: relative;
+  width: 50%;
+  padding: 20px 40px;
+  box-sizing: border-box;
+  animation: fadeInUp 0.7s ease forwards;
+}
+
+.timeline-item.left {
+  left: 0;
+  text-align: right;
+}
+
+.timeline-item.right {
+  left: 50%;
+  text-align: left;
+}
+
+/* --- Timeline circle with icon --- */
+.timeline-item::before {
+  content: "\f19d"; /* FontAwesome graduation-cap */
+  font-family: "Font Awesome 6 Free"; 
+  font-weight: 900;
+  position: absolute;
+  top: 25px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #00e0ff;
+  border: 3px solid #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 18px;
+  box-shadow: 0 0 20px rgba(0, 224, 255, 0.5);
+  z-index: 2;
+}
+
+.timeline-item.left::before {
+  right: -20px;
+}
+
+.timeline-item.right::before {
+  left: -20px;
+}
+
+/* --- Timeline content --- */
+.timeline-content {
+  background: rgba(30,30,50,0.95);
+  padding: 25px 30px;
+  border-radius: 15px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  position: relative;
+  z-index: 1;
+}
+
+.timeline-item:hover .timeline-content {
+  transform: translateY(-5px) scale(1.03);
+  box-shadow: 0 20px 40px rgba(0,224,255,0.6);
+}
+
+/* --- Titles & badges --- */
+.timeline-content h2 {
+  margin: 0 0 12px;
+  color: #00e0ff;
+  font-size: 1.5rem;
+  transition: color 0.3s ease;
+}
+
+.timeline-item:hover .timeline-content h2 {
+  color: #6f42c1;
+}
+
+.timeline-content .tech {
+  color: #6f42c1;
+  font-weight: 600;
+  font-size: 0.95rem;
+  margin-bottom: 5px;
+}
+
+.timeline-content .badge {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: bold;
+  margin-top: 5px;
+  background: linear-gradient(90deg, #00e0ff, #6f42c1);
+  color: #fff;
+  box-shadow: 0 2px 6px rgba(0,224,255,0.4);
+}
+
+/* --- Animations --- */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); opacity: 0.6; }
+  50% { transform: scale(1.05); opacity: 0.8; }
+  100% { transform: scale(1); opacity: 0.6; }
+}
+
+/* --- Responsive --- */
+@media (max-width: 768px) {
+  .timeline-item,
+  .timeline-item.left,
+  .timeline-item.right {
+    width: 100%;
+    padding-left: 60px;
+    padding-right: 25px;
+    text-align: left;
+  }
+  .timeline-item::before {
+    left: 20px;
+    right: auto;
+  }
+  .timeline-container::before {
+    left: 30px;
+  }
+}
+
+@media (max-width: 480px) {
+  .timeline-content h2 {
+    font-size: 1.2rem;
+  }
+  .timeline-content p,
+  .timeline-content .tech {
+    font-size: 0.9rem;
+  }
+}

@@ -5,6 +5,8 @@ import { AppComponent } from './app/app.component';
 import { HomeComponent } from './app/components/home/home.component';
 import { ProjectComponent } from './app/components/project/project.component';
 import { CertificationComponent } from './app/components/certification/certification.component';
+import { FormationComponent } from './app/components/formation/formation.component';
+
 import 'zone.js';
 import { provideHttpClient } from '@angular/common/http';
 
@@ -13,6 +15,7 @@ const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'project', component: ProjectComponent }, 
   { path: 'certification', component: CertificationComponent }, 
+  { path: 'formation', component: FormationComponent }, 
 ];
 
 // ✅ BOOTSTRAP APPLICATION

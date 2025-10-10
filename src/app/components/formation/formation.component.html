@@ -1,1 +1,41 @@
-<p>formation works!</p>
+<header class="header">
+  <div class="logo">Manal Kerroumi</div>
+  <nav>
+    <ul>
+      <li><a routerLink="/" routerLinkActive="active">À propos</a></li>
+      <li><a routerLink="/project" routerLinkActive="active">Projets</a></li>
+      <li><a routerLink="/certification" routerLinkActive="active">Certifications</a></li>
+      <li><a routerLink="/formation" routerLinkActive="active">Formations</a></li>
+      <li><a routerLink="/experience" routerLinkActive="active">Expérience</a></li>
+      <li><a routerLink="/skills" routerLinkActive="active">Compétences</a></li>
+      <li><a routerLink="/contact" routerLinkActive="active">Contact</a></li>
+      <li><a href="assets/docs/CV_Manal_Kerroumi.pdf" download class="cv-btn">CV</a></li>
+    </ul>
+  </nav>
+  <div class="header-right">
+    <i class="fa-solid fa-globe header-globe"></i>
+    <select class="language-select">
+      <option value="fr">FR</option>
+      <option value="en">EN</option>
+    </select>
+  </div>
+</header>
+
+<div class="projects-container">
+  <h1>Mes Formations</h1>
+
+  <div *ngIf="formations.length === 0" class="no-projects">
+    Aucune formation disponible.
+  </div>
+
+  <div class="timeline-container">
+  <div class="timeline-item left" *ngFor="let f of formations; let i = index" [ngClass]="i % 2 === 0 ? 'left' : 'right'">
+    <div class="timeline-content">
+      <h2>{{ f.diplome }}</h2>
+      <p class="tech"><strong>Établissement :</strong> {{ f.etablissement }}</p>
+      <p class="tech"><strong>Période :</strong> {{ f.periode }}</p>
+    </div>
+  </div>
+</div>
+
+</div>
