@@ -5,7 +5,7 @@ import { AboutComponent } from './components/about/about.component';
 import { FormationComponent } from './components/formation/formation.component';
 import { ExperienceComponent } from './components/experience/experience.component';
 import { CertificationComponent } from './components/certification/certification.component';
-import { SkillComponent } from './components/skill/skill.component';
+import { SkillsComponent } from './components/skill/skill.component';
 import { ContactComponent } from './components/contact/contact.component';
 
 export const routes: Routes = [
@@ -15,6 +15,6 @@ export const routes: Routes = [
   { path: 'formation', component: FormationComponent },
   { path: 'experience', component: ExperienceComponent },
   { path: 'certification', component: CertificationComponent },
-  { path: 'skills', component: SkillComponent },
+  { path: 'skills', component: SkillsComponent },
   { path: 'contact', component: ContactComponent },
 ];

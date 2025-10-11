@@ -1,1 +1,47 @@
-<p>skill works!</p>
+<header class="header">
+  <div class="logo">Manal Kerroumi</div>
+  <nav>
+    <ul>
+      <li><a routerLink="/" routerLinkActive="active">À propos</a></li>
+      <li><a routerLink="/project" routerLinkActive="active">Projets</a></li>
+      <li><a routerLink="/certification" routerLinkActive="active">Certifications</a></li>
+      <li><a routerLink="/formation" routerLinkActive="active">Formations</a></li>
+      <li><a routerLink="/experience" routerLinkActive="active">Expérience</a></li>
+      <li><a routerLink="/skills" routerLinkActive="active">Compétences</a></li>
+      <li><a routerLink="/contact" routerLinkActive="active">Contact</a></li>
+      <li><a href="assets/docs/CV_Manal_Kerroumi.pdf" download class="cv-btn">CV</a></li>
+    </ul>
+  </nav>
+  <div class="header-right">
+    <i class="fa-solid fa-globe header-globe"></i>
+    <select class="language-select">
+      <option value="fr">FR</option>
+      <option value="en">EN</option>
+    </select>
+  </div>
+</header>
+
+<!-- Section compétences -->
+<div class="projects-container skills-container">
+  <h1>Mes Compétences</h1>
+
+  <div *ngFor="let category of categories" class="skill-category-card">
+    <div class="category-header" (click)="category.showDetails = !category.showDetails">
+      <h2>{{ category.name }}</h2>
+      <i class="fa-solid" [ngClass]="category.showDetails ? 'fa-angle-up' : 'fa-angle-down'"></i>
+    </div>
+
+    <div class="skills-badges" *ngIf="category.showDetails">
+      <div class="skill-badge" *ngFor="let skill of category.skills; let i = index" [style.animationDelay]="(i * 0.1)+'s'">
+        <div class="skill-icon-name">
+          <i [class]="skill.icon"></i>
+          <span>{{ skill.description }}</span>
+        </div>
+        <div class="skill-bar">
+          <div class="skill-progress" [style.width.%]="skill.level || 80"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

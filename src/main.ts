@@ -7,7 +7,7 @@ import { ProjectComponent } from './app/components/project/project.component';
 import { CertificationComponent } from './app/components/certification/certification.component';
 import { FormationComponent } from './app/components/formation/formation.component';
 import { ExperienceComponent } from './app/components/experience/experience.component';
-
+import { SkillsComponent } from './app/components/skill/skill.component';
 
 import 'zone.js';
 import { provideHttpClient } from '@angular/common/http';
@@ -19,6 +19,7 @@ const routes: Routes = [
   { path: 'certification', component: CertificationComponent }, 
   { path: 'formation', component: FormationComponent }, 
   { path: 'experience', component: ExperienceComponent }, 
+  { path: 'skills', component: SkillsComponent }, 
 
 ];
 
