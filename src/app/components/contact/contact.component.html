@@ -1,1 +1,68 @@
-<p>contact works!</p>
+<header class="header">
+  <div class="logo">Manal Kerroumi</div>
+  <nav>
+    <ul>
+      <li><a routerLink="/" routerLinkActive="active">À propos</a></li>
+      <li><a routerLink="/project" routerLinkActive="active">Projets</a></li>
+      <li><a routerLink="/certification" routerLinkActive="active">Certifications</a></li>
+      <li><a routerLink="/formation" routerLinkActive="active">Formations</a></li>
+      <li><a routerLink="/experience" routerLinkActive="active">Expérience</a></li>
+      <li><a routerLink="/skills" routerLinkActive="active">Compétences</a></li>
+      <li><a routerLink="/contact" routerLinkActive="active" class="active">Contact</a></li>
+      <li><a href="assets/docs/CV_Manal_Kerroumi.pdf" download class="cv-btn">CV</a></li>
+    </ul>
+  </nav>
+  <div class="header-right">
+    <i class="fa-solid fa-globe header-globe"></i>
+    <select class="language-select">
+      <option value="fr">FR</option>
+      <option value="en">EN</option>
+    </select>
+  </div>
+</header>
+
+<section class="contact-container">
+  <h1>Contactez-moi</h1>
+  <p class="intro"> 
+    N’hésitez pas à me contacter via le moyen qui vous convient le mieux ci-dessous.  
+    Je serai ravi(e) d’échanger avec vous. ✉️
+  </p>
+
+  <div class="contact-wrapper">
+    <!-- Téléphone -->
+    <div class="contact-card fade-in-up">
+      <i class="fas fa-phone contact-icon"></i>
+      <h2>Téléphone</h2>
+      <p>{{ contact.phone }}</p>
+    </div>
+
+    <!-- Email -->
+    <div class="contact-card fade-in-up">
+      <i class="fas fa-envelope contact-icon"></i>
+      <h2>Email</h2>
+      <p>
+        <a href="https://mail.google.com/mail/u/0/?view=cm&fs=1&to={{ contact.email }}" target="_blank">
+          {{ contact.email }}
+        </a>
+      </p>
+    </div>
+
+    <!-- LinkedIn -->
+    <div class="contact-card fade-in-up">
+      <i class="fab fa-linkedin contact-icon"></i>
+      <h2>LinkedIn</h2>
+      <p>
+        <a [href]="contact.linkedin" target="_blank">Voir mon profil</a>
+      </p>
+    </div>
+
+    <!-- GitHub -->
+    <div class="contact-card fade-in-up">
+      <i class="fab fa-github contact-icon"></i>
+      <h2>GitHub</h2>
+      <p>
+        <a [href]="contact.github" target="_blank">Voir mes projets</a>
+      </p>
+    </div>
+  </div>
+</section>

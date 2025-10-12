@@ -8,9 +8,10 @@ import { CertificationComponent } from './app/components/certification/certifica
 import { FormationComponent } from './app/components/formation/formation.component';
 import { ExperienceComponent } from './app/components/experience/experience.component';
 import { SkillsComponent } from './app/components/skill/skill.component';
+import { ContactComponent } from './app/components/contact/contact.component';
+import { provideHttpClient, withFetch } from '@angular/common/http';
 
 import 'zone.js';
-import { provideHttpClient } from '@angular/common/http';
 
 // ✅ ROUTES
 const routes: Routes = [
@@ -20,13 +21,14 @@ const routes: Routes = [
   { path: 'formation', component: FormationComponent }, 
   { path: 'experience', component: ExperienceComponent }, 
   { path: 'skills', component: SkillsComponent }, 
+  { path: 'contact', component: ContactComponent }, 
 
 ];
 
 // ✅ BOOTSTRAP APPLICATION
 bootstrapApplication(AppComponent, {
   providers: [
-    provideHttpClient(),  // <-- rend HttpClient disponible pour tous les composants standalone
+    provideHttpClient(withFetch()),  // <-- rend HttpClient disponible pour tous les composants standalone
     importProvidersFrom(
       RouterModule.forRoot(routes, {
         anchorScrolling: 'enabled',
