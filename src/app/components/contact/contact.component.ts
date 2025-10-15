@@ -46,5 +46,18 @@ export class ContactComponent implements OnInit {
     this.form = { name: '', email: '', subject: '', message: '' }; // reset formulaire
   }
 
+  downloadCV() {
+    this.http.get('assets/docs/cv_manal_kerroumi.pdf', { responseType: 'blob' })
+      .subscribe(blob => {
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'manal-kerroumi.pdf';
+        a.click();
+        window.URL.revokeObjectURL(url);
+      }, error => {
+        console.error('Erreur téléchargement CV:', error);
+      });
+  }
   
 }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ProjectService, Project } from '../../services/project.service';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router'; // pour routerLink
 
 @Component({
@@ -14,12 +14,27 @@ import { RouterModule } from '@angular/router'; // pour routerLink
 export class ProjectComponent implements OnInit {
   projects: Project[] = [];
 
-  constructor(private projectService: ProjectService) {}
+  constructor(private projectService: ProjectService, private http: HttpClient) {}
 
   ngOnInit(): void {
     this.projectService.getProjects().subscribe({
       next: (data) => this.projects = data,
       error: (err) => console.error('Erreur API:', err)
     });
+  }
+
+  
+  downloadCV() {
+    this.http.get('assets/docs/cv_manal_kerroumi.pdf', { responseType: 'blob' })
+      .subscribe(blob => {
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'manal-kerroumi.pdf';
+        a.click();
+        window.URL.revokeObjectURL(url);
+      }, error => {
+        console.error('Erreur téléchargement CV:', error);
+      });
   }
 }

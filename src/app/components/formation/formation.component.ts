@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
-import { UniquePipe } from '../../pipes/unique-pipe';
 
 export interface Formation {
   id: number;
@@ -29,4 +28,19 @@ export class FormationComponent implements OnInit {
       error: (err) => console.error('Erreur API:', err)
     });
   }
+
+  downloadCV() {
+    this.http.get('assets/docs/cv_manal_kerroumi.pdf', { responseType: 'blob' })
+      .subscribe(blob => {
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'manal-kerroumi.pdf';
+        a.click();
+        window.URL.revokeObjectURL(url);
+      }, error => {
+        console.error('Erreur téléchargement CV:', error);
+      });
+  }
+
 }

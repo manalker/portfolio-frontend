@@ -49,4 +49,19 @@ export class ExperienceComponent implements OnInit {
   toggleDetails(index: number): void {
     this.experiences[index].showDetails = !this.experiences[index].showDetails;
   }
+
+  downloadCV() {
+    this.http.get('assets/docs/cv_manal_kerroumi.pdf', { responseType: 'blob' })
+      .subscribe(blob => {
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'manal-kerroumi.pdf';
+        a.click();
+        window.URL.revokeObjectURL(url);
+      }, error => {
+        console.error('Erreur téléchargement CV:', error);
+      });
+  }
+  
 }
