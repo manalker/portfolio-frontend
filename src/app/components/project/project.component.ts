@@ -37,4 +37,9 @@ export class ProjectComponent implements OnInit {
         console.error('Erreur téléchargement CV:', error);
       });
   }
+
+  toggleDescription(index: number) {
+  this.projects[index].showDescription = !this.projects[index].showDescription;
+  }
+
 }

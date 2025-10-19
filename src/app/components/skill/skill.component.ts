@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
 interface Skill {
+color: any;
 level: any;
   id: number;
   category: string;

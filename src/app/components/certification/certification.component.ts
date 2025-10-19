@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
+import { OrderByDatePipe } from "../../order-by.pipe";
 
 export interface Certification {
   id: number;
@@ -16,7 +17,7 @@ export interface Certification {
   templateUrl: './certification.component.html',
   styleUrls: ['./certification.component.css'],
   standalone: true,
-  imports: [CommonModule, HttpClientModule, RouterModule]
+  imports: [CommonModule, HttpClientModule, RouterModule, OrderByDatePipe]
 })
 export class CertificationComponent implements OnInit {
 

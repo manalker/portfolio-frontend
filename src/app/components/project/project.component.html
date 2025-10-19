@@ -6,7 +6,7 @@
       <li><a routerLink="/project" routerLinkActive="active">Projets</a></li>
       <li><a routerLink="/certification" routerLinkActive="active">Certifications</a></li>
       <li><a routerLink="/formation" routerLinkActive="active">Formations</a></li>
-      <li><a routerLink="/experience" routerLinkActive="active">Expérience</a></li>
+      <li><a routerLink="/experience" routerLinkActive="active">Expériences</a></li>
       <li><a routerLink="/skills" routerLinkActive="active">Compétences</a></li>
       <li><a routerLink="/contact" routerLinkActive="active">Contact</a></li>
       <li>
@@ -25,21 +25,35 @@
   </div>
 </header>
 
-<!-- Le reste de ton contenu page project -->
+<!-- --- Contenu Principal --- -->
 <div class="projects-container">
   <h1 class="projects-title">Mes Projets</h1>
+
   <div *ngIf="projects.length === 0" class="no-projects">
     Aucun projet disponible pour le moment.
   </div>
+
   <div class="projects-grid" *ngIf="projects.length > 0">
-    <div class="project-card" *ngFor="let project of projects">
+    <div class="project-card" *ngFor="let project of projects; let i = index">
       <div class="image-container">
         <img [src]="'http://localhost:8081/uploads/' + project.imageUrl" [alt]="project.title" />
       </div>
+
       <div class="project-info">
         <h2>{{ project.title }}</h2>
-        <p class="description">{{ project.description }}</p>
         <p class="tech">{{ project.technologies }}</p>
+
+        <div class="details-icon" (click)="toggleDescription(i)">
+          <i class="fa-solid" [ngClass]="{
+            'fa-circle-info': !project.showDescription,
+            'fa-circle-xmark': project.showDescription
+          }"></i>
+          <span>{{ project.showDescription ? 'Fermer' : 'Détails' }}</span>
+        </div>
+
+        <div class="description" [class.show]="project.showDescription">
+          <p>{{ project.description }}</p>
+        </div>
       </div>
     </div>
   </div>

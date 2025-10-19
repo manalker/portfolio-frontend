@@ -102,7 +102,7 @@
 }
 
 /* --- Conteneur principal --- */
-.projects-container {
+.formations-container {
   max-width: 1200px;
   margin: 100px auto 50px; /* espace sous le header */
   padding: 0 20px;
@@ -114,7 +114,7 @@
 }
 
 /* --- Background animé subtil --- */
-.projects-container::before {
+.formations-container::before {
   content: '';
   position: fixed;
   top: 0;
@@ -128,7 +128,7 @@
 }
 
 /* --- Titre "Mes Formations" --- */
-.projects-container h1 {
+.formations-container h1 {
   font-size: 3rem;
   font-weight: 800;
   color: #00e0ff;
@@ -139,7 +139,7 @@
   text-shadow: 0 0 10px rgba(0, 224, 255, 0.7);
 }
 
-.projects-container h1::after {
+.formations-container h1::after {
   content: '';
   width: 100px;
   height: 4px;
@@ -150,7 +150,7 @@
 }
 
 /* --- Message si aucune formation --- */
-.no-projects {
+.no-formations {
   font-size: 1.2rem;
   color: #aaa;
   margin-top: 30px;

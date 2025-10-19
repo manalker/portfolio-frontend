@@ -125,19 +125,7 @@
 }
 
 /* --- Conteneur principal --- */
-.projects-container {
-  max-width: 1200px;
-  margin: 100px auto 50px; /* espace sous le header */
-  padding: 0 20px;
-  text-align: center;
-  font-family: 'Inter', sans-serif;
-  color: #fff;
-  position: relative;
-  z-index: 1;
-}
-
-/* --- Background animé subtil --- */
-.projects-container::before {
+.certifications-container::before {
   content: '';
   position: fixed;
   top: 0;
@@ -146,12 +134,36 @@
   height: 100%;
   background: linear-gradient(135deg, #1f1f3d, #232347, #1a1a2e, #1e1e2f);
   background-size: 400% 400%;
-  animation: gradientMove 25s ease infinite;
+  animation: gradientMove 30s ease infinite;
   z-index: -1;
 }
 
-/* --- Titre "Mes Certifications" --- */
-.projects-container h1 {
+/* --- Animations --- */
+@keyframes gradientMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* --- Conteneur principal --- */
+.certifications-container {
+  max-width: 1100px;
+  margin: 100px auto 50px;
+  padding: 0 20px;
+  font-family: 'Inter', sans-serif;
+  color: #fff;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+/* --- Titre principal --- */
+.certifications-container h1 {
   font-size: 3rem;
   font-weight: 800;
   color: #00e0ff;
@@ -162,7 +174,7 @@
   text-shadow: 0 0 10px rgba(0, 224, 255, 0.7);
 }
 
-.projects-container h1::after {
+.certifications-container h1::after {
   content: '';
   width: 100px;
   height: 4px;
@@ -173,99 +185,96 @@
 }
 
 /* --- Message si aucune certification --- */
-.no-projects {
+.no-certifications {
   font-size: 1.2rem;
   color: #aaa;
   margin-top: 30px;
 }
 
-/* --- Grille des certifications --- */
-.projects-grid {
+/* --- Grille --- */
+.certifications-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 40px;
-  padding-bottom: 50px;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
 }
 
 /* --- Carte certification --- */
-.project-card {
-  background: rgba(30, 30, 50, 0.9);
-  border-radius: 15px;
-  overflow: hidden;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
+.cert-card {
+  background: rgba(25, 25, 40, 0.95);
+  border-radius: 12px;
+  padding: 22px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
   display: flex;
   flex-direction: column;
-  cursor: default;
+  justify-content: space-between;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
   animation: fadeInUp 0.7s ease forwards;
 }
 
-.project-card:hover {
-  transform: translateY(-8px) scale(1.02);
-  box-shadow: 0 20px 40px rgba(0, 224, 255, 0.4);
+.cert-card:hover {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 20px 40px rgba(0, 224, 255, 0.3);
 }
 
 /* --- Infos certification --- */
-.project-info {
-  padding: 25px 20px;
-  text-align: left;
-}
-
-.project-info h2 {
-  font-size: 1.5rem;
+.cert-info h2 {
+  font-size: 1.4rem;
+  margin-bottom: 8px;
   color: #00e0ff;
-  margin-bottom: 12px;
   transition: color 0.3s ease;
 }
 
-.project-card:hover .project-info h2 {
+.cert-card:hover .cert-info h2 {
   color: #ff6a00;
 }
 
 .description {
-  font-size: 1rem;
+  font-size: 0.95rem;
   color: #ccc;
-  margin-bottom: 15px;
-  line-height: 1.6;
+  margin-bottom: 10px;
+  line-height: 1.5;
 }
 
 .tech {
-  font-size: 0.9rem;
-  color: #ff6a00;
-  font-weight: 600;
-  margin-bottom: 5px;
+  font-size: 0.85rem;
+  color: #aaa;
+  margin-bottom: 4px;
 }
 
-/* --- Animation --- */
-@keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(30px); }
-  to { opacity: 1; transform: translateY(0); }
+/* --- Bouton PDF avec icône --- */
+.cert-actions {
+  text-align: right;
+  margin-top: 10px;
 }
 
-@keyframes gradientMove {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+.cert-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  background: #e3342f;
+  color: #fff;
+  border-radius: 50%;
+  font-size: 1rem;
+  text-decoration: none;
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.cert-btn:hover {
+  background: #c53030;
+  transform: scale(1.1);
 }
 
 /* --- Responsive --- */
 @media (max-width: 768px) {
-  .projects-container h1 {
-    font-size: 2.2rem;
-  }
-  .project-info h2 {
-    font-size: 1.3rem;
-  }
+  .certifications-container h1 { font-size: 2.2rem; }
+  .cert-info h2 { font-size: 1.2rem; }
 }
 
 @media (max-width: 480px) {
-  .projects-container {
-    padding: 0 15px;
-  }
-  .description {
-    font-size: 0.95rem;
-  }
-  .tech {
-    font-size: 0.85rem;
-  }
+  .certifications-container { padding: 0 15px; }
+  .description { font-size: 0.9rem; }
+  .tech { font-size: 0.8rem; }
+  .cert-actions { text-align: center; margin-top: 10px; }
 }

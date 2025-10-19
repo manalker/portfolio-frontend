@@ -6,7 +6,7 @@
       <li><a routerLink="/project" routerLinkActive="active">Projets</a></li>
       <li><a routerLink="/certification" routerLinkActive="active">Certifications</a></li>
       <li><a routerLink="/formation" routerLinkActive="active">Formations</a></li>
-      <li><a routerLink="/experience" routerLinkActive="active">Expérience</a></li>
+      <li><a routerLink="/experience" routerLinkActive="active">Expériences</a></li>
       <li><a routerLink="/skills" routerLinkActive="active">Compétences</a></li>
       <li><a routerLink="/contact" routerLinkActive="active">Contact</a></li>
       <li>
@@ -25,21 +25,31 @@
   </div>
 </header>
 
-<div class="projects-container">
+<div class="certifications-container">
   <h1>Mes Certifications</h1>
 
-  <div *ngIf="certifications.length === 0" class="no-projects">
+  <div *ngIf="certifications.length === 0" class="no-certifications">
     Aucune certification disponible.
   </div>
 
-  <div class="projects-grid">
-    <div class="project-card" *ngFor="let cert of certifications">
-      <div class="project-info">
+  <div class="certifications-grid" *ngIf="certifications.length > 0">
+    <div class="cert-card" *ngFor="let cert of certifications | orderByDate:'desc'">
+      <div class="cert-info">
         <h2>{{ cert.title }}</h2>
         <p class="description">{{ cert.description }}</p>
         <p class="tech"><strong>Émis par :</strong> {{ cert.issuer }}</p>
         <p class="tech"><strong>Date :</strong> {{ cert.dateObtained }}</p>
       </div>
+      <div class="cert-actions">
+        <a *ngIf="cert.pdfUrl" 
+           [href]="'http://localhost:8081/certifications/' + cert.pdfUrl" 
+           target="_blank" 
+           class="cert-btn">
+          <i class="fa-solid fa-file-pdf"></i>
+        </a>
+      </div>
     </div>
   </div>
 </div>
+
+
