@@ -1,61 +1,59 @@
-<!-- Header avec navigation -->
 <header class="header">
   <div class="logo">Manal Kerroumi</div>
-  <nav>
+  <nav [class.open]="menuOpen">
     <ul>
-      <li><a routerLink="/" routerLinkActive="active">À propos</a></li>
-      <li><a routerLink="/project" routerLinkActive="active">Projets</a></li>
-      <li><a routerLink="/certification" routerLinkActive="active">Certifications</a></li>
-      <li><a routerLink="/formation" routerLinkActive="active">Formations</a></li>
-      <li><a routerLink="/experience" routerLinkActive="active">Expériences</a></li>
-      <li><a routerLink="/skills" routerLinkActive="active">Compétences</a></li>
-      <li><a routerLink="/contact" routerLinkActive="active">Contact</a></li>
-      <li>
-        <a href="assets/docs/manal-kerroumi.pdf" download="cv-manal-kerroumi.pdf" class="cv-btn">
-          CV
+      <li><a routerLink="/" routerLinkActive="active" (click)="closeMenu()">{{ 'nav.apropos' | translate }}</a></li>
+      <li><a routerLink="/project" routerLinkActive="active" (click)="closeMenu()">{{ 'nav.projets' | translate }}</a></li>
+      <li><a routerLink="/certification" routerLinkActive="active" (click)="closeMenu()">{{ 'nav.certifications' | translate }}</a></li>
+      <li><a routerLink="/formation" routerLinkActive="active" (click)="closeMenu()">{{ 'nav.formations' | translate }}</a></li>
+      <li><a routerLink="/experience" routerLinkActive="active" (click)="closeMenu()">{{ 'nav.experiences' | translate }}</a></li>
+      <li><a routerLink="/skills" routerLinkActive="active" (click)="closeMenu()">{{ 'nav.competences' | translate }}</a></li>
+      <li><a routerLink="/contact" routerLinkActive="active" (click)="closeMenu()">{{ 'nav.contact' | translate }}</a></li>
+      <li class="mobile-only">
+        <a href="assets/docs/manal-kerroumi.pdf" download="cv-manal-kerroumi.pdf">
+          <i class="fas fa-file-arrow-down"></i> {{ 'nav.cv' | translate }}
         </a>
+      </li>
+      <li class="mobile-only lang-mobile">
+        <button class="lang-btn" [class.active]="lang === 'fr'" (click)="setLang('fr')">🇫🇷 FR</button>
+        <button class="lang-btn" [class.active]="lang === 'en'" (click)="setLang('en')">🇬🇧 EN</button>
       </li>
     </ul>
   </nav>
   <div class="header-right">
-    <i class="fa-solid fa-globe header-globe"></i>
-    <select class="language-select">
-      <option value="fr">FR</option>
-      <option value="en">EN</option>
-    </select>
+    <a href="assets/docs/manal-kerroumi.pdf" download="cv-manal-kerroumi.pdf" class="cv-btn-nav desktop-only">
+      <i class="fas fa-file-arrow-down"></i> {{ 'nav.cv' | translate }}
+    </a>
+    <div class="lang-switcher desktop-only">
+      <button class="lang-btn" [class.active]="lang === 'fr'" (click)="setLang('fr')">🇫🇷 FR</button>
+      <button class="lang-btn" [class.active]="lang === 'en'" (click)="setLang('en')">🇬🇧 EN</button>
+    </div>
+    <div class="hamburger" (click)="menuOpen = !menuOpen">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
   </div>
 </header>
 
-
-<!-- Section principale -->
 <section class="home-section">
   <div class="home-content">
     <div class="photo-container">
       <img src="assets/images/profile.jpg" alt="Photo de profil" class="profile-photo" />
-
-      <!-- Cercles autour de la photo -->
       <div class="circle circle1"></div>
       <div class="circle circle2"></div>
       <div class="circle circle3"></div>
       <div class="circle circle4"></div>
     </div>
 
-
     <div class="description">
-      <h1>Bonjour <span class="hand-emoji">👋</span>, je suis <span class="name">Manal Kerroumi</span></h1>
-      <h2 class="typing-text">Ingénieure en Informatique & Réseaux (MIAGE)</h2>
-      <p>
-        Ingénieure en informatique et réseaux (option MIAGE), avec une solide expérience dans le développement
-        et la mise en œuvre de solutions digitales. Grâce à mes stages et projets, j’ai développé des compétences
-        en gestion de projets IT, de la conception à la livraison, en m’appuyant sur des méthodologies agiles et
-        des outils collaboratifs (Azure DevOps, GitHub, Microsoft Teams). <br /><br />
-        Dotée d’un esprit analytique et d’une forte capacité d’adaptation, je souhaite contribuer à la réussite de
-        projets innovants en assurant le lien entre besoins métiers et solutions techniques.
-      </p>
-
+      <h1>{{ 'home.bonjour' | translate }} <span class="hand-emoji">👋</span>, {{ 'home.je_suis' | translate }} <span class="name">Manal Kerroumi</span></h1>
+      <h2 class="typing-text">{{ 'home.titre' | translate }}</h2>
+      <p>{{ 'home.description' | translate }}</p>
+      <p>{{ 'home.description2' | translate }}</p>
       <div class="action-buttons">
         <button (click)="downloadCV()" class="btn cv-btn">
-          📄 Télécharger mon CV
+          📄 {{ 'home.telecharger_cv' | translate }}
         </button>
       </div>
     </div>

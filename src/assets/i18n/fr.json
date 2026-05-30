@@ -1,0 +1,57 @@
+{
+  "nav": {
+    "apropos": "À propos",
+    "projets": "Projets",
+    "certifications": "Certifications",
+    "formations": "Formations",
+    "experiences": "Expériences",
+    "competences": "Compétences",
+    "contact": "Contact",
+    "cv": "CV",
+    "telecharger_cv": "Télécharger CV"
+  },
+  "home": {
+    "bonjour": "Bonjour",
+    "je_suis": "je suis",
+    "titre": "Ingénieure en Informatique & Réseaux (MIAGE)",
+    "description": "Ingénieure en informatique et réseaux (option MIAGE), avec une solide expérience dans le développement et la mise en œuvre de solutions digitales. Grâce à mes stages et projets, j'ai développé des compétences en gestion de projets IT, de la conception à la livraison, en m'appuyant sur des méthodologies agiles et des outils collaboratifs (Azure DevOps, GitHub, Microsoft Teams).",
+    "description2": "Dotée d'un esprit analytique et d'une forte capacité d'adaptation, je souhaite contribuer à la réussite de projets innovants en assurant le lien entre besoins métiers et solutions techniques.",
+    "telecharger_cv": "Télécharger mon CV"
+  },
+  "projects": {
+    "title": "Mes Projets",
+    "empty": "Aucun projet disponible pour le moment.",
+    "details": "Détails",
+    "close": "Fermer"
+  },
+  "certifications": {
+    "title": "Mes Certifications",
+    "empty": "Aucune certification disponible.",
+    "issued_by": "Émis par :",
+    "date": "Date :"
+  },
+  "formations": {
+    "title": "Mes Formations",
+    "empty": "Aucune formation disponible.",
+    "etablissement": "Établissement :",
+    "periode": "Période :"
+  },
+  "experiences": {
+    "title": "Mes Expériences",
+    "empty": "Aucune expérience disponible.",
+    "technologies": "Technologies :",
+    "details": "Détails",
+    "close": "Fermer"
+  },
+  "skills": {
+    "title": "Mes Compétences"
+  },
+  "contact": {
+    "title": "Contactez-moi",
+    "intro": "N'hésitez pas à me contacter via le moyen qui vous convient le mieux ci-dessous. Je serai ravie d'échanger avec vous. ✉️",
+    "phone": "Téléphone",
+    "email": "Email",
+    "voir_profil": "Voir mon profil",
+    "voir_projets": "Voir mes projets"
+  }
+}

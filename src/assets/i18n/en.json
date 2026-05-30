@@ -1,0 +1,57 @@
+{
+  "nav": {
+    "apropos": "About",
+    "projets": "Projects",
+    "certifications": "Certifications",
+    "formations": "Education",
+    "experiences": "Experiences",
+    "competences": "Skills",
+    "contact": "Contact",
+    "cv": "CV",
+    "telecharger_cv": "Download CV"
+  },
+  "home": {
+    "bonjour": "Hello",
+    "je_suis": "I am",
+    "titre": "Computer & Network Engineer (MIAGE)",
+    "description": "Computer and network engineer (MIAGE track), with solid experience in developing and implementing digital solutions. Through internships and projects, I have built skills in IT project management, from design to delivery, using agile methodologies and collaborative tools (Azure DevOps, GitHub, Microsoft Teams).",
+    "description2": "With an analytical mindset and strong adaptability, I aim to contribute to innovative projects by bridging business needs and technical solutions.",
+    "telecharger_cv": "Download my CV"
+  },
+  "projects": {
+    "title": "My Projects",
+    "empty": "No projects available at the moment.",
+    "details": "Details",
+    "close": "Close"
+  },
+  "certifications": {
+    "title": "My Certifications",
+    "empty": "No certifications available.",
+    "issued_by": "Issued by:",
+    "date": "Date:"
+  },
+  "formations": {
+    "title": "My Education",
+    "empty": "No education available.",
+    "etablissement": "Institution:",
+    "periode": "Period:"
+  },
+  "experiences": {
+    "title": "My Experiences",
+    "empty": "No experience available.",
+    "technologies": "Technologies:",
+    "details": "Details",
+    "close": "Close"
+  },
+  "skills": {
+    "title": "My Skills"
+  },
+  "contact": {
+    "title": "Contact Me",
+    "intro": "Feel free to reach out via any of the options below. I would be happy to connect with you. ✉️",
+    "phone": "Phone",
+    "email": "Email",
+    "voir_profil": "View my profile",
+    "voir_projets": "View my projects"
+  }
+}

@@ -9,6 +9,8 @@ export interface Project {
   description: string;
   technologies: string;
   imageUrl: string;
+  titleEn?: string;
+  descriptionEn?: string;
 }
 
 @Injectable({

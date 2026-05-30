@@ -1,36 +1,46 @@
 <header class="header">
   <div class="logo">Manal Kerroumi</div>
-  <nav>
+  <nav [class.open]="menuOpen">
     <ul>
-      <li><a routerLink="/" routerLinkActive="active">À propos</a></li>
-      <li><a routerLink="/project" routerLinkActive="active">Projets</a></li>
-      <li><a routerLink="/certification" routerLinkActive="active">Certifications</a></li>
-      <li><a routerLink="/formation" routerLinkActive="active">Formations</a></li>
-      <li><a routerLink="/experience" routerLinkActive="active">Expériences</a></li>
-      <li><a routerLink="/skills" routerLinkActive="active">Compétences</a></li>
-      <li><a routerLink="/contact" routerLinkActive="active">Contact</a></li>
-      <li>
-        <a href="assets/docs/manal-kerroumi.pdf" download="cv-manal-kerroumi.pdf" class="cv-btn">
-          CV
+      <li><a routerLink="/" routerLinkActive="active" (click)="closeMenu()">{{ 'nav.apropos' | translate }}</a></li>
+      <li><a routerLink="/project" routerLinkActive="active" (click)="closeMenu()">{{ 'nav.projets' | translate }}</a></li>
+      <li><a routerLink="/certification" routerLinkActive="active" (click)="closeMenu()">{{ 'nav.certifications' | translate }}</a></li>
+      <li><a routerLink="/formation" routerLinkActive="active" (click)="closeMenu()">{{ 'nav.formations' | translate }}</a></li>
+      <li><a routerLink="/experience" routerLinkActive="active" (click)="closeMenu()">{{ 'nav.experiences' | translate }}</a></li>
+      <li><a routerLink="/skills" routerLinkActive="active" (click)="closeMenu()">{{ 'nav.competences' | translate }}</a></li>
+      <li><a routerLink="/contact" routerLinkActive="active" (click)="closeMenu()">{{ 'nav.contact' | translate }}</a></li>
+      <li class="mobile-only">
+        <a href="assets/docs/manal-kerroumi.pdf" download="cv-manal-kerroumi.pdf">
+          <i class="fas fa-file-arrow-down"></i> {{ 'nav.cv' | translate }}
         </a>
+      </li>
+      <li class="mobile-only lang-mobile">
+        <button class="lang-btn" [class.active]="lang === 'fr'" (click)="setLang('fr')">🇫🇷 FR</button>
+        <button class="lang-btn" [class.active]="lang === 'en'" (click)="setLang('en')">🇬🇧 EN</button>
       </li>
     </ul>
   </nav>
   <div class="header-right">
-    <i class="fa-solid fa-globe header-globe"></i>
-    <select class="language-select">
-      <option value="fr">FR</option>
-      <option value="en">EN</option>
-    </select>
+    <a href="assets/docs/manal-kerroumi.pdf" download="cv-manal-kerroumi.pdf" class="cv-btn-nav desktop-only">
+      <i class="fas fa-file-arrow-down"></i> {{ 'nav.cv' | translate }}
+    </a>
+    <div class="lang-switcher desktop-only">
+      <button class="lang-btn" [class.active]="lang === 'fr'" (click)="setLang('fr')">🇫🇷 FR</button>
+      <button class="lang-btn" [class.active]="lang === 'en'" (click)="setLang('en')">🇬🇧 EN</button>
+    </div>
+    <div class="hamburger" (click)="menuOpen = !menuOpen">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
   </div>
 </header>
 
-<!-- --- Contenu Principal --- -->
 <div class="projects-container">
-  <h1 class="projects-title">Mes Projets</h1>
+  <h1 class="projects-title">{{ 'projects.title' | translate }}</h1>
 
   <div *ngIf="projects.length === 0" class="no-projects">
-    Aucun projet disponible pour le moment.
+    {{ 'projects.empty' | translate }}
   </div>
 
   <div class="projects-grid" *ngIf="projects.length > 0">
@@ -40,7 +50,9 @@
       </div>
 
       <div class="project-info">
-        <h2>{{ project.title }}</h2>
+
+        <!-- ↓ ICI les titres/descriptions changent selon la langue -->
+        <h2>{{ lang === 'en' && project.titleEn ? project.titleEn : project.title }}</h2>
         <p class="tech">{{ project.technologies }}</p>
 
         <div class="details-icon" (click)="toggleDescription(i)">
@@ -48,12 +60,14 @@
             'fa-circle-info': !project.showDescription,
             'fa-circle-xmark': project.showDescription
           }"></i>
-          <span>{{ project.showDescription ? 'Fermer' : 'Détails' }}</span>
+          <span>{{ project.showDescription ? ('projects.close' | translate) : ('projects.details' | translate) }}</span>
         </div>
 
         <div class="description" [class.show]="project.showDescription">
-          <p>{{ project.description }}</p>
+          <!-- ↓ ICI la description change selon la langue -->
+          <p>{{ lang === 'en' && project.descriptionEn ? project.descriptionEn : project.description }}</p>
         </div>
+
       </div>
     </div>
   </div>

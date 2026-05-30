@@ -1,45 +1,63 @@
 <header class="header">
   <div class="logo">Manal Kerroumi</div>
-  <nav>
+  <nav [class.open]="menuOpen">
     <ul>
-      <li><a routerLink="/" routerLinkActive="active">À propos</a></li>
-      <li><a routerLink="/project" routerLinkActive="active">Projets</a></li>
-      <li><a routerLink="/certification" routerLinkActive="active">Certifications</a></li>
-      <li><a routerLink="/formation" routerLinkActive="active">Formations</a></li>
-      <li><a routerLink="/experience" routerLinkActive="active">Expériences</a></li>
-      <li><a routerLink="/skills" routerLinkActive="active">Compétences</a></li>
-      <li><a routerLink="/contact" routerLinkActive="active">Contact</a></li>
-      <li>
-        <a href="assets/docs/manal-kerroumi.pdf" download="cv-manal-kerroumi.pdf" class="cv-btn">
-          CV
+      <li><a routerLink="/" routerLinkActive="active" (click)="closeMenu()">{{ 'nav.apropos' | translate }}</a></li>
+      <li><a routerLink="/project" routerLinkActive="active" (click)="closeMenu()">{{ 'nav.projets' | translate }}</a></li>
+      <li><a routerLink="/certification" routerLinkActive="active" (click)="closeMenu()">{{ 'nav.certifications' | translate }}</a></li>
+      <li><a routerLink="/formation" routerLinkActive="active" (click)="closeMenu()">{{ 'nav.formations' | translate }}</a></li>
+      <li><a routerLink="/experience" routerLinkActive="active" (click)="closeMenu()">{{ 'nav.experiences' | translate }}</a></li>
+      <li><a routerLink="/skills" routerLinkActive="active" (click)="closeMenu()">{{ 'nav.competences' | translate }}</a></li>
+      <li><a routerLink="/contact" routerLinkActive="active" (click)="closeMenu()">{{ 'nav.contact' | translate }}</a></li>
+      <li class="mobile-only">
+        <a href="assets/docs/manal-kerroumi.pdf" download="cv-manal-kerroumi.pdf">
+          <i class="fas fa-file-arrow-down"></i> {{ 'nav.cv' | translate }}
         </a>
+      </li>
+      <li class="mobile-only lang-mobile">
+        <button class="lang-btn" [class.active]="lang === 'fr'" (click)="setLang('fr')">🇫🇷 FR</button>
+        <button class="lang-btn" [class.active]="lang === 'en'" (click)="setLang('en')">🇬🇧 EN</button>
       </li>
     </ul>
   </nav>
   <div class="header-right">
-    <i class="fa-solid fa-globe header-globe"></i>
-    <select class="language-select">
-      <option value="fr">FR</option>
-      <option value="en">EN</option>
-    </select>
+    <a href="assets/docs/manal-kerroumi.pdf" download="cv-manal-kerroumi.pdf" class="cv-btn-nav desktop-only">
+      <i class="fas fa-file-arrow-down"></i> {{ 'nav.cv' | translate }}
+    </a>
+    <div class="lang-switcher desktop-only">
+      <button class="lang-btn" [class.active]="lang === 'fr'" (click)="setLang('fr')">🇫🇷 FR</button>
+      <button class="lang-btn" [class.active]="lang === 'en'" (click)="setLang('en')">🇬🇧 EN</button>
+    </div>
+    <div class="hamburger" (click)="menuOpen = !menuOpen">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
   </div>
 </header>
 
 <div class="projects-container">
-  <h1>Mes Formations</h1>
+  <h1>{{ 'formations.title' | translate }}</h1>
 
   <div *ngIf="formations.length === 0" class="no-projects">
-    Aucune formation disponible.
+    {{ 'formations.empty' | translate }}
   </div>
 
   <div class="timeline-container">
-  <div class="timeline-item left" *ngFor="let f of formations; let i = index" [ngClass]="i % 2 === 0 ? 'left' : 'right'">
-    <div class="timeline-content">
-      <h2>{{ f.diplome }}</h2>
-      <p class="tech"><strong>Établissement :</strong> {{ f.etablissement }}</p>
-      <p class="tech"><strong>Période :</strong> {{ f.periode }}</p>
+    <div *ngFor="let f of formations; let i = index"
+         class="timeline-item"
+         [ngClass]="i % 2 === 0 ? 'left' : 'right'">
+      <div class="timeline-content">
+        <h2>{{ lang === 'en' && f.diplomeEn ? f.diplomeEn : f.diplome }}</h2>
+        <p class="tech">
+          <strong>{{ 'formations.etablissement' | translate }}</strong>
+          {{ lang === 'en' && f.etablissementEn ? f.etablissementEn : f.etablissement }}
+        </p>
+        <p class="tech">
+          <strong>{{ 'formations.periode' | translate }}</strong>
+          {{ f.periode }}
+        </p>
+      </div>
     </div>
   </div>
-</div>
-
 </div>

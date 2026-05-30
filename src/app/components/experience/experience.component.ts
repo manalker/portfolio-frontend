@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { CommonModule } from '@angular/common'; // pour *ngIf / *ngFor
+import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { TranslatePipe } from '@ngx-translate/core';
+import { LanguageService } from '../../services/language.service';
 
 interface Experience {
   id: number;
@@ -12,7 +14,10 @@ interface Experience {
   type: string;
   tasks: string;
   technologies: string;
-  showDetails?: boolean; // 👈 propriété optionnelle
+  titleEn?: string;
+  tasksEn?: string;
+  typeEn?: string;
+  showDetails?: boolean;
 }
 
 @Component({
@@ -20,27 +25,30 @@ interface Experience {
   templateUrl: './experience.component.html',
   styleUrls: ['./experience.component.css'],
   standalone: true,
-  imports: [CommonModule, HttpClientModule, RouterModule]
+  imports: [CommonModule, HttpClientModule, RouterModule, TranslatePipe]
 })
 export class ExperienceComponent implements OnInit {
-
+  menuOpen = false;
   experiences: Experience[] = [];
 
-  constructor(private http: HttpClient) {}
+  get lang() { return this.languageService.getLang(); }
 
-  ngOnInit(): void {
-    this.getExperiences();
+  constructor(
+    private http: HttpClient,
+    private languageService: LanguageService
+  ) {}
+
+  setLang(l: string) {
+    this.languageService.setLang(l);
   }
 
-  getExperiences(): void {
+  closeMenu() { this.menuOpen = false; }
+
+  ngOnInit(): void {
     this.http.get<Experience[]>('http://localhost:8081/api/experiences')
       .subscribe({
-        next: (data: Experience[]) => {
-          // On initialise showDetails = false pour chaque expérience
-          this.experiences = data.map(exp => ({
-            ...exp,
-            showDetails: false
-          }));
+        next: (data) => {
+          this.experiences = data.map(exp => ({ ...exp, showDetails: false }));
         },
         error: err => console.error('Erreur API:', err)
       });
@@ -49,19 +57,4 @@ export class ExperienceComponent implements OnInit {
   toggleDetails(index: number): void {
     this.experiences[index].showDetails = !this.experiences[index].showDetails;
   }
-
-  downloadCV() {
-    this.http.get('assets/docs/cv_manal_kerroumi.pdf', { responseType: 'blob' })
-      .subscribe(blob => {
-        const url = window.URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = 'manal-kerroumi.pdf';
-        a.click();
-        window.URL.revokeObjectURL(url);
-      }, error => {
-        console.error('Erreur téléchargement CV:', error);
-      });
-  }
-  
 }

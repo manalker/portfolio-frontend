@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { FormsModule } from '@angular/forms'; // <-- pour ngModel
+import { FormsModule } from '@angular/forms';
+import { TranslatePipe } from '@ngx-translate/core';
+import { LanguageService } from '../../services/language.service';
 
 interface Contact {
   id: number;
@@ -18,12 +20,12 @@ interface Contact {
   templateUrl: './contact.component.html',
   styleUrls: ['./contact.component.css'],
   standalone: true,
-  imports: [CommonModule, HttpClientModule, RouterModule, FormsModule]
+  imports: [CommonModule, HttpClientModule, RouterModule, FormsModule, TranslatePipe]
 })
 export class ContactComponent implements OnInit {
+  menuOpen = false;
   contact!: Contact;
 
-  // Formulaire de contact
   form = {
     name: '',
     email: '',
@@ -31,33 +33,25 @@ export class ContactComponent implements OnInit {
     message: ''
   };
 
-  constructor(private http: HttpClient) {}
+  get lang() { return this.languageService.getLang(); }
+
+  constructor(
+    private http: HttpClient,
+    private languageService: LanguageService
+  ) {}
+
+  setLang(l: string) { this.languageService.setLang(l); }
+  closeMenu() { this.menuOpen = false; }
 
   ngOnInit(): void {
     this.http.get<Contact[]>('http://localhost:8081/api/contacts').subscribe(data => {
-      this.contact = data[0]; // on prend le premier contact
+      this.contact = data[0];
     });
   }
 
-  // Méthode pour envoyer le message
   sendMessage() {
     console.log('Message envoyé :', this.form);
     alert(`Merci ${this.form.name}, votre message a été envoyé !`);
-    this.form = { name: '', email: '', subject: '', message: '' }; // reset formulaire
+    this.form = { name: '', email: '', subject: '', message: '' };
   }
-
-  downloadCV() {
-    this.http.get('assets/docs/cv_manal_kerroumi.pdf', { responseType: 'blob' })
-      .subscribe(blob => {
-        const url = window.URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = 'manal-kerroumi.pdf';
-        a.click();
-        window.URL.revokeObjectURL(url);
-      }, error => {
-        console.error('Erreur téléchargement CV:', error);
-      });
-  }
-  
 }

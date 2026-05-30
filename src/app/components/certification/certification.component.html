@@ -1,49 +1,60 @@
 <header class="header">
   <div class="logo">Manal Kerroumi</div>
-  <nav>
+  <nav [class.open]="menuOpen">
     <ul>
-      <li><a routerLink="/" routerLinkActive="active">À propos</a></li>
-      <li><a routerLink="/project" routerLinkActive="active">Projets</a></li>
-      <li><a routerLink="/certification" routerLinkActive="active">Certifications</a></li>
-      <li><a routerLink="/formation" routerLinkActive="active">Formations</a></li>
-      <li><a routerLink="/experience" routerLinkActive="active">Expériences</a></li>
-      <li><a routerLink="/skills" routerLinkActive="active">Compétences</a></li>
-      <li><a routerLink="/contact" routerLinkActive="active">Contact</a></li>
-      <li>
-        <a href="assets/docs/manal-kerroumi.pdf" download="cv-manal-kerroumi.pdf" class="cv-btn">
-          CV
+      <li><a routerLink="/" routerLinkActive="active" (click)="closeMenu()">{{ 'nav.apropos' | translate }}</a></li>
+      <li><a routerLink="/project" routerLinkActive="active" (click)="closeMenu()">{{ 'nav.projets' | translate }}</a></li>
+      <li><a routerLink="/certification" routerLinkActive="active" (click)="closeMenu()">{{ 'nav.certifications' | translate }}</a></li>
+      <li><a routerLink="/formation" routerLinkActive="active" (click)="closeMenu()">{{ 'nav.formations' | translate }}</a></li>
+      <li><a routerLink="/experience" routerLinkActive="active" (click)="closeMenu()">{{ 'nav.experiences' | translate }}</a></li>
+      <li><a routerLink="/skills" routerLinkActive="active" (click)="closeMenu()">{{ 'nav.competences' | translate }}</a></li>
+      <li><a routerLink="/contact" routerLinkActive="active" (click)="closeMenu()">{{ 'nav.contact' | translate }}</a></li>
+      <li class="mobile-only">
+        <a href="assets/docs/manal-kerroumi.pdf" download="cv-manal-kerroumi.pdf">
+          <i class="fas fa-file-arrow-down"></i> {{ 'nav.cv' | translate }}
         </a>
+      </li>
+      <li class="mobile-only lang-mobile">
+        <button class="lang-btn" [class.active]="lang === 'fr'" (click)="setLang('fr')">🇫🇷 FR</button>
+        <button class="lang-btn" [class.active]="lang === 'en'" (click)="setLang('en')">🇬🇧 EN</button>
       </li>
     </ul>
   </nav>
   <div class="header-right">
-    <i class="fa-solid fa-globe header-globe"></i>
-    <select class="language-select">
-      <option value="fr">FR</option>
-      <option value="en">EN</option>
-    </select>
+    <a href="assets/docs/manal-kerroumi.pdf" download="cv-manal-kerroumi.pdf" class="cv-btn-nav desktop-only">
+      <i class="fas fa-file-arrow-down"></i> {{ 'nav.cv' | translate }}
+    </a>
+    <div class="lang-switcher desktop-only">
+      <button class="lang-btn" [class.active]="lang === 'fr'" (click)="setLang('fr')">🇫🇷 FR</button>
+      <button class="lang-btn" [class.active]="lang === 'en'" (click)="setLang('en')">🇬🇧 EN</button>
+    </div>
+    <div class="hamburger" (click)="menuOpen = !menuOpen">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
   </div>
 </header>
 
 <div class="certifications-container">
-  <h1>Mes Certifications</h1>
+  <h1>{{ 'certifications.title' | translate }}</h1>
 
   <div *ngIf="certifications.length === 0" class="no-certifications">
-    Aucune certification disponible.
+    {{ 'certifications.empty' | translate }}
   </div>
 
   <div class="certifications-grid" *ngIf="certifications.length > 0">
     <div class="cert-card" *ngFor="let cert of certifications | orderByDate:'desc'">
       <div class="cert-info">
-        <h2>{{ cert.title }}</h2>
-        <p class="description">{{ cert.description }}</p>
-        <p class="tech"><strong>Émis par :</strong> {{ cert.issuer }}</p>
-        <p class="tech"><strong>Date :</strong> {{ cert.dateObtained }}</p>
+        <h2>{{ lang === 'en' && cert.titleEn ? cert.titleEn : cert.title }}</h2>
+        <p class="description">{{ lang === 'en' && cert.descriptionEn ? cert.descriptionEn : cert.description }}</p>
+        <p class="tech"><strong>{{ 'certifications.issued_by' | translate }}</strong> {{ cert.issuer }}</p>
+        <p class="tech"><strong>{{ 'certifications.date' | translate }}</strong> {{ cert.dateObtained }}</p>
       </div>
       <div class="cert-actions">
-        <a *ngIf="cert.pdfUrl" 
-           [href]="'http://localhost:8081/certifications/' + cert.pdfUrl" 
-           target="_blank" 
+        <a *ngIf="cert.pdfUrl"
+           [href]="'http://localhost:8081/certifications/' + cert.pdfUrl"
+           target="_blank"
            class="cert-btn">
           <i class="fa-solid fa-file-pdf"></i>
         </a>
@@ -51,5 +62,3 @@
     </div>
   </div>
 </div>
-
-
