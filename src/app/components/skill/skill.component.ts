@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
 import { LanguageService } from '../../services/language.service';
+import {environment} from '../../../environments/environment';
 
 interface Skill {
   color: any;
@@ -42,7 +43,7 @@ export class SkillsComponent implements OnInit {
   closeMenu() { this.menuOpen = false; }
 
   ngOnInit(): void {
-    this.http.get<Skill[]>('http://localhost:8081/api/skills').subscribe({
+    this.http.get<Skill[]>(`${environment.apiUrl}/api/skills`).subscribe({
       next: data => this.groupByCategory(data),
       error: err => console.error('Erreur API:', err)
     });

@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
 import { LanguageService } from '../../services/language.service';
+import { environment } from '../../../environments/environment';
 
 interface Experience {
   id: number;
@@ -45,7 +46,7 @@ export class ExperienceComponent implements OnInit {
   closeMenu() { this.menuOpen = false; }
 
   ngOnInit(): void {
-    this.http.get<Experience[]>('http://localhost:8081/api/experiences')
+    this.http.get<Experience[]>(`${environment.apiUrl}/api/experiences`)
       .subscribe({
         next: (data) => {
           this.experiences = data.map(exp => ({ ...exp, showDetails: false }));

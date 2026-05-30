@@ -5,6 +5,7 @@ import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { TranslatePipe } from '@ngx-translate/core';
 import { LanguageService } from '../../services/language.service';
+import {environment} from '../../../environments/environment';
 
 interface Contact {
   id: number;
@@ -44,7 +45,7 @@ export class ContactComponent implements OnInit {
   closeMenu() { this.menuOpen = false; }
 
   ngOnInit(): void {
-    this.http.get<Contact[]>('http://localhost:8081/api/contacts').subscribe(data => {
+    this.http.get<Contact[]>(`${environment.apiUrl}/api/contacts`).subscribe(data => {
       this.contact = data[0];
     });
   }

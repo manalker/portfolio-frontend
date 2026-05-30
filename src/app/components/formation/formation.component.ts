@@ -4,6 +4,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
 import { LanguageService } from '../../services/language.service';
+import {environment} from '../../../environments/environment';
 
 export interface Formation {
   id: number;
@@ -39,7 +40,7 @@ export class FormationComponent implements OnInit {
   closeMenu() { this.menuOpen = false; }
 
   ngOnInit(): void {
-    this.http.get<Formation[]>('http://localhost:8081/api/formations').subscribe({
+    this.http.get<Formation[]>(`${environment.apiUrl}/api/formations`).subscribe({
       next: (data) => this.formations = data,
       error: (err) => console.error('Erreur API:', err)
     });
