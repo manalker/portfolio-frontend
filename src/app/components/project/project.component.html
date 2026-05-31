@@ -46,7 +46,7 @@
   <div class="projects-grid" *ngIf="projects.length > 0">
     <div class="project-card" *ngFor="let project of projects; let i = index">
       <div class="image-container">
-        <img [src]="'http://localhost:8081/uploads/' + project.imageUrl" [alt]="project.title" />
+        <img [src]="project.imageUrl" [alt]="project.title" />
       </div>
 
       <div class="project-info">

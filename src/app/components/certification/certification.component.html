@@ -53,7 +53,7 @@
       </div>
       <div class="cert-actions">
         <a *ngIf="cert.pdfUrl"
-           [href]="'http://localhost:8081/certifications/' + cert.pdfUrl"
+           [href]="cert.pdfUrl"
            target="_blank"
            class="cert-btn">
           <i class="fa-solid fa-file-pdf"></i>
