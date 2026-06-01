@@ -24,8 +24,8 @@ export class HomeComponent implements OnInit, OnDestroy {
       titleEn: 'Computer & Network Engineer (MIAGE)',
       shortFr: 'MIAGE', shortEn: 'MIAGE',
       stack: ['Java', 'Angular', 'Spring Boot', 'SQL', 'Agile'],
-      descFr: 'Diplômée ingénieure en informatique et réseaux option MIAGE à l\'École Nationale des Sciences de l\'Ingénieur de Rabat. Expérimentée dans le développement de solutions digitales complètes — de la conception à la livraison — avec une forte maîtrise des méthodologies agiles, une capacité d\'adaptation rapide aux nouveaux environnements et une approche orientée performance et qualité logicielle.',
-      descEn: 'Engineering graduate in Computer Science & Networks (MIAGE option) from ENSI Rabat. Experienced in delivering end-to-end digital solutions with agile methodologies, quick adaptability to new environments, and a strong focus on software quality and performance.'
+      descFr: 'Diplômée ingénieure en informatique et réseaux option MIAGE à l\'École Marocaine des Sciences de l\'Ingénieur de Rabat (EMSI). Expérimentée dans le développement de solutions digitales complètes — de la conception à la livraison — avec une forte maîtrise des méthodologies agiles, une capacité d\'adaptation rapide aux nouveaux environnements et une approche orientée performance et qualité logicielle.',
+      descEn: 'Engineering graduate in Computer Science & Networks (MIAGE option) from EMSI Rabat. Experienced in delivering end-to-end digital solutions with agile methodologies, quick adaptability to new environments, and a strong focus on software quality and performance.'
     },
     {
       titleFr: 'Développeuse Full-Stack Java / Spring Boot / Angular',
