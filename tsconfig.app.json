@@ -4,6 +4,7 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "outDir": "./out-tsc/app",
+    "moduleResolution": "bundler",
     "types": [
       "node"
     ]
@@ -15,3 +16,4 @@
     "src/**/*.spec.ts"
   ]
 }
+

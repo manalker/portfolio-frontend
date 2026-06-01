@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
 import { LanguageService } from '../../services/language.service';
-import {environment} from '../../../environments/environment';
+import { environment } from '../../../environments/environment';
 
 interface Skill {
   color: any;
@@ -17,7 +17,8 @@ interface Skill {
 
 interface SkillCategory {
   name: string;
-  skills: Skill[];
+  nameEn: string;
+  skills: { name: string; icon: string }[];
   showDetails?: boolean;
 }
 
@@ -43,23 +44,11 @@ export class SkillsComponent implements OnInit {
   closeMenu() { this.menuOpen = false; }
 
   ngOnInit(): void {
-    this.http.get<Skill[]>(`${environment.apiUrl}/api/skills`).subscribe({
-      next: data => this.groupByCategory(data),
+    // On appelle /grouped qui retourne name + nameEn
+    this.http.get<SkillCategory[]>(`${environment.apiUrl}/api/skills/grouped`).subscribe({
+      next: data => this.categories = data,
       error: err => console.error('Erreur API:', err)
     });
-  }
-
-  private groupByCategory(skills: Skill[]): void {
-    const grouped: { [key: string]: Skill[] } = {};
-    skills.forEach(skill => {
-      if (!grouped[skill.category]) grouped[skill.category] = [];
-      grouped[skill.category].push(skill);
-    });
-    this.categories = Object.keys(grouped).map(cat => ({
-      name: cat,
-      skills: grouped[cat],
-      showDetails: false
-    }));
   }
 
   toggleDetails(category: SkillCategory): void {

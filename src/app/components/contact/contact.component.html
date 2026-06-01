@@ -1,76 +1,172 @@
-<header class="header">
-  <div class="logo">Manal Kerroumi</div>
-  <nav [class.open]="menuOpen">
-    <ul>
-      <li><a routerLink="/" routerLinkActive="active" (click)="closeMenu()">{{ 'nav.apropos' | translate }}</a></li>
-      <li><a routerLink="/project" routerLinkActive="active" (click)="closeMenu()">{{ 'nav.projets' | translate }}</a></li>
-      <li><a routerLink="/certification" routerLinkActive="active" (click)="closeMenu()">{{ 'nav.certifications' | translate }}</a></li>
-      <li><a routerLink="/formation" routerLinkActive="active" (click)="closeMenu()">{{ 'nav.formations' | translate }}</a></li>
-      <li><a routerLink="/experience" routerLinkActive="active" (click)="closeMenu()">{{ 'nav.experiences' | translate }}</a></li>
-      <li><a routerLink="/skills" routerLinkActive="active" (click)="closeMenu()">{{ 'nav.competences' | translate }}</a></li>
-      <li><a routerLink="/contact" routerLinkActive="active" (click)="closeMenu()">{{ 'nav.contact' | translate }}</a></li>
-      <li class="mobile-only">
-        <a href="assets/docs/manal-kerroumi.pdf" download="cv-manal-kerroumi.pdf">
+<!-- Header -->
+<header class="fixed top-0 w-full z-[100] flex flex-wrap justify-between items-center px-8 py-4 box-border backdrop-blur-md"
+        style="background: rgba(10, 10, 20, 0.7);">
+
+  <div class="text-[1.8rem] font-bold flex-1" style="color: #00e0ff;">Manal Kerroumi</div>
+
+  <!-- Hamburger mobile -->
+  <div class="flex md:hidden flex-col gap-[5px] cursor-pointer ml-4" (click)="menuOpen = !menuOpen">
+    <span class="block w-[25px] h-[3px] rounded-[3px]" style="background: #00e0ff;"></span>
+    <span class="block w-[25px] h-[3px] rounded-[3px]" style="background: #00e0ff;"></span>
+    <span class="block w-[25px] h-[3px] rounded-[3px]" style="background: #00e0ff;"></span>
+  </div>
+
+  <!-- Nav desktop -->
+  <nav class="hidden md:flex flex-1 justify-center">
+    <ul class="flex gap-3 list-none m-0 p-0 whitespace-nowrap">
+      <li><a routerLink="/" routerLinkActive="active" (click)="closeMenu()"
+             class="text-white no-underline font-medium text-[0.9rem] transition-all duration-300 hover:text-cyan-400">{{ 'nav.apropos' | translate }}</a></li>
+      <li><a routerLink="/project" routerLinkActive="active" (click)="closeMenu()"
+             class="text-white no-underline font-medium text-[0.9rem] transition-all duration-300 hover:text-cyan-400">{{ 'nav.projets' | translate }}</a></li>
+      <li><a routerLink="/certification" routerLinkActive="active" (click)="closeMenu()"
+             class="text-white no-underline font-medium text-[0.9rem] transition-all duration-300 hover:text-cyan-400">{{ 'nav.certifications' | translate }}</a></li>
+      <li><a routerLink="/formation" routerLinkActive="active" (click)="closeMenu()"
+             class="text-white no-underline font-medium text-[0.9rem] transition-all duration-300 hover:text-cyan-400">{{ 'nav.formations' | translate }}</a></li>
+      <li><a routerLink="/experience" routerLinkActive="active" (click)="closeMenu()"
+             class="text-white no-underline font-medium text-[0.9rem] transition-all duration-300 hover:text-cyan-400">{{ 'nav.experiences' | translate }}</a></li>
+      <li><a routerLink="/skills" routerLinkActive="active" (click)="closeMenu()"
+             class="text-white no-underline font-medium text-[0.9rem] transition-all duration-300 hover:text-cyan-400">{{ 'nav.competences' | translate }}</a></li>
+      <li><a routerLink="/contact" routerLinkActive="active" (click)="closeMenu()"
+             class="text-white no-underline font-medium text-[0.9rem] transition-all duration-300 hover:text-cyan-400">{{ 'nav.contact' | translate }}</a></li>
+    </ul>
+  </nav>
+
+  <!-- CV + Lang desktop -->
+  <div class="hidden md:flex items-center gap-3 flex-1 justify-end">
+    <a href="assets/docs/manal-kerroumi.pdf" download="cv-manal-kerroumi.pdf"
+       class="inline-flex items-center gap-[0.4rem] px-5 py-2 rounded-full border-2 font-semibold text-[0.9rem] transition-all duration-300 no-underline whitespace-nowrap hover:bg-cyan-400 hover:text-black"
+       style="color: #00e0ff; border-color: #00e0ff; background: transparent;">
+      <i class="fas fa-file-arrow-down"></i> {{ 'nav.cv' | translate }}
+    </a>
+    <div class="flex items-center gap-[0.2rem] px-[0.6rem] py-[0.3rem] rounded-full"
+         style="background: rgba(0,224,255,0.1); border: 1px solid rgba(0,224,255,0.3);">
+      <button class="px-[0.4rem] py-[0.2rem] rounded-full text-[#aaa] font-semibold text-[0.85rem] transition-all border-none cursor-pointer"
+              [class.bg-cyan-400]="lang === 'fr'" [class.!text-black]="lang === 'fr'"
+              (click)="setLang('fr')">🇫🇷 FR</button>
+      <button class="px-[0.4rem] py-[0.2rem] rounded-full text-[#aaa] font-semibold text-[0.85rem] transition-all border-none cursor-pointer"
+              [class.bg-cyan-400]="lang === 'en'" [class.!text-black]="lang === 'en'"
+              (click)="setLang('en')">🇬🇧 EN</button>
+    </div>
+  </div>
+
+  <!-- Nav mobile -->
+  <div class="w-full order-3"
+       [class.block]="menuOpen"
+       [class.hidden]="!menuOpen"
+       style="background: rgba(10, 10, 20, 0.95);">
+    <ul class="flex flex-col list-none p-4 m-0">
+      <li><a routerLink="/" (click)="closeMenu()" class="block py-3 text-white no-underline border-b border-white/10 text-base">{{ 'nav.apropos' | translate }}</a></li>
+      <li><a routerLink="/project" (click)="closeMenu()" class="block py-3 text-white no-underline border-b border-white/10 text-base">{{ 'nav.projets' | translate }}</a></li>
+      <li><a routerLink="/certification" (click)="closeMenu()" class="block py-3 text-white no-underline border-b border-white/10 text-base">{{ 'nav.certifications' | translate }}</a></li>
+      <li><a routerLink="/formation" (click)="closeMenu()" class="block py-3 text-white no-underline border-b border-white/10 text-base">{{ 'nav.formations' | translate }}</a></li>
+      <li><a routerLink="/experience" (click)="closeMenu()" class="block py-3 text-white no-underline border-b border-white/10 text-base">{{ 'nav.experiences' | translate }}</a></li>
+      <li><a routerLink="/skills" (click)="closeMenu()" class="block py-3 text-white no-underline border-b border-white/10 text-base">{{ 'nav.competences' | translate }}</a></li>
+      <li><a routerLink="/contact" (click)="closeMenu()" class="block py-3 text-white no-underline border-b border-white/10 text-base">{{ 'nav.contact' | translate }}</a></li>
+      <li class="py-3 border-b border-white/10">
+        <a href="assets/docs/manal-kerroumi.pdf" download class="text-cyan-400 no-underline">
           <i class="fas fa-file-arrow-down"></i> {{ 'nav.cv' | translate }}
         </a>
       </li>
-      <li class="mobile-only lang-mobile">
-        <button class="lang-btn" [class.active]="lang === 'fr'" (click)="setLang('fr')">🇫🇷 FR</button>
-        <button class="lang-btn" [class.active]="lang === 'en'" (click)="setLang('en')">🇬🇧 EN</button>
+      <li class="flex gap-2 py-3">
+        <button class="px-3 py-1 rounded-full text-[#aaa] font-semibold text-sm border-none cursor-pointer"
+                [class.bg-cyan-400]="lang === 'fr'" [class.!text-black]="lang === 'fr'"
+                (click)="setLang('fr')">🇫🇷 FR</button>
+        <button class="px-3 py-1 rounded-full text-[#aaa] font-semibold text-sm border-none cursor-pointer"
+                [class.bg-cyan-400]="lang === 'en'" [class.!text-black]="lang === 'en'"
+                (click)="setLang('en')">🇬🇧 EN</button>
       </li>
     </ul>
-  </nav>
-  <div class="header-right">
-    <a href="assets/docs/manal-kerroumi.pdf" download="cv-manal-kerroumi.pdf" class="cv-btn-nav desktop-only">
-      <i class="fas fa-file-arrow-down"></i> {{ 'nav.cv' | translate }}
-    </a>
-    <div class="lang-switcher desktop-only">
-      <button class="lang-btn" [class.active]="lang === 'fr'" (click)="setLang('fr')">🇫🇷 FR</button>
-      <button class="lang-btn" [class.active]="lang === 'en'" (click)="setLang('en')">🇬🇧 EN</button>
-    </div>
-    <div class="hamburger" (click)="menuOpen = !menuOpen">
-      <span></span>
-      <span></span>
-      <span></span>
-    </div>
   </div>
 </header>
 
-<section class="contact-container">
-  <h1>{{ 'contact.title' | translate }}</h1>
-  <p class="intro">{{ 'contact.intro' | translate }}</p>
+<!-- Background fixe -->
+<div class="fixed inset-0 -z-[1]"
+     style="background: linear-gradient(135deg, #1f1f3d, #232347, #1a1a2e, #1e1e2f);
+            background-size: 400% 400%; animation: gradientMove 25s ease infinite;"></div>
 
-  <div class="contact-wrapper">
-    <div class="contact-card fade-in-up">
-      <i class="fas fa-phone contact-icon"></i>
-      <h2>{{ 'contact.phone' | translate }}</h2>
-      <p>{{ contact?.phone }}</p>
+<!-- Contenu principal -->
+<section class="relative z-[1] max-w-[1000px] mx-auto mt-[100px] mb-[50px] px-5 text-center text-white">
+
+  <!-- Titre -->
+  <h1 class="text-[2rem] sm:text-[3rem] font-extrabold mb-[40px] tracking-wide inline-block whitespace-nowrap"
+      style="color: #00e0ff; text-shadow: 0 0 10px rgba(0,224,255,0.7);">
+    {{ 'contact.title' | translate }}
+    <span class="block w-[100px] h-[4px] mx-auto mt-3 rounded"
+          style="background: linear-gradient(90deg, #ff6a00, #ee0979);"></span>
+  </h1>
+
+  <!-- Intro -->
+  <p class="text-[1.2rem] max-w-[700px] mx-auto mb-[50px] leading-relaxed font-medium"
+     style="color: #ccc;">
+    {{ 'contact.intro' | translate }}
+  </p>
+
+  <!-- Cartes -->
+  <div class="flex flex-wrap justify-center gap-10
+              max-sm:flex-col max-sm:items-center max-sm:gap-5">
+
+    <!-- Téléphone -->
+    <div class="contact-card fade-in-up flex flex-col items-center text-center rounded-[15px] p-[30px_25px] w-[240px] cursor-pointer transition-all duration-[400ms]"
+         style="background: rgba(30,30,50,0.85); backdrop-filter: blur(8px);
+                box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+                border: 1px solid rgba(0,224,255,0.2);">
+      <i class="fas fa-phone contact-icon inline-flex items-center justify-center text-[2.2rem] w-[70px] h-[70px] rounded-full mb-[15px] transition-all duration-300"
+         style="color: #00e0ff; background: rgba(0,224,255,0.1);"></i>
+      <h2 class="text-[1.5rem] font-bold mb-[10px]" style="color: #00e0ff;">{{ 'contact.phone' | translate }}</h2>
+      <p class="text-[1rem] leading-relaxed" style="color: #ccc;">{{ contact.phone }}</p>
     </div>
 
-    <div class="contact-card fade-in-up">
-      <i class="fas fa-envelope contact-icon"></i>
-      <h2>{{ 'contact.email' | translate }}</h2>
-      <p>
-        <a href="https://mail.google.com/mail/u/0/?view=cm&fs=1&to={{ contact?.email }}" target="_blank">
-          {{ contact?.email }}
+    <!-- Email -->
+    <div class="contact-card fade-in-up flex flex-col items-center text-center rounded-[15px] p-[30px_25px] w-[240px] cursor-pointer transition-all duration-[400ms]"
+         style="background: rgba(30,30,50,0.85); backdrop-filter: blur(8px);
+                box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+                border: 1px solid rgba(0,224,255,0.2);">
+      <i class="fas fa-envelope contact-icon inline-flex items-center justify-center text-[2.2rem] w-[70px] h-[70px] rounded-full mb-[15px] transition-all duration-300"
+         style="color: #00e0ff; background: rgba(0,224,255,0.1);"></i>
+      <h2 class="text-[1.5rem] font-bold mb-[10px]" style="color: #00e0ff;">{{ 'contact.email' | translate }}</h2>
+      <p class="text-[1rem] leading-relaxed" style="color: #ccc;">
+        <a href="https://mail.google.com/mail/u/0/?view=cm&fs=1&to={{ contact.email }}"
+           target="_blank"
+           class="font-semibold no-underline transition-all duration-300 hover:text-cyan-400"
+           style="color: #6f42c1;">
+          {{ contact.email }}
         </a>
       </p>
     </div>
 
-    <div class="contact-card fade-in-up">
-      <i class="fab fa-linkedin contact-icon"></i>
-      <h2>LinkedIn</h2>
-      <p>
-        <a [href]="contact?.linkedin" target="_blank">{{ 'contact.voir_profil' | translate }}</a>
+    <!-- LinkedIn -->
+    <div class="contact-card fade-in-up flex flex-col items-center text-center rounded-[15px] p-[30px_25px] w-[240px] cursor-pointer transition-all duration-[400ms]"
+         style="background: rgba(30,30,50,0.85); backdrop-filter: blur(8px);
+                box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+                border: 1px solid rgba(0,224,255,0.2);">
+      <i class="fab fa-linkedin contact-icon inline-flex items-center justify-center text-[2.2rem] w-[70px] h-[70px] rounded-full mb-[15px] transition-all duration-300"
+         style="color: #00e0ff; background: rgba(0,224,255,0.1);"></i>
+      <h2 class="text-[1.5rem] font-bold mb-[10px]" style="color: #00e0ff;">LinkedIn</h2>
+      <p class="text-[1rem] leading-relaxed" style="color: #ccc;">
+        <a [href]="contact.linkedin" target="_blank"
+           class="font-semibold no-underline transition-all duration-300 hover:text-cyan-400"
+           style="color: #6f42c1;">
+          {{ 'contact.voir_profil' | translate }}
+        </a>
       </p>
     </div>
 
-    <div class="contact-card fade-in-up">
-      <i class="fab fa-github contact-icon"></i>
-      <h2>GitHub</h2>
-      <p>
-        <a [href]="contact?.github" target="_blank">{{ 'contact.voir_projets' | translate }}</a>
+    <!-- GitHub -->
+    <div class="contact-card fade-in-up flex flex-col items-center text-center rounded-[15px] p-[30px_25px] w-[240px] cursor-pointer transition-all duration-[400ms]"
+         style="background: rgba(30,30,50,0.85); backdrop-filter: blur(8px);
+                box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+                border: 1px solid rgba(0,224,255,0.2);">
+      <i class="fab fa-github contact-icon inline-flex items-center justify-center text-[2.2rem] w-[70px] h-[70px] rounded-full mb-[15px] transition-all duration-300"
+         style="color: #00e0ff; background: rgba(0,224,255,0.1);"></i>
+      <h2 class="text-[1.5rem] font-bold mb-[10px]" style="color: #00e0ff;">GitHub</h2>
+      <p class="text-[1rem] leading-relaxed" style="color: #ccc;">
+        <a [href]="contact.github" target="_blank"
+           class="font-semibold no-underline transition-all duration-300 hover:text-cyan-400"
+           style="color: #6f42c1;">
+          {{ 'contact.voir_projets' | translate }}
+        </a>
       </p>
     </div>
+
   </div>
 </section>
