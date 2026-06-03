@@ -5,7 +5,8 @@ import { RouterModule } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
 import { OrderByDatePipe } from "../../order-by.pipe";
 import { LanguageService } from '../../services/language.service';
-import {environment} from '../../../environments/environment';
+import { ThemeService } from '../../services/theme.service';
+import { environment } from '../../../environments/environment';
 
 export interface Certification {
   id: number;
@@ -30,16 +31,16 @@ export class CertificationComponent implements OnInit {
   certifications: Certification[] = [];
 
   get lang() { return this.languageService.getLang(); }
+  get isDark() { return this.themeService.isDarkMode; }
+  toggleTheme() { this.themeService.toggleTheme(); }
 
   constructor(
     private http: HttpClient,
-    private languageService: LanguageService
+    private languageService: LanguageService,
+    private themeService: ThemeService
   ) {}
 
-  setLang(l: string) {
-    this.languageService.setLang(l);
-  }
-
+  setLang(l: string) { this.languageService.setLang(l); }
   closeMenu() { this.menuOpen = false; }
 
   ngOnInit(): void {

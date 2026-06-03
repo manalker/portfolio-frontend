@@ -1,103 +1,175 @@
 <!-- Header -->
-<header class="fixed top-0 w-full z-[100] flex flex-wrap justify-between items-center px-8 py-4 box-border backdrop-blur-md"
-        style="background: rgba(10, 10, 20, 0.7);">
+<header class="fixed top-0 w-full z-[100] flex flex-wrap justify-between items-center px-8 py-4 box-border backdrop-blur-md transition-all duration-300"
+        [style.background]="isDark ? 'rgba(10,10,20,0.7)' : 'rgba(255,255,255,0.85)'">
 
-  <div class="text-[1.8rem] font-bold flex-1" style="color: #00e0ff;">Manal Kerroumi</div>
+  <div class="text-[1.8rem] font-bold flex-1 transition-colors duration-300"
+       [style.color]="isDark ? '#00e0ff' : '#0066cc'">Manal Kerroumi</div>
 
   <!-- Hamburger mobile -->
   <div class="flex md:hidden flex-col gap-[5px] cursor-pointer ml-4" (click)="menuOpen = !menuOpen">
-    <span class="block w-[25px] h-[3px] rounded-[3px]" style="background: #00e0ff;"></span>
-    <span class="block w-[25px] h-[3px] rounded-[3px]" style="background: #00e0ff;"></span>
-    <span class="block w-[25px] h-[3px] rounded-[3px]" style="background: #00e0ff;"></span>
+    <span class="block w-[25px] h-[3px] rounded-[3px] transition-colors duration-300"
+          [style.background]="isDark ? '#00e0ff' : '#0066cc'"></span>
+    <span class="block w-[25px] h-[3px] rounded-[3px] transition-colors duration-300"
+          [style.background]="isDark ? '#00e0ff' : '#0066cc'"></span>
+    <span class="block w-[25px] h-[3px] rounded-[3px] transition-colors duration-300"
+          [style.background]="isDark ? '#00e0ff' : '#0066cc'"></span>
   </div>
 
   <!-- Nav desktop -->
   <nav class="hidden md:flex flex-1 justify-center">
     <ul class="flex gap-3 list-none m-0 p-0 whitespace-nowrap">
       <li><a routerLink="/" routerLinkActive="active" (click)="closeMenu()"
-             class="text-white no-underline font-medium text-[0.9rem] transition-all duration-300 hover:text-cyan-400">{{ 'nav.apropos' | translate }}</a></li>
+             class="no-underline font-medium text-[0.9rem] transition-all duration-300"
+             [class.text-white]="isDark" [class.text-gray-700]="!isDark">{{ 'nav.apropos' | translate }}</a></li>
       <li><a routerLink="/project" routerLinkActive="active" (click)="closeMenu()"
-             class="text-white no-underline font-medium text-[0.9rem] transition-all duration-300 hover:text-cyan-400">{{ 'nav.projets' | translate }}</a></li>
+             class="no-underline font-medium text-[0.9rem] transition-all duration-300"
+             [class.text-white]="isDark" [class.text-gray-700]="!isDark">{{ 'nav.projets' | translate }}</a></li>
       <li><a routerLink="/certification" routerLinkActive="active" (click)="closeMenu()"
-             class="text-white no-underline font-medium text-[0.9rem] transition-all duration-300 hover:text-cyan-400">{{ 'nav.certifications' | translate }}</a></li>
+             class="no-underline font-medium text-[0.9rem] transition-all duration-300"
+             [class.text-white]="isDark" [class.text-gray-700]="!isDark">{{ 'nav.certifications' | translate }}</a></li>
       <li><a routerLink="/formation" routerLinkActive="active" (click)="closeMenu()"
-             class="text-white no-underline font-medium text-[0.9rem] transition-all duration-300 hover:text-cyan-400">{{ 'nav.formations' | translate }}</a></li>
+             class="no-underline font-medium text-[0.9rem] transition-all duration-300"
+             [class.text-white]="isDark" [class.text-gray-700]="!isDark">{{ 'nav.formations' | translate }}</a></li>
       <li><a routerLink="/experience" routerLinkActive="active" (click)="closeMenu()"
-             class="text-white no-underline font-medium text-[0.9rem] transition-all duration-300 hover:text-cyan-400">{{ 'nav.experiences' | translate }}</a></li>
+             class="no-underline font-medium text-[0.9rem] transition-all duration-300"
+             [class.text-white]="isDark" [class.text-gray-700]="!isDark">{{ 'nav.experiences' | translate }}</a></li>
       <li><a routerLink="/skills" routerLinkActive="active" (click)="closeMenu()"
-             class="text-white no-underline font-medium text-[0.9rem] transition-all duration-300 hover:text-cyan-400">{{ 'nav.competences' | translate }}</a></li>
+             class="no-underline font-medium text-[0.9rem] transition-all duration-300"
+             [class.text-white]="isDark" [class.text-gray-700]="!isDark">{{ 'nav.competences' | translate }}</a></li>
       <li><a routerLink="/contact" routerLinkActive="active" (click)="closeMenu()"
-             class="text-white no-underline font-medium text-[0.9rem] transition-all duration-300 hover:text-cyan-400">{{ 'nav.contact' | translate }}</a></li>
+             class="no-underline font-medium text-[0.9rem] transition-all duration-300"
+             [class.text-white]="isDark" [class.text-gray-700]="!isDark">{{ 'nav.contact' | translate }}</a></li>
     </ul>
   </nav>
 
-  <!-- CV + Lang desktop -->
+  <!-- CV + Lang + Theme desktop -->
   <div class="hidden md:flex items-center gap-3 flex-1 justify-end">
     <a href="assets/docs/manal-kerroumi.pdf" download="cv-manal-kerroumi.pdf"
-       class="inline-flex items-center gap-[0.4rem] px-5 py-2 rounded-full border-2 font-semibold text-[0.9rem] transition-all duration-300 no-underline whitespace-nowrap hover:bg-cyan-400 hover:text-black"
-       style="color: #00e0ff; border-color: #00e0ff; background: transparent;">
+       class="inline-flex items-center gap-[0.4rem] px-5 py-2 rounded-full border-2 font-semibold text-[0.9rem] transition-all duration-300 no-underline whitespace-nowrap"
+       [style.color]="isDark ? '#00e0ff' : '#0066cc'"
+       [style.borderColor]="isDark ? '#00e0ff' : '#0066cc'"
+       style="background: transparent;"
+       onmouseover="this.style.background=this.dataset.accent;this.style.color='#000'"
+       onmouseout="this.style.background='transparent';this.style.color=this.dataset.color"
+       [attr.data-accent]="isDark ? '#00e0ff' : '#0066cc'"
+       [attr.data-color]="isDark ? '#00e0ff' : '#0066cc'">
       <i class="fas fa-file-arrow-down"></i> {{ 'nav.cv' | translate }}
     </a>
-    <div class="flex items-center gap-[0.2rem] px-[0.6rem] py-[0.3rem] rounded-full"
-         style="background: rgba(0,224,255,0.1); border: 1px solid rgba(0,224,255,0.3);">
-      <button class="px-[0.4rem] py-[0.2rem] rounded-full text-[#aaa] font-semibold text-[0.85rem] transition-all border-none cursor-pointer"
-              [class.bg-cyan-400]="lang === 'fr'" [class.!text-black]="lang === 'fr'"
+
+    <div class="flex items-center gap-[0.2rem] px-[0.6rem] py-[0.3rem] rounded-full transition-all duration-300"
+         [style.background]="isDark ? 'rgba(0,224,255,0.1)' : 'rgba(0,102,204,0.1)'"
+         [style.border]="isDark ? '1px solid rgba(0,224,255,0.3)' : '1px solid rgba(0,102,204,0.3)'">
+      <button class="px-[0.4rem] py-[0.2rem] rounded-full font-semibold text-[0.85rem] transition-all border-none cursor-pointer"
+              [class.bg-cyan-400]="isDark && lang === 'fr'"
+              [class.bg-blue-600]="!isDark && lang === 'fr'"
+              [class.!text-black]="lang === 'fr'"
+              [class.text-gray-400]="lang !== 'fr'"
               (click)="setLang('fr')">🇫🇷 FR</button>
-      <button class="px-[0.4rem] py-[0.2rem] rounded-full text-[#aaa] font-semibold text-[0.85rem] transition-all border-none cursor-pointer"
-              [class.bg-cyan-400]="lang === 'en'" [class.!text-black]="lang === 'en'"
+      <button class="px-[0.4rem] py-[0.2rem] rounded-full font-semibold text-[0.85rem] transition-all border-none cursor-pointer"
+              [class.bg-cyan-400]="isDark && lang === 'en'"
+              [class.bg-blue-600]="!isDark && lang === 'en'"
+              [class.!text-black]="lang === 'en'"
+              [class.text-gray-400]="lang !== 'en'"
               (click)="setLang('en')">🇬🇧 EN</button>
     </div>
+
+    <!-- Toggle theme -->
+    <button (click)="toggleTheme()"
+            class="w-9 h-9 rounded-full flex items-center justify-center transition-all duration-300 cursor-pointer border-none"
+            [style.background]="isDark ? 'rgba(0,224,255,0.1)' : 'rgba(0,102,204,0.1)'"
+            [style.border]="isDark ? '1px solid rgba(0,224,255,0.3)' : '1px solid rgba(0,102,204,0.3)'">
+      <i [class]="isDark ? 'fas fa-sun' : 'fas fa-moon'"
+         [style.color]="isDark ? '#00e0ff' : '#0066cc'"
+         style="font-size: 1rem;"></i>
+    </button>
   </div>
 
   <!-- Nav mobile -->
-  <div class="w-full order-3"
+  <div class="w-full order-3 transition-all duration-300"
        [class.block]="menuOpen"
        [class.hidden]="!menuOpen"
-       style="background: rgba(10, 10, 20, 0.95);">
+       [style.background]="isDark ? 'rgba(10,10,20,0.95)' : 'rgba(255,255,255,0.98)'">
     <ul class="flex flex-col list-none p-4 m-0">
-      <li><a routerLink="/" (click)="closeMenu()" class="block py-3 text-white no-underline border-b border-white/10 text-base">{{ 'nav.apropos' | translate }}</a></li>
-      <li><a routerLink="/project" (click)="closeMenu()" class="block py-3 text-white no-underline border-b border-white/10 text-base">{{ 'nav.projets' | translate }}</a></li>
-      <li><a routerLink="/certification" (click)="closeMenu()" class="block py-3 text-white no-underline border-b border-white/10 text-base">{{ 'nav.certifications' | translate }}</a></li>
-      <li><a routerLink="/formation" (click)="closeMenu()" class="block py-3 text-white no-underline border-b border-white/10 text-base">{{ 'nav.formations' | translate }}</a></li>
-      <li><a routerLink="/experience" (click)="closeMenu()" class="block py-3 text-white no-underline border-b border-white/10 text-base">{{ 'nav.experiences' | translate }}</a></li>
-      <li><a routerLink="/skills" (click)="closeMenu()" class="block py-3 text-white no-underline border-b border-white/10 text-base">{{ 'nav.competences' | translate }}</a></li>
-      <li><a routerLink="/contact" (click)="closeMenu()" class="block py-3 text-white no-underline border-b border-white/10 text-base">{{ 'nav.contact' | translate }}</a></li>
+      <li><a routerLink="/" (click)="closeMenu()"
+             class="block py-3 no-underline border-b border-white/10 text-base"
+             [class.text-white]="isDark" [class.text-gray-700]="!isDark">{{ 'nav.apropos' | translate }}</a></li>
+      <li><a routerLink="/project" (click)="closeMenu()"
+             class="block py-3 no-underline border-b border-white/10 text-base"
+             [class.text-white]="isDark" [class.text-gray-700]="!isDark">{{ 'nav.projets' | translate }}</a></li>
+      <li><a routerLink="/certification" (click)="closeMenu()"
+             class="block py-3 no-underline border-b border-white/10 text-base"
+             [class.text-white]="isDark" [class.text-gray-700]="!isDark">{{ 'nav.certifications' | translate }}</a></li>
+      <li><a routerLink="/formation" (click)="closeMenu()"
+             class="block py-3 no-underline border-b border-white/10 text-base"
+             [class.text-white]="isDark" [class.text-gray-700]="!isDark">{{ 'nav.formations' | translate }}</a></li>
+      <li><a routerLink="/experience" (click)="closeMenu()"
+             class="block py-3 no-underline border-b border-white/10 text-base"
+             [class.text-white]="isDark" [class.text-gray-700]="!isDark">{{ 'nav.experiences' | translate }}</a></li>
+      <li><a routerLink="/skills" (click)="closeMenu()"
+             class="block py-3 no-underline border-b border-white/10 text-base"
+             [class.text-white]="isDark" [class.text-gray-700]="!isDark">{{ 'nav.competences' | translate }}</a></li>
+      <li><a routerLink="/contact" (click)="closeMenu()"
+             class="block py-3 no-underline border-b border-white/10 text-base"
+             [class.text-white]="isDark" [class.text-gray-700]="!isDark">{{ 'nav.contact' | translate }}</a></li>
       <li class="py-3 border-b border-white/10">
-        <a href="assets/docs/manal-kerroumi.pdf" download class="text-cyan-400 no-underline">
+        <a href="assets/docs/manal-kerroumi.pdf" download class="no-underline"
+           [class.text-cyan-400]="isDark" [class.text-blue-600]="!isDark">
           <i class="fas fa-file-arrow-down"></i> {{ 'nav.cv' | translate }}
         </a>
       </li>
-      <li class="flex gap-2 py-3">
-        <button class="px-3 py-1 rounded-full text-[#aaa] font-semibold text-sm border-none cursor-pointer"
-                [class.bg-cyan-400]="lang === 'fr'" [class.!text-black]="lang === 'fr'"
+      <li class="flex gap-2 py-3 items-center">
+        <button class="px-3 py-1 rounded-full font-semibold text-sm border-none cursor-pointer"
+                [class.bg-cyan-400]="isDark && lang === 'fr'"
+                [class.bg-blue-600]="!isDark && lang === 'fr'"
+                [class.!text-black]="lang === 'fr'"
+                [class.text-gray-400]="lang !== 'fr'"
                 (click)="setLang('fr')">🇫🇷 FR</button>
-        <button class="px-3 py-1 rounded-full text-[#aaa] font-semibold text-sm border-none cursor-pointer"
-                [class.bg-cyan-400]="lang === 'en'" [class.!text-black]="lang === 'en'"
+        <button class="px-3 py-1 rounded-full font-semibold text-sm border-none cursor-pointer"
+                [class.bg-cyan-400]="isDark && lang === 'en'"
+                [class.bg-blue-600]="!isDark && lang === 'en'"
+                [class.!text-black]="lang === 'en'"
+                [class.text-gray-400]="lang !== 'en'"
                 (click)="setLang('en')">🇬🇧 EN</button>
+        <!-- Toggle theme mobile -->
+        <button (click)="toggleTheme()"
+                class="ml-auto w-9 h-9 rounded-full flex items-center justify-center border-none cursor-pointer transition-all duration-300"
+                [style.background]="isDark ? 'rgba(0,224,255,0.1)' : 'rgba(0,102,204,0.1)'"
+                [style.border]="isDark ? '1px solid rgba(0,224,255,0.3)' : '1px solid rgba(0,102,204,0.3)'">
+          <i [class]="isDark ? 'fas fa-sun' : 'fas fa-moon'"
+             [style.color]="isDark ? '#00e0ff' : '#0066cc'"
+             style="font-size: 1rem;"></i>
+        </button>
       </li>
     </ul>
   </div>
 </header>
 
 <!-- Background fixe -->
-<div class="fixed inset-0 -z-[1]"
-     style="background: linear-gradient(135deg, #1f1f3d, #232347, #1a1a2e, #1e1e2f);
-            background-size: 400% 400%; animation: gradientMove 30s ease infinite;"></div>
+<div class="fixed inset-0 -z-[1] transition-all duration-500"
+     [style.background]="isDark
+       ? 'linear-gradient(135deg, #1f1f3d, #232347, #1a1a2e, #1e1e2f)'
+       : 'linear-gradient(135deg, #e8f4fd, #f0f4ff, #e8eeff, #f5f0ff)'"
+     style="background-size: 400% 400%; animation: gradientMove 30s ease infinite;"></div>
 
 <!-- Contenu principal -->
-<div class="relative z-[1] max-w-[1000px] mx-auto mt-[100px] mb-[50px] px-5 text-center text-white"
+<div class="relative z-[1] max-w-[1000px] mx-auto mt-[100px] mb-[50px] px-5 text-center transition-colors duration-300"
+     [class.text-white]="isDark" [class.text-gray-900]="!isDark"
+     [class.light]="!isDark"
      style="font-family: 'Inter', sans-serif;">
 
   <!-- Titre -->
-  <h1 class="text-[3rem] sm:text-[2.2rem] xs:text-[1.8rem] font-extrabold mb-[40px] tracking-wide relative inline-block"
-      style="color: #00e0ff; text-shadow: 0 0 10px rgba(0,224,255,0.7);">
+  <h1 class="text-[3rem] sm:text-[2.2rem] font-extrabold mb-[40px] tracking-wide relative inline-block transition-colors duration-300"
+      [style.color]="isDark ? '#00e0ff' : '#0066cc'"
+      [style.textShadow]="isDark ? '0 0 10px rgba(0,224,255,0.7)' : '0 0 10px rgba(0,102,204,0.3)'">
     {{ 'experiences.title' | translate }}
     <span class="block w-[100px] h-[4px] mx-auto mt-3 rounded"
           style="background: linear-gradient(90deg, #ff6a00, #ee0979);"></span>
   </h1>
 
   <!-- Vide -->
-  <p *ngIf="experiences.length === 0" class="text-[1.2rem] text-[#aaa] mt-[30px]">
+  <p *ngIf="experiences.length === 0"
+     class="text-[1.2rem] mt-[30px]"
+     [class.text-[#aaa]]="isDark" [class.text-gray-500]="!isDark">
     {{ 'experiences.empty' | translate }}
   </p>
 
@@ -110,9 +182,11 @@
       <div class="timeline-content">
         <h2>{{ lang === 'en' && exp.titleEn ? exp.titleEn : exp.title }}</h2>
         <p class="company">{{ exp.company }}</p>
-        <p class="duration">{{ exp.startDate }} - {{ exp.endDate }}</p>
+        <p class="duration">{{ exp.startDate }} – {{ exp.endDate }}</p>
         <p class="type-badge">{{ lang === 'en' && exp.typeEn ? exp.typeEn : exp.type }}</p>
-        <p class="tech"><strong>{{ 'experiences.technologies' | translate }}</strong> {{ exp.technologies }}</p>
+        <p class="tech">
+          <strong>{{ 'experiences.technologies' | translate }}</strong> {{ exp.technologies }}
+        </p>
         <button class="details-btn" (click)="toggleDetails(i)">
           {{ exp.showDetails ? ('experiences.close' | translate) : ('experiences.details' | translate) }}
         </button>

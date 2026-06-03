@@ -1,49 +1,112 @@
 <!-- Bouton flottant -->
-<button class="chatbot-toggle" (click)="toggleChat()">
+<button
+  (click)="toggleChat()"
+  class="fixed bottom-8 right-8 w-14 h-14 rounded-full border-none cursor-pointer z-[1000] flex items-center justify-center text-2xl transition-all duration-300 hover:scale-110"
+  [style.background]="isDark ? '#00e0ff' : '#0066cc'"
+  [style.color]="'#000'"
+  [style.boxShadow]="isDark ? '0 0 20px rgba(0,224,255,0.5)' : '0 0 20px rgba(0,102,204,0.4)'">
   <i class="fas" [class.fa-comments]="!isOpen" [class.fa-times]="isOpen"></i>
 </button>
 
 <!-- Fenêtre chat -->
-<div class="chatbot-window" [class.open]="isOpen">
+<div class="fixed bottom-[6.5rem] right-8 w-[360px] h-[520px] rounded-2xl flex flex-col z-[999] transition-all duration-300 origin-bottom-right"
+     [class.scale-0]="!isOpen" [class.opacity-0]="!isOpen" [class.pointer-events-none]="!isOpen"
+     [class.scale-100]="isOpen" [class.opacity-100]="isOpen" [class.pointer-events-auto]="isOpen"
+     [style.background]="isDark ? '#0d0d1a' : '#ffffff'"
+     [style.border]="isDark ? '1px solid rgba(0,224,255,0.25)' : '1px solid rgba(0,102,204,0.2)'"
+     [style.boxShadow]="isDark ? '0 0 40px rgba(0,224,255,0.15)' : '0 4px 30px rgba(0,102,204,0.15)'">
 
   <!-- Header -->
-  <div class="chatbot-header">
-    <div class="chatbot-avatar">MK</div>
-    <div>
-      <div class="chatbot-name">Assistant de Manal</div>
-      <div class="chatbot-status">
-        <span class="status-dot"></span> En ligne
-      </div>
+  <div class="flex items-center gap-3 px-4 py-3 rounded-t-2xl border-b transition-colors duration-300"
+       [style.background]="isDark ? 'rgba(0,224,255,0.05)' : 'rgba(0,102,204,0.05)'"
+       [style.borderColor]="isDark ? 'rgba(0,224,255,0.15)' : 'rgba(0,102,204,0.15)'">
+
+    <!-- Avatar -->
+    <div class="w-10 h-10 rounded-full flex items-center justify-center font-bold text-white text-sm flex-shrink-0"
+         style="background: linear-gradient(135deg, #00e0ff, #6f42c1);">MK</div>
+
+    <!-- Nom + statut -->
+    <div class="flex flex-col">
+      <span class="font-semibold text-[0.95rem] transition-colors duration-300"
+            [class.text-white]="isDark" [class.text-gray-800]="!isDark">
+        Assistant de Manal
+      </span>
+      <span class="flex items-center gap-1 text-[0.75rem] text-gray-400">
+        <span class="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
+        En ligne
+      </span>
     </div>
-    <button class="chatbot-close" (click)="toggleChat()">
+
+    <!-- Fermer -->
+    <button (click)="toggleChat()"
+            class="ml-auto bg-none border-none cursor-pointer text-base transition-colors duration-200 hover:text-white"
+            [class.text-gray-400]="isDark" [class.text-gray-500]="!isDark">
       <i class="fas fa-times"></i>
     </button>
   </div>
 
   <!-- Messages -->
-  <div class="chatbot-messages" #messagesContainer>
+  <div #messagesContainer
+       class="flex-1 overflow-y-auto px-4 py-3 flex flex-col gap-3"
+       style="scrollbar-width: thin; scrollbar-color: #00e0ff transparent;">
+
     <div *ngFor="let msg of messages"
-         class="message"
-         [class.user]="msg.role === 'user'"
-         [class.assistant]="msg.role === 'assistant'">
-      <div class="message-bubble">{{ msg.content }}</div>
+         class="flex"
+         [class.justify-end]="msg.role === 'user'"
+         [class.justify-start]="msg.role === 'assistant'">
+
+      <!-- Bulle utilisateur -->
+      <div *ngIf="msg.role === 'user'"
+           class="max-w-[80%] px-4 py-2 rounded-2xl rounded-br-sm text-sm leading-relaxed font-medium"
+           [style.background]="isDark ? '#00e0ff' : '#0066cc'"
+           style="color: #fff;">
+        {{ msg.content }}
+      </div>
+
+      <!-- Bulle assistant avec HTML formaté -->
+      <div *ngIf="msg.role === 'assistant'"
+           class="max-w-[85%] px-4 py-3 rounded-2xl rounded-bl-sm text-sm leading-relaxed chatbot-bubble transition-colors duration-300"
+           [class.bubble-dark]="isDark"
+           [class.bubble-light]="!isDark"
+           [innerHTML]="msg.html || msg.content">
+      </div>
     </div>
-    <div *ngIf="isLoading" class="message assistant">
-      <div class="message-bubble typing">
-        <span></span><span></span><span></span>
+
+    <!-- Typing indicator -->
+    <div *ngIf="isLoading" class="flex justify-start">
+      <div class="px-4 py-3 rounded-2xl rounded-bl-sm flex gap-1 items-center"
+           [style.background]="isDark ? 'rgba(255,255,255,0.07)' : 'rgba(0,102,204,0.07)'"
+           [style.border]="isDark ? '1px solid rgba(0,224,255,0.15)' : '1px solid rgba(0,102,204,0.15)'">
+        <span class="w-2 h-2 rounded-full animate-bounce"
+              [style.background]="isDark ? '#00e0ff' : '#0066cc'"></span>
+        <span class="w-2 h-2 rounded-full animate-bounce [animation-delay:0.2s]"
+              [style.background]="isDark ? '#00e0ff' : '#0066cc'"></span>
+        <span class="w-2 h-2 rounded-full animate-bounce [animation-delay:0.4s]"
+              [style.background]="isDark ? '#00e0ff' : '#0066cc'"></span>
       </div>
     </div>
   </div>
 
   <!-- Input -->
-  <div class="chatbot-input">
+  <div class="flex gap-2 px-4 py-3 border-t transition-colors duration-300"
+       [style.borderColor]="isDark ? 'rgba(0,224,255,0.15)' : 'rgba(0,102,204,0.15)'">
     <input
       type="text"
       [(ngModel)]="userInput"
       (keypress)="onKeyPress($event)"
       placeholder="Posez une question..."
-      [disabled]="isLoading" />
-    <button (click)="sendMessage()" [disabled]="isLoading">
+      [disabled]="isLoading"
+      class="flex-1 rounded-full px-4 py-2 text-sm outline-none transition-all duration-300 border"
+      [class.bg-white/5]="isDark" [class.text-white]="isDark"
+    [class.bg-gray-100]="!isDark" [class.text-gray-800]="!isDark"
+    [style.borderColor]="isDark ? 'rgba(0,224,255,0.2)' : 'rgba(0,102,204,0.25)'" />
+
+    <button
+      (click)="sendMessage()"
+      [disabled]="isLoading"
+      class="w-10 h-10 rounded-full border-none cursor-pointer flex items-center justify-center text-base transition-all duration-300 hover:scale-110 disabled:opacity-50 disabled:cursor-not-allowed flex-shrink-0"
+      [style.background]="isDark ? '#00e0ff' : '#0066cc'"
+      style="color: #fff;">
       <i class="fas fa-paper-plane"></i>
     </button>
   </div>

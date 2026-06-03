@@ -1,3 +1,39 @@
+* { transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease; }
+
+@keyframes gradientMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #0a0a14; }
+::-webkit-scrollbar-thumb { background: #00e0ff; border-radius: 10px; }
+
+.project-card:hover { transform: translateY(-8px) scale(1.02); box-shadow: 0 20px 40px rgba(0,224,255,0.4) !important; }
+.project-card:hover h2 { color: #ff6a00 !important; }
+.project-card:hover img { transform: scale(1.08); filter: brightness(1) !important; }
+.project-card .flex:hover i { color: #ff6a00; transform: rotate(10deg) scale(1.1); }
+.project-card .flex:hover span { color: #ff6a00; }
+
+@media (max-width: 767px) {
+  .mt-\[100px\] { margin-top: 70px; }
+  .text-\[3rem\] { font-size: 2.2rem; }
+  .h-\[200px\] { height: 180px; }
+  .text-\[1\.5rem\] { font-size: 1.3rem; }
+}
+
+@media (max-width: 480px) {
+  .text-\[3rem\] { font-size: 1.8rem; }
+  .text-\[0\.9rem\] { font-size: 0.85rem; }
+}
+
+
 @keyframes gradientMove {
   0% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }

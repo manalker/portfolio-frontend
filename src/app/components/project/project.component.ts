@@ -1,10 +1,11 @@
-import {Component, OnInit} from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { LanguageService } from '../../services/language.service';
-import {RouterModule} from '@angular/router';
-import {HttpClient, HttpClientModule} from '@angular/common/http';
-import {CommonModule} from '@angular/common';
-import {Project, ProjectService} from '../../services/project.service';
-import {TranslatePipe} from '@ngx-translate/core';
+import { RouterModule } from '@angular/router';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { CommonModule } from '@angular/common';
+import { Project, ProjectService } from '../../services/project.service';
+import { TranslatePipe } from '@ngx-translate/core';
+import { ThemeService } from '../../services/theme.service';
 
 @Component({
   selector: 'app-project',
@@ -13,23 +14,23 @@ import {TranslatePipe} from '@ngx-translate/core';
   standalone: true,
   imports: [CommonModule, HttpClientModule, RouterModule, TranslatePipe]
 })
-class ProjectComponent implements OnInit {
+
+export default class ProjectComponent implements OnInit {
   menuOpen = false;
   projects: Project[] = [];
 
-  // ← plus de lang = 'fr' local
   get lang() { return this.languageService.getLang(); }
+  get isDark() { return this.themeService.isDarkMode; }
+  toggleTheme() { this.themeService.toggleTheme(); }
 
   constructor(
     private projectService: ProjectService,
     private http: HttpClient,
-    private languageService: LanguageService  // ← injecte
+    private languageService: LanguageService,
+    private themeService: ThemeService
   ) {}
 
-  setLang(l: string) {
-    this.languageService.setLang(l);  // ← délègue au service
-  }
-
+  setLang(l: string) { this.languageService.setLang(l); }
   closeMenu() { this.menuOpen = false; }
 
   ngOnInit(): void {
@@ -43,5 +44,3 @@ class ProjectComponent implements OnInit {
     this.projects[index].showDescription = !this.projects[index].showDescription;
   }
 }
-
-export default ProjectComponent

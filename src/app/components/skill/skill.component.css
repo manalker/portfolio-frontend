@@ -1,37 +1,40 @@
+* { transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease; }
+
 @keyframes gradientMove {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
   100% { background-position: 0% 50%; }
 }
 
 @keyframes fadeInUp {
-  0% { transform: translateY(-20px); opacity: 0; }
-  100% { transform: translateY(0); opacity: 1; }
+  0%   { transform: translateY(-20px); opacity: 0; }
+  100% { transform: translateY(0);     opacity: 1; }
 }
 
-::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar       { width: 6px; }
 ::-webkit-scrollbar-track { background: #0a0a14; }
 ::-webkit-scrollbar-thumb { background: #00e0ff; border-radius: 10px; }
 
-@media (max-width: 768px) {
-  header { padding: 0.8rem 1.2rem !important; }
-  h1 { font-size: 1.8rem !important; }
-}
-
-/* ================= Grid ================= */
+/* ═══════════════════════════════════
+   GRILLE
+═══════════════════════════════════ */
 .skills-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 30px;
 }
 
-/* ================= Card ================= */
+/* ═══════════════════════════════════
+   CARTE — dark (défaut)
+═══════════════════════════════════ */
 .skill-card {
   background: rgba(30, 30, 50, 0.95);
   border-radius: 20px;
   padding: 25px 20px;
+  border: 1px solid rgba(0, 224, 255, 0.08);
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
-  transition: transform 0.3s, box-shadow 0.3s; /* ← important */
+  transition: transform 0.3s, box-shadow 0.3s;
+  animation: fadeInUp 0.6s ease forwards;
 }
 
 .skill-card:hover {
@@ -43,9 +46,12 @@
   font-size: 1.4rem;
   color: #88c0d0;
   margin-bottom: 15px;
+  transition: color 0.3s;
 }
 
-/* ================= Badges ================= */
+/* ═══════════════════════════════════
+   BADGES — dark (défaut)
+═══════════════════════════════════ */
 .skills-list {
   display: flex;
   flex-wrap: wrap;
@@ -62,21 +68,63 @@
   font-size: 0.88rem;
   font-weight: 500;
   color: #fff;
-  transition: transform 0.2s;
   background: rgba(255, 255, 255, 0.08);
   border: 1px solid rgba(255, 255, 255, 0.15);
+  transition: transform 0.2s, background 0.2s;
 }
 
 .skill-badge i { font-size: 15px; }
-.skill-badge:hover { transform: translateY(-2px) scale(1.05); }
 
-/* ================= Responsive ================= */
+.skill-badge:hover {
+  transform: translateY(-2px) scale(1.05);
+  background: rgba(0, 224, 255, 0.12);
+  border-color: rgba(0, 224, 255, 0.3);
+}
+
+/* ═══════════════════════════════════
+   CARTE — light
+   (classe .light sur le container)
+═══════════════════════════════════ */
+.light .skill-card {
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(0, 102, 204, 0.15);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+}
+
+.light .skill-card:hover {
+  box-shadow: 0 20px 40px rgba(0, 102, 204, 0.2);
+}
+
+.light .skill-card h2 {
+  color: #0066cc;
+}
+
+.light .skill-badge {
+  color: #1e293b;
+  background: rgba(0, 102, 204, 0.07);
+  border: 1px solid rgba(0, 102, 204, 0.2);
+}
+
+.light .skill-badge:hover {
+  background: rgba(0, 102, 204, 0.15);
+  border-color: rgba(0, 102, 204, 0.4);
+}
+
+/* ═══════════════════════════════════
+   Responsive — 768px
+═══════════════════════════════════ */
 @media (max-width: 768px) {
+  header { padding: 0.8rem 1.2rem !important; }
+  h1     { font-size: 1.8rem !important; }
+
   .skills-grid { grid-template-columns: 1fr; gap: 20px; }
   .skill-card h2 { font-size: 1.2rem; }
   .skill-badge { font-size: 0.82rem; padding: 6px 10px; }
 }
 
+/* ═══════════════════════════════════
+   Responsive — 480px
+═══════════════════════════════════ */
 @media (max-width: 480px) {
   .skill-badge { width: 100%; justify-content: center; }
 }

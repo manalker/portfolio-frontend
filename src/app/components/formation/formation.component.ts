@@ -4,7 +4,8 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
 import { LanguageService } from '../../services/language.service';
-import {environment} from '../../../environments/environment';
+import { ThemeService } from '../../services/theme.service';
+import { environment } from '../../../environments/environment';
 
 export interface Formation {
   id: number;
@@ -26,18 +27,18 @@ export class FormationComponent implements OnInit {
   menuOpen = false;
   formations: Formation[] = [];
 
-  get lang() { return this.languageService.getLang(); }
+  get lang()   { return this.languageService.getLang(); }
+  get isDark() { return this.themeService.isDarkMode; }
+  toggleTheme() { this.themeService.toggleTheme(); }
 
   constructor(
     private http: HttpClient,
-    private languageService: LanguageService
+    private languageService: LanguageService,
+    private themeService: ThemeService
   ) {}
 
-  setLang(l: string) {
-    this.languageService.setLang(l);
-  }
-
-  closeMenu() { this.menuOpen = false; }
+  setLang(l: string) { this.languageService.setLang(l); }
+  closeMenu()        { this.menuOpen = false; }
 
   ngOnInit(): void {
     this.http.get<Formation[]>(`${environment.apiUrl}/api/formations`).subscribe({

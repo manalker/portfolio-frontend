@@ -1,91 +1,154 @@
-<header class="fixed top-0 w-full z-50 flex items-center justify-between px-8 py-4 backdrop-blur-md"
-        style="background: rgba(10, 10, 20, 0.7);">
+<header class="fixed top-0 w-full z-50 flex items-center justify-between px-8 py-4 backdrop-blur-md transition-all duration-300"
+        [class.bg-[rgba(10,10,20,0.7)]]="isDark"
+        [style.background]="isDark ? 'rgba(10, 10, 20, 0.7)' : 'rgba(255, 255, 255, 0.85)'">
 
-  <div class="text-[1.8rem] md:text-[1.8rem] text-[1.3rem] font-bold flex-1 whitespace-nowrap" style="color: #00e0ff;">Manal Kerroumi</div>
+  <div class="text-[1.8rem] font-bold flex-1 whitespace-nowrap transition-colors duration-300"
+       [style.color]="isDark ? '#00e0ff' : '#0066cc'">Manal Kerroumi</div>
 
+  <!-- Nav desktop -->
   <nav class="hidden md:flex flex-1 justify-center">
     <ul class="flex gap-4 list-none m-0 p-0">
       <li><a routerLink="/" routerLinkActive="active" (click)="closeMenu()"
-             class="text-white no-underline font-medium text-sm transition-all hover:text-cyan-400 whitespace-nowrap">
+             class="no-underline font-medium text-sm transition-all whitespace-nowrap"
+             [class.text-white]="isDark" [class.text-gray-700]="!isDark"
+             [class.hover:text-cyan-400]="isDark" [class.hover:text-blue-600]="!isDark">
         {{ 'nav.apropos' | translate }}</a></li>
       <li><a routerLink="/project" routerLinkActive="active" (click)="closeMenu()"
-             class="text-white no-underline font-medium text-sm transition-all hover:text-cyan-400">
+             class="no-underline font-medium text-sm transition-all"
+             [class.text-white]="isDark" [class.text-gray-700]="!isDark">
         {{ 'nav.projets' | translate }}</a></li>
       <li><a routerLink="/certification" routerLinkActive="active" (click)="closeMenu()"
-             class="text-white no-underline font-medium text-sm transition-all hover:text-cyan-400">
+             class="no-underline font-medium text-sm transition-all"
+             [class.text-white]="isDark" [class.text-gray-700]="!isDark">
         {{ 'nav.certifications' | translate }}</a></li>
       <li><a routerLink="/formation" routerLinkActive="active" (click)="closeMenu()"
-             class="text-white no-underline font-medium text-sm transition-all hover:text-cyan-400">
+             class="no-underline font-medium text-sm transition-all"
+             [class.text-white]="isDark" [class.text-gray-700]="!isDark">
         {{ 'nav.formations' | translate }}</a></li>
       <li><a routerLink="/experience" routerLinkActive="active" (click)="closeMenu()"
-             class="text-white no-underline font-medium text-sm transition-all hover:text-cyan-400">
+             class="no-underline font-medium text-sm transition-all"
+             [class.text-white]="isDark" [class.text-gray-700]="!isDark">
         {{ 'nav.experiences' | translate }}</a></li>
       <li><a routerLink="/skills" routerLinkActive="active" (click)="closeMenu()"
-             class="text-white no-underline font-medium text-sm transition-all hover:text-cyan-400">
+             class="no-underline font-medium text-sm transition-all"
+             [class.text-white]="isDark" [class.text-gray-700]="!isDark">
         {{ 'nav.competences' | translate }}</a></li>
       <li><a routerLink="/contact" routerLinkActive="active" (click)="closeMenu()"
-             class="text-white no-underline font-medium text-sm transition-all hover:text-cyan-400">
+             class="no-underline font-medium text-sm transition-all"
+             [class.text-white]="isDark" [class.text-gray-700]="!isDark">
         {{ 'nav.contact' | translate }}</a></li>
     </ul>
   </nav>
 
+  <!-- Nav mobile -->
   <nav [class.block]="menuOpen" [class.hidden]="!menuOpen"
        class="hidden absolute top-full left-0 w-full md:hidden"
-       style="background: rgba(10, 10, 20, 0.95);">
+       [style.background]="isDark ? 'rgba(10,10,20,0.95)' : 'rgba(255,255,255,0.98)'">
     <ul class="flex flex-col list-none p-4">
-      <li><a routerLink="/" (click)="closeMenu()" class="block py-3 text-white border-b border-white/10">{{ 'nav.apropos' | translate }}</a></li>
-      <li><a routerLink="/project" (click)="closeMenu()" class="block py-3 text-white border-b border-white/10">{{ 'nav.projets' | translate }}</a></li>
-      <li><a routerLink="/certification" (click)="closeMenu()" class="block py-3 text-white border-b border-white/10">{{ 'nav.certifications' | translate }}</a></li>
-      <li><a routerLink="/formation" (click)="closeMenu()" class="block py-3 text-white border-b border-white/10">{{ 'nav.formations' | translate }}</a></li>
-      <li><a routerLink="/experience" (click)="closeMenu()" class="block py-3 text-white border-b border-white/10">{{ 'nav.experiences' | translate }}</a></li>
-      <li><a routerLink="/skills" (click)="closeMenu()" class="block py-3 text-white border-b border-white/10">{{ 'nav.competences' | translate }}</a></li>
-      <li><a routerLink="/contact" (click)="closeMenu()" class="block py-3 text-white border-b border-white/10">{{ 'nav.contact' | translate }}</a></li>
+      <li><a routerLink="/" (click)="closeMenu()"
+             class="block py-3 border-b border-white/10 no-underline"
+             [class.text-white]="isDark" [class.text-gray-700]="!isDark">{{ 'nav.apropos' | translate }}</a></li>
+      <li><a routerLink="/project" (click)="closeMenu()"
+             class="block py-3 border-b border-white/10 no-underline"
+             [class.text-white]="isDark" [class.text-gray-700]="!isDark">{{ 'nav.projets' | translate }}</a></li>
+      <li><a routerLink="/certification" (click)="closeMenu()"
+             class="block py-3 border-b border-white/10 no-underline"
+             [class.text-white]="isDark" [class.text-gray-700]="!isDark">{{ 'nav.certifications' | translate }}</a></li>
+      <li><a routerLink="/formation" (click)="closeMenu()"
+             class="block py-3 border-b border-white/10 no-underline"
+             [class.text-white]="isDark" [class.text-gray-700]="!isDark">{{ 'nav.formations' | translate }}</a></li>
+      <li><a routerLink="/experience" (click)="closeMenu()"
+             class="block py-3 border-b border-white/10 no-underline"
+             [class.text-white]="isDark" [class.text-gray-700]="!isDark">{{ 'nav.experiences' | translate }}</a></li>
+      <li><a routerLink="/skills" (click)="closeMenu()"
+             class="block py-3 border-b border-white/10 no-underline"
+             [class.text-white]="isDark" [class.text-gray-700]="!isDark">{{ 'nav.competences' | translate }}</a></li>
+      <li><a routerLink="/contact" (click)="closeMenu()"
+             class="block py-3 border-b border-white/10 no-underline"
+             [class.text-white]="isDark" [class.text-gray-700]="!isDark">{{ 'nav.contact' | translate }}</a></li>
       <li class="py-3 border-b border-white/10">
-        <a href="assets/docs/manal-kerroumi.pdf" download class="text-cyan-400">
+        <a href="assets/docs/manal-kerroumi.pdf" download
+           [class.text-cyan-400]="isDark" [class.text-blue-600]="!isDark">
           <i class="fas fa-file-arrow-down"></i> {{ 'nav.cv' | translate }}
         </a>
       </li>
       <li class="flex gap-2 py-3">
         <button [class.bg-cyan-400]="lang === 'fr'" [class.text-black]="lang === 'fr'"
-                class="px-3 py-1 rounded-full text-gray-400 font-semibold text-sm"
+                class="px-3 py-1 rounded-full font-semibold text-sm"
+                [class.text-gray-400]="lang !== 'fr'"
                 (click)="setLang('fr')">🇫🇷 FR</button>
         <button [class.bg-cyan-400]="lang === 'en'" [class.text-black]="lang === 'en'"
-                class="px-3 py-1 rounded-full text-gray-400 font-semibold text-sm"
+                class="px-3 py-1 rounded-full font-semibold text-sm"
+                [class.text-gray-400]="lang !== 'en'"
                 (click)="setLang('en')">🇬🇧 EN</button>
       </li>
     </ul>
   </nav>
 
+  <!-- CV + Langue + Theme + Hamburger -->
   <div class="flex items-center gap-3 flex-1 justify-end">
+
     <a href="assets/docs/manal-kerroumi.pdf" download
-       class="hidden md:inline-flex items-center gap-2 px-5 py-2 rounded-full border-2 font-semibold text-sm transition-all"
-       style="color: #00e0ff; border-color: #00e0ff;"
-       onmouseover="this.style.background='#00e0ff';this.style.color='#000'"
-       onmouseout="this.style.background='transparent';this.style.color='#00e0ff'">
+       class="hidden md:inline-flex items-center gap-2 px-5 py-2 rounded-full border-2 font-semibold text-sm transition-all no-underline"
+       [style.color]="isDark ? '#00e0ff' : '#0066cc'"
+       [style.borderColor]="isDark ? '#00e0ff' : '#0066cc'"
+       style="background: transparent;"
+       onmouseover="this.style.background=this.dataset.accent;this.style.color='#000'"
+       onmouseout="this.style.background='transparent';this.style.color=this.dataset.color"
+       [attr.data-accent]="isDark ? '#00e0ff' : '#0066cc'"
+       [attr.data-color]="isDark ? '#00e0ff' : '#0066cc'">
       <i class="fas fa-file-arrow-down"></i> {{ 'nav.cv' | translate }}
     </a>
 
-    <div class="hidden md:flex items-center gap-1 px-3 py-1 rounded-full"
-         style="background: rgba(0,224,255,0.1); border: 1px solid rgba(0,224,255,0.3);">
-      <button [class.bg-cyan-400]="lang === 'fr'" [class.text-black]="lang === 'fr'"
-              class="px-2 py-1 rounded-full text-gray-400 font-semibold text-sm transition-all"
+    <!-- Lang switcher -->
+    <div class="hidden md:flex items-center gap-1 px-3 py-1 rounded-full transition-all duration-300"
+         [style.background]="isDark ? 'rgba(0,224,255,0.1)' : 'rgba(0,102,204,0.1)'"
+         [style.border]="isDark ? '1px solid rgba(0,224,255,0.3)' : '1px solid rgba(0,102,204,0.3)'">
+      <button [class.bg-cyan-400]="isDark && lang === 'fr'"
+              [class.bg-blue-600]="!isDark && lang === 'fr'"
+              [class.text-black]="lang === 'fr'"
+              class="px-2 py-1 rounded-full font-semibold text-sm transition-all border-none cursor-pointer"
+              [class.text-gray-400]="lang !== 'fr'"
               (click)="setLang('fr')">🇫🇷 FR</button>
-      <button [class.bg-cyan-400]="lang === 'en'" [class.text-black]="lang === 'en'"
-              class="px-2 py-1 rounded-full text-gray-400 font-semibold text-sm transition-all"
+      <button [class.bg-cyan-400]="isDark && lang === 'en'"
+              [class.bg-blue-600]="!isDark && lang === 'en'"
+              [class.text-black]="lang === 'en'"
+              class="px-2 py-1 rounded-full font-semibold text-sm transition-all border-none cursor-pointer"
+              [class.text-gray-400]="lang !== 'en'"
               (click)="setLang('en')">🇬🇧 EN</button>
     </div>
 
-    <button class="flex md:hidden flex-col gap-1 cursor-pointer" (click)="menuOpen = !menuOpen">
-      <span class="block w-6 h-0.5 rounded" style="background: #00e0ff;"></span>
-      <span class="block w-6 h-0.5 rounded" style="background: #00e0ff;"></span>
-      <span class="block w-6 h-0.5 rounded" style="background: #00e0ff;"></span>
+    <!-- Toggle theme -->
+    <button (click)="toggleTheme()"
+            class="hidden md:flex w-9 h-9 rounded-full items-center justify-center transition-all duration-300 cursor-pointer border-none"
+            [style.background]="isDark ? 'rgba(0,224,255,0.1)' : 'rgba(0,102,204,0.1)'"
+            [style.border]="isDark ? '1px solid rgba(0,224,255,0.3)' : '1px solid rgba(0,102,204,0.3)'">
+      <i [class]="isDark ? 'fas fa-sun' : 'fas fa-moon'"
+         [style.color]="isDark ? '#00e0ff' : '#0066cc'"
+         style="font-size: 1rem;"></i>
+    </button>
+
+    <!-- Hamburger -->
+    <button class="flex md:hidden flex-col gap-1 cursor-pointer border-none bg-transparent"
+            (click)="menuOpen = !menuOpen">
+      <span class="block w-6 h-0.5 rounded transition-colors duration-300"
+            [style.background]="isDark ? '#00e0ff' : '#0066cc'"></span>
+      <span class="block w-6 h-0.5 rounded transition-colors duration-300"
+            [style.background]="isDark ? '#00e0ff' : '#0066cc'"></span>
+      <span class="block w-6 h-0.5 rounded transition-colors duration-300"
+            [style.background]="isDark ? '#00e0ff' : '#0066cc'"></span>
     </button>
   </div>
 </header>
 
-<section class="min-h-screen flex items-center justify-center pt-20 px-12 relative overflow-hidden text-white"
-         style="background: linear-gradient(135deg, #1a1a2e, #232347, #1f1f3d, #1e1e2f);
-                background-size: 400% 400%; animation: gradientMove 20s ease infinite;">
+<!-- Section principale -->
+<section class="min-h-screen flex items-center justify-center pt-20 px-12 relative overflow-hidden transition-all duration-500"
+         [class.text-white]="isDark"
+         [class.text-gray-900]="!isDark"
+         [style.background]="isDark
+           ? 'linear-gradient(135deg, #1a1a2e, #232347, #1f1f3d, #1e1e2f)'
+           : 'linear-gradient(135deg, #e8f4fd, #f0f4ff, #e8eeff, #f5f0ff)'"
+         style="background-size: 400% 400%; animation: gradientMove 20s ease infinite;">
 
   <div class="flex items-center justify-center gap-16 flex-wrap max-w-6xl w-full -translate-y-8">
 
@@ -94,7 +157,8 @@
       <div class="relative">
         <img src="assets/images/profile.jpg" alt="Photo de profil"
              class="w-64 h-64 rounded-full object-cover z-10 relative transition-all duration-500 hover:scale-110"
-             style="border: 5px solid #00e0ff; box-shadow: 0 0 35px rgba(0,224,255,0.6);" />
+             [style.border]="isDark ? '5px solid #00e0ff' : '5px solid #0066cc'"
+             [style.boxShadow]="isDark ? '0 0 35px rgba(0,224,255,0.6)' : '0 0 35px rgba(0,102,204,0.4)'" />
         <div class="circle circle1"></div>
         <div class="circle circle2"></div>
         <div class="circle circle3"></div>
@@ -108,7 +172,10 @@
         {{ 'home.bonjour' | translate }}
         <span class="inline-block hand-emoji">👋</span>,
         {{ 'home.je_suis' | translate }}
-        <span style="color: #00e0ff; text-shadow: 0 0 12px #00e0ff;">Manal Kerroumi</span>
+        <span [style.color]="isDark ? '#00e0ff' : '#0066cc'"
+              [style.textShadow]="isDark ? '0 0 12px #00e0ff' : '0 0 12px rgba(0,102,204,0.4)'">
+          Manal Kerroumi
+        </span>
       </h1>
 
       <!-- Role wrapper -->
@@ -116,21 +183,30 @@
 
         <!-- Contenu animé -->
         <div class="role-content" [class.fade-out]="isAnimating">
-          <h2 class="role-title">
-            <span class="role-tag">&lt;</span>
+          <h2 class="role-title" [style.color]="isDark ? '#ff79c6' : '#cc0077'">
+            <span class="role-tag" [style.color]="isDark ? 'rgba(0,224,255,0.6)' : 'rgba(0,102,204,0.6)'">&lt;</span>
             {{ lang === 'fr' ? currentRole.titleFr : currentRole.titleEn }}
-            <span class="role-tag">/&gt;</span>
+            <span class="role-tag" [style.color]="isDark ? 'rgba(0,224,255,0.6)' : 'rgba(0,102,204,0.6)'">/&gt;</span>
           </h2>
-          <p class="role-desc">{{ lang === 'fr' ? currentRole.descFr : currentRole.descEn }}</p>
+          <p class="role-desc" [style.color]="isDark ? '#d4d4d4' : '#444455'">
+            {{ lang === 'fr' ? currentRole.descFr : currentRole.descEn }}
+          </p>
           <div class="role-stack">
-            <span class="stack-chip" *ngFor="let chip of currentRole.stack">{{ chip }}</span>
+            <span class="stack-chip" *ngFor="let chip of currentRole.stack"
+                  [style.background]="isDark ? 'rgba(0,224,255,0.08)' : 'rgba(0,102,204,0.08)'"
+                  [style.borderColor]="isDark ? 'rgba(0,224,255,0.3)' : 'rgba(0,102,204,0.3)'"
+                  [style.color]="isDark ? '#00e0ff' : '#0066cc'">
+              {{ chip }}
+            </span>
           </div>
         </div>
 
         <!-- Navigation latérale -->
         <div class="role-nav">
-          <div class="role-nav-track">
+          <div class="role-nav-track"
+               [style.background]="isDark ? 'rgba(0,224,255,0.1)' : 'rgba(0,102,204,0.1)'">
             <div class="role-nav-progress"
+                 [style.background]="isDark ? '#00e0ff' : '#0066cc'"
                  [style.height.%]="((currentRoleIndex + 1) / roles.length) * 100">
             </div>
           </div>
@@ -139,8 +215,18 @@
                     class="role-nav-item"
                     [class.active]="i === currentRoleIndex"
                     (click)="goToRole(i)">
-              <span class="nav-index">0{{ i + 1 }}</span>
-              <span class="nav-label">{{ lang === 'fr' ? role.shortFr : role.shortEn }}</span>
+              <span class="nav-index"
+                    [style.color]="i === currentRoleIndex
+                      ? (isDark ? '#00e0ff' : '#0066cc')
+                      : (isDark ? 'rgba(0,224,255,0.35)' : 'rgba(0,102,204,0.35)')">
+                0{{ i + 1 }}
+              </span>
+              <span class="nav-label"
+                    [style.color]="i === currentRoleIndex
+                      ? (isDark ? '#fff' : '#1a1a2e')
+                      : (isDark ? 'rgba(255,255,255,0.3)' : 'rgba(0,0,0,0.35)')">
+                {{ lang === 'fr' ? role.shortFr : role.shortEn }}
+              </span>
             </button>
           </div>
         </div>
@@ -150,8 +236,9 @@
       <div class="flex justify-start mt-2">
         <button (click)="downloadCV()"
                 class="px-8 py-3 rounded-full font-semibold transition-all duration-300 cursor-pointer border-none"
-                style="background: #00e0ff; color: #000;"
-                onmouseover="this.style.boxShadow='0 0 20px #00e0ff'; this.style.transform='translateY(-3px)'"
+                [style.background]="isDark ? '#00e0ff' : '#0066cc'"
+                style="color: #000;"
+                onmouseover="this.style.boxShadow='0 0 20px currentColor'; this.style.transform='translateY(-3px)'"
                 onmouseout="this.style.boxShadow='none'; this.style.transform='none'">
           📄 {{ 'home.telecharger_cv' | translate }}
         </button>

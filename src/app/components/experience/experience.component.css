@@ -1,25 +1,23 @@
+* { transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease; }
+
 @keyframes gradientMove {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
   100% { background-position: 0% 50%; }
 }
 
 @keyframes fadeInUp {
   from { opacity: 0; transform: translateY(30px); }
-  to { opacity: 1; transform: translateY(0); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
-::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar       { width: 6px; }
 ::-webkit-scrollbar-track { background: #0a0a14; }
 ::-webkit-scrollbar-thumb { background: #00e0ff; border-radius: 10px; }
 
-/* ================= Header responsive ================= */
-@media (max-width: 768px) {
-  header { padding: 0.8rem 1.2rem !important; }
-  h1 { font-size: 1.8rem !important; }
-}
-
-/* ================= Timeline ================= */
+/* ═══════════════════════════════════
+   TIMELINE — structure
+═══════════════════════════════════ */
 .timeline {
   position: relative;
   margin: 50px 0;
@@ -47,9 +45,13 @@
 .timeline-item.left  { left: 0; text-align: right; }
 .timeline-item.right { left: 50%; text-align: left; }
 
+/* ═══════════════════════════════════
+   TIMELINE — point
+═══════════════════════════════════ */
 .timeline-point {
   position: absolute;
-  top: 25px; left: 50%;
+  top: 25px;
+  left: 50%;
   width: 15px; height: 15px;
   background: #00e0ff;
   border-radius: 50%;
@@ -58,23 +60,27 @@
   z-index: 1;
 }
 
+/* ═══════════════════════════════════
+   TIMELINE — carte (dark par défaut)
+═══════════════════════════════════ */
 .timeline-content {
   background: rgba(30, 30, 50, 0.85);
   backdrop-filter: blur(8px);
   border-radius: 15px;
   padding: 25px 20px;
+  border: 1px solid rgba(0, 224, 255, 0.1);
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
   transition: transform 0.4s ease, box-shadow 0.4s ease;
 }
 
 .timeline-content:hover {
   transform: translateY(-5px) scale(1.02);
-  box-shadow: 0 20px 40px rgba(0, 224, 255, 0.5);
+  box-shadow: 0 20px 40px rgba(0, 224, 255, 0.4);
 }
 
 .timeline-content h2 {
   margin: 0 0 10px;
-  font-size: 1.8rem;
+  font-size: 1.4rem;
   color: #00e0ff;
 }
 
@@ -86,6 +92,73 @@
   margin-bottom: 8px;
 }
 
+.timeline-content .type-badge {
+  display: inline-block;
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 3px 12px;
+  border-radius: 999px;
+  margin-bottom: 10px;
+  background: rgba(0, 224, 255, 0.12);
+  color: #00e0ff;
+  border: 1px solid rgba(0, 224, 255, 0.3);
+}
+
+.task-list {
+  margin-top: 15px;
+  padding-left: 20px;
+  color: #ccc;
+  text-align: left;
+}
+.task-list li { margin-bottom: 6px; font-size: 0.92rem; }
+
+/* ═══════════════════════════════════
+   TIMELINE — carte (light)
+   Utilise la classe .light sur le
+   container parent dans le HTML
+═══════════════════════════════════ */
+.light .timeline-content {
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(0, 102, 204, 0.15);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+}
+
+.light .timeline-content:hover {
+  box-shadow: 0 20px 40px rgba(0, 102, 204, 0.2);
+}
+
+.light .timeline-content h2 {
+  color: #0066cc;
+}
+
+.light .timeline-content .company,
+.light .timeline-content .duration,
+.light .timeline-content .tech {
+  color: #555;
+}
+
+.light .timeline-content .type-badge {
+  background: rgba(0, 102, 204, 0.1);
+  color: #0066cc;
+  border-color: rgba(0, 102, 204, 0.25);
+}
+
+.light .task-list {
+  color: #444;
+}
+
+.light .timeline::before {
+  background: linear-gradient(180deg, #0066cc, #7c3aed);
+}
+
+.light .timeline-point {
+  background: #0066cc;
+  box-shadow: 0 0 15px rgba(0, 102, 204, 0.5);
+}
+
+/* ═══════════════════════════════════
+   Bouton détails
+═══════════════════════════════════ */
 .details-btn {
   margin-top: 10px;
   padding: 7px 18px;
@@ -96,23 +169,20 @@
   color: #fff;
   border: none;
   transition: all 0.3s ease;
+  font-size: 0.85rem;
 }
-
 .details-btn:hover {
   transform: translateY(-2px);
   box-shadow: 0 5px 15px rgba(0, 224, 255, 0.5);
 }
 
-.task-list {
-  margin-top: 15px;
-  padding-left: 20px;
-  color: #ccc;
-}
-
-.task-list li { margin-bottom: 6px; }
-
-/* ================= Responsive ================= */
+/* ═══════════════════════════════════
+   Responsive — tablet (768px)
+═══════════════════════════════════ */
 @media (max-width: 768px) {
+  header { padding: 0.8rem 1.2rem !important; }
+  h1     { font-size: 1.8rem !important; }
+
   .timeline::before { left: 20px; transform: none; }
 
   .timeline-item,
@@ -125,12 +195,17 @@
   }
 
   .timeline-point { left: 13px; transform: none; }
-  .timeline-content h2 { font-size: 1.3rem; }
+  .timeline-content h2 { font-size: 1.2rem; }
 }
 
+/* ═══════════════════════════════════
+   Responsive — mobile (480px)
+═══════════════════════════════════ */
 @media (max-width: 480px) {
-  .timeline-content h2 { font-size: 1.1rem; }
+  .timeline-content { padding: 18px 14px; }
+  .timeline-content h2 { font-size: 1.05rem; }
   .timeline-content .company,
   .timeline-content .duration,
-  .timeline-content .tech { font-size: 0.85rem; }
+  .timeline-content .tech { font-size: 0.82rem; }
+  .details-btn { font-size: 0.78rem; padding: 6px 14px; }
 }

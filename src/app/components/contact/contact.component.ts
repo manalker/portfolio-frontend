@@ -5,7 +5,8 @@ import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { TranslatePipe } from '@ngx-translate/core';
 import { LanguageService } from '../../services/language.service';
-import {environment} from '../../../environments/environment';
+import { ThemeService } from '../../services/theme.service';
+import { environment } from '../../../environments/environment';
 
 interface Contact {
   id: number;
@@ -27,22 +28,20 @@ export class ContactComponent implements OnInit {
   menuOpen = false;
   contact!: Contact;
 
-  form = {
-    name: '',
-    email: '',
-    subject: '',
-    message: ''
-  };
+  form = { name: '', email: '', subject: '', message: '' };
 
-  get lang() { return this.languageService.getLang(); }
+  get lang()    { return this.languageService.getLang(); }
+  get isDark()  { return this.themeService.isDarkMode; }
+  toggleTheme() { this.themeService.toggleTheme(); }
 
   constructor(
     private http: HttpClient,
-    private languageService: LanguageService
+    private languageService: LanguageService,
+    private themeService: ThemeService
   ) {}
 
   setLang(l: string) { this.languageService.setLang(l); }
-  closeMenu() { this.menuOpen = false; }
+  closeMenu()        { this.menuOpen = false; }
 
   ngOnInit(): void {
     this.http.get<Contact[]>(`${environment.apiUrl}/api/contacts`).subscribe(data => {
