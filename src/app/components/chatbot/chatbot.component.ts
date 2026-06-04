@@ -74,7 +74,12 @@ export class ChatbotComponent implements AfterViewChecked {
     this.userInput = '';
     this.isLoading = true;
 
-    this.chatbotService.sendMessage(this.messages).subscribe({
+    const apiMessages = this.messages.map(msg => ({
+      role: msg.role,
+      content: msg.content
+    }));
+
+    this.chatbotService.sendMessage(apiMessages).subscribe({
       next: (response) => {
         const raw = response.choices[0].message.content;
         this.messages.push({

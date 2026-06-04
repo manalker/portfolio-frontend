@@ -5,14 +5,28 @@
   <div class="text-[1.8rem] font-bold flex-1 transition-colors duration-300"
        [style.color]="isDark ? '#00e0ff' : '#0066cc'">Manal Kerroumi</div>
 
-  <!-- Hamburger mobile -->
-  <div class="flex md:hidden flex-col gap-[5px] cursor-pointer ml-4" (click)="menuOpen = !menuOpen">
+  <!-- Hamburger + Theme mobile -->
+  <div class="flex md:hidden items-center gap-3 ml-4">
+
+    <!-- Bouton theme visible directement -->
+    <button (click)="toggleTheme()"
+            class="w-9 h-9 rounded-full flex items-center justify-center border-none cursor-pointer transition-all duration-300"
+            [style.background]="isDark ? 'rgba(0,224,255,0.1)' : 'rgba(0,102,204,0.1)'"
+            [style.border]="isDark ? '1px solid rgba(0,224,255,0.3)' : '1px solid rgba(0,102,204,0.3)'">
+      <i [class]="isDark ? 'fas fa-sun' : 'fas fa-moon'"
+         [style.color]="isDark ? '#00e0ff' : '#0066cc'"
+         style="font-size: 1rem;"></i>
+    </button>
+
+    <!-- Hamburger -->
+    <div class="flex flex-col gap-[5px] cursor-pointer" (click)="menuOpen = !menuOpen">
     <span class="block w-[25px] h-[3px] rounded-[3px] transition-colors duration-300"
           [style.background]="isDark ? '#00e0ff' : '#0066cc'"></span>
-    <span class="block w-[25px] h-[3px] rounded-[3px] transition-colors duration-300"
-          [style.background]="isDark ? '#00e0ff' : '#0066cc'"></span>
-    <span class="block w-[25px] h-[3px] rounded-[3px] transition-colors duration-300"
-          [style.background]="isDark ? '#00e0ff' : '#0066cc'"></span>
+      <span class="block w-[25px] h-[3px] rounded-[3px] transition-colors duration-300"
+            [style.background]="isDark ? '#00e0ff' : '#0066cc'"></span>
+      <span class="block w-[25px] h-[3px] rounded-[3px] transition-colors duration-300"
+            [style.background]="isDark ? '#00e0ff' : '#0066cc'"></span>
+    </div>
   </div>
 
   <!-- Nav desktop -->
@@ -129,14 +143,6 @@
                 [class.!text-black]="lang === 'en'"
                 [class.text-gray-400]="lang !== 'en'"
                 (click)="setLang('en')">🇬🇧 EN</button>
-        <button (click)="toggleTheme()"
-                class="ml-auto w-9 h-9 rounded-full flex items-center justify-center border-none cursor-pointer transition-all duration-300"
-                [style.background]="isDark ? 'rgba(0,224,255,0.1)' : 'rgba(0,102,204,0.1)'"
-                [style.border]="isDark ? '1px solid rgba(0,224,255,0.3)' : '1px solid rgba(0,102,204,0.3)'">
-          <i [class]="isDark ? 'fas fa-sun' : 'fas fa-moon'"
-             [style.color]="isDark ? '#00e0ff' : '#0066cc'"
-             style="font-size: 1rem;"></i>
-        </button>
       </li>
     </ul>
   </div>

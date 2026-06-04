@@ -66,3 +66,44 @@
   .text-\[3rem\] { font-size: 1.8rem; }
   .text-\[0\.9rem\] { font-size: 0.85rem; }
 }
+
+
+/* ═══════════════════════════════════
+   Responsive — 768px
+═══════════════════════════════════ */
+@media (max-width: 768px) {
+  header { padding: 0.8rem 1.2rem !important; }
+  h1     { font-size: 1.8rem !important; }
+
+  .timeline-container { padding: 0 10px; overflow: hidden; }
+  .timeline-container::before { left: 20px; transform: none; }
+
+  .timeline-item,
+  .timeline-item.left,
+  .timeline-item.right {
+    width: 100%;
+    left: 0;
+    padding-left: 55px;
+    padding-right: 10px;
+    text-align: left;
+  }
+
+  .timeline-item::before,
+  .timeline-item.left::before,
+  .timeline-item.right::before {
+    left: 0;
+    right: auto;
+  }
+
+  .timeline-content { padding: 15px; }
+  .timeline-content h2 { font-size: 1.1rem; }
+}
+
+/* ═══════════════════════════════════
+   Responsive — 480px
+═══════════════════════════════════ */
+@media (max-width: 480px) {
+  .timeline-content h2  { font-size: 1rem; }
+  .timeline-content p,
+  .timeline-content .tech { font-size: 0.85rem; }
+}

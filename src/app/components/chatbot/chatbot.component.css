@@ -49,3 +49,18 @@
     right: 1rem;
   }
 }
+
+/* Sur mobile : bouton flottant remonte pour ne pas couvrir l'input */
+@media (max-width: 480px) {
+  .fixed.bottom-6 {
+    bottom: 1.2rem;
+    right: 1.2rem;
+  }
+}
+
+/* Empêche le scroll du body quand le chat est ouvert sur mobile */
+@media (max-width: 480px) {
+  :host(.chat-open) {
+    overflow: hidden;
+  }
+}

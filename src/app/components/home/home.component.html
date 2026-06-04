@@ -1,5 +1,4 @@
 <header class="fixed top-0 w-full z-50 flex items-center justify-between px-8 py-4 backdrop-blur-md transition-all duration-300"
-        [class.bg-[rgba(10,10,20,0.7)]]="isDark"
         [style.background]="isDark ? 'rgba(10, 10, 20, 0.7)' : 'rgba(255, 255, 255, 0.85)'">
 
   <div class="text-[1.8rem] font-bold flex-1 whitespace-nowrap transition-colors duration-300"
@@ -10,8 +9,7 @@
     <ul class="flex gap-4 list-none m-0 p-0">
       <li><a routerLink="/" routerLinkActive="active" (click)="closeMenu()"
              class="no-underline font-medium text-sm transition-all whitespace-nowrap"
-             [class.text-white]="isDark" [class.text-gray-700]="!isDark"
-             [class.hover:text-cyan-400]="isDark" [class.hover:text-blue-600]="!isDark">
+             [class.text-white]="isDark" [class.text-gray-700]="!isDark">
         {{ 'nav.apropos' | translate }}</a></li>
       <li><a routerLink="/project" routerLinkActive="active" (click)="closeMenu()"
              class="no-underline font-medium text-sm transition-all"
@@ -39,6 +37,73 @@
         {{ 'nav.contact' | translate }}</a></li>
     </ul>
   </nav>
+
+  <!-- CV + Langue + Theme + Hamburger -->
+  <div class="flex items-center gap-3 flex-1 justify-end">
+
+    <a href="assets/docs/manal-kerroumi.pdf" download
+       class="hidden md:inline-flex items-center gap-2 px-5 py-2 rounded-full border-2 font-semibold text-sm transition-all no-underline"
+       [style.color]="isDark ? '#00e0ff' : '#0066cc'"
+       [style.borderColor]="isDark ? '#00e0ff' : '#0066cc'"
+       style="background: transparent;"
+       onmouseover="this.style.background=this.dataset.accent;this.style.color='#000'"
+       onmouseout="this.style.background='transparent';this.style.color=this.dataset.color"
+       [attr.data-accent]="isDark ? '#00e0ff' : '#0066cc'"
+       [attr.data-color]="isDark ? '#00e0ff' : '#0066cc'">
+      <i class="fas fa-file-arrow-down"></i> {{ 'nav.cv' | translate }}
+    </a>
+
+    <!-- Lang switcher desktop -->
+    <div class="hidden md:flex items-center gap-1 px-3 py-1 rounded-full transition-all duration-300"
+         [style.background]="isDark ? 'rgba(0,224,255,0.1)' : 'rgba(0,102,204,0.1)'"
+         [style.border]="isDark ? '1px solid rgba(0,224,255,0.3)' : '1px solid rgba(0,102,204,0.3)'">
+      <button [class.bg-cyan-400]="isDark && lang === 'fr'"
+              [class.bg-blue-600]="!isDark && lang === 'fr'"
+              [class.text-black]="lang === 'fr'"
+              class="px-2 py-1 rounded-full font-semibold text-sm transition-all border-none cursor-pointer"
+              [class.text-gray-400]="lang !== 'fr'"
+              (click)="setLang('fr')">🇫🇷 FR</button>
+      <button [class.bg-cyan-400]="isDark && lang === 'en'"
+              [class.bg-blue-600]="!isDark && lang === 'en'"
+              [class.text-black]="lang === 'en'"
+              class="px-2 py-1 rounded-full font-semibold text-sm transition-all border-none cursor-pointer"
+              [class.text-gray-400]="lang !== 'en'"
+              (click)="setLang('en')">🇬🇧 EN</button>
+    </div>
+
+    <!-- Toggle theme desktop -->
+    <button (click)="toggleTheme()"
+            class="hidden md:flex w-9 h-9 rounded-full items-center justify-center transition-all duration-300 cursor-pointer border-none"
+            [style.background]="isDark ? 'rgba(0,224,255,0.1)' : 'rgba(0,102,204,0.1)'"
+            [style.border]="isDark ? '1px solid rgba(0,224,255,0.3)' : '1px solid rgba(0,102,204,0.3)'">
+      <i [class]="isDark ? 'fas fa-sun' : 'fas fa-moon'"
+         [style.color]="isDark ? '#00e0ff' : '#0066cc'"
+         style="font-size: 1rem;"></i>
+    </button>
+
+    <!-- ✅ Theme + Hamburger côte à côte sur mobile -->
+    <div class="flex md:hidden items-center gap-3">
+      <button (click)="toggleTheme()"
+              class="w-9 h-9 rounded-full flex items-center justify-center border-none cursor-pointer transition-all duration-300"
+              [style.background]="isDark ? 'rgba(0,224,255,0.1)' : 'rgba(0,102,204,0.1)'"
+              [style.border]="isDark ? '1px solid rgba(0,224,255,0.3)' : '1px solid rgba(0,102,204,0.3)'">
+        <i [class]="isDark ? 'fas fa-sun' : 'fas fa-moon'"
+           [style.color]="isDark ? '#00e0ff' : '#0066cc'"
+           style="font-size: 1rem;"></i>
+      </button>
+
+      <button class="flex flex-col gap-1 cursor-pointer border-none bg-transparent"
+              (click)="menuOpen = !menuOpen">
+        <span class="block w-6 h-0.5 rounded transition-colors duration-300"
+              [style.background]="isDark ? '#00e0ff' : '#0066cc'"></span>
+        <span class="block w-6 h-0.5 rounded transition-colors duration-300"
+              [style.background]="isDark ? '#00e0ff' : '#0066cc'"></span>
+        <span class="block w-6 h-0.5 rounded transition-colors duration-300"
+              [style.background]="isDark ? '#00e0ff' : '#0066cc'"></span>
+      </button>
+    </div>
+
+  </div>
 
   <!-- Nav mobile -->
   <nav [class.block]="menuOpen" [class.hidden]="!menuOpen"
@@ -73,76 +138,25 @@
         </a>
       </li>
       <li class="flex gap-2 py-3">
-        <button [class.bg-cyan-400]="lang === 'fr'" [class.text-black]="lang === 'fr'"
-                class="px-3 py-1 rounded-full font-semibold text-sm"
+        <button [class.bg-cyan-400]="isDark && lang === 'fr'"
+                [class.bg-blue-600]="!isDark && lang === 'fr'"
+                [class.text-black]="lang === 'fr'"
+                class="px-3 py-1 rounded-full font-semibold text-sm border-none cursor-pointer"
                 [class.text-gray-400]="lang !== 'fr'"
                 (click)="setLang('fr')">🇫🇷 FR</button>
-        <button [class.bg-cyan-400]="lang === 'en'" [class.text-black]="lang === 'en'"
-                class="px-3 py-1 rounded-full font-semibold text-sm"
+        <button [class.bg-cyan-400]="isDark && lang === 'en'"
+                [class.bg-blue-600]="!isDark && lang === 'en'"
+                [class.text-black]="lang === 'en'"
+                class="px-3 py-1 rounded-full font-semibold text-sm border-none cursor-pointer"
                 [class.text-gray-400]="lang !== 'en'"
                 (click)="setLang('en')">🇬🇧 EN</button>
       </li>
     </ul>
   </nav>
-
-  <!-- CV + Langue + Theme + Hamburger -->
-  <div class="flex items-center gap-3 flex-1 justify-end">
-
-    <a href="assets/docs/manal-kerroumi.pdf" download
-       class="hidden md:inline-flex items-center gap-2 px-5 py-2 rounded-full border-2 font-semibold text-sm transition-all no-underline"
-       [style.color]="isDark ? '#00e0ff' : '#0066cc'"
-       [style.borderColor]="isDark ? '#00e0ff' : '#0066cc'"
-       style="background: transparent;"
-       onmouseover="this.style.background=this.dataset.accent;this.style.color='#000'"
-       onmouseout="this.style.background='transparent';this.style.color=this.dataset.color"
-       [attr.data-accent]="isDark ? '#00e0ff' : '#0066cc'"
-       [attr.data-color]="isDark ? '#00e0ff' : '#0066cc'">
-      <i class="fas fa-file-arrow-down"></i> {{ 'nav.cv' | translate }}
-    </a>
-
-    <!-- Lang switcher -->
-    <div class="hidden md:flex items-center gap-1 px-3 py-1 rounded-full transition-all duration-300"
-         [style.background]="isDark ? 'rgba(0,224,255,0.1)' : 'rgba(0,102,204,0.1)'"
-         [style.border]="isDark ? '1px solid rgba(0,224,255,0.3)' : '1px solid rgba(0,102,204,0.3)'">
-      <button [class.bg-cyan-400]="isDark && lang === 'fr'"
-              [class.bg-blue-600]="!isDark && lang === 'fr'"
-              [class.text-black]="lang === 'fr'"
-              class="px-2 py-1 rounded-full font-semibold text-sm transition-all border-none cursor-pointer"
-              [class.text-gray-400]="lang !== 'fr'"
-              (click)="setLang('fr')">🇫🇷 FR</button>
-      <button [class.bg-cyan-400]="isDark && lang === 'en'"
-              [class.bg-blue-600]="!isDark && lang === 'en'"
-              [class.text-black]="lang === 'en'"
-              class="px-2 py-1 rounded-full font-semibold text-sm transition-all border-none cursor-pointer"
-              [class.text-gray-400]="lang !== 'en'"
-              (click)="setLang('en')">🇬🇧 EN</button>
-    </div>
-
-    <!-- Toggle theme -->
-    <button (click)="toggleTheme()"
-            class="hidden md:flex w-9 h-9 rounded-full items-center justify-center transition-all duration-300 cursor-pointer border-none"
-            [style.background]="isDark ? 'rgba(0,224,255,0.1)' : 'rgba(0,102,204,0.1)'"
-            [style.border]="isDark ? '1px solid rgba(0,224,255,0.3)' : '1px solid rgba(0,102,204,0.3)'">
-      <i [class]="isDark ? 'fas fa-sun' : 'fas fa-moon'"
-         [style.color]="isDark ? '#00e0ff' : '#0066cc'"
-         style="font-size: 1rem;"></i>
-    </button>
-
-    <!-- Hamburger -->
-    <button class="flex md:hidden flex-col gap-1 cursor-pointer border-none bg-transparent"
-            (click)="menuOpen = !menuOpen">
-      <span class="block w-6 h-0.5 rounded transition-colors duration-300"
-            [style.background]="isDark ? '#00e0ff' : '#0066cc'"></span>
-      <span class="block w-6 h-0.5 rounded transition-colors duration-300"
-            [style.background]="isDark ? '#00e0ff' : '#0066cc'"></span>
-      <span class="block w-6 h-0.5 rounded transition-colors duration-300"
-            [style.background]="isDark ? '#00e0ff' : '#0066cc'"></span>
-    </button>
-  </div>
 </header>
 
 <!-- Section principale -->
-<section class="min-h-screen flex items-center justify-center pt-20 px-12 relative overflow-hidden transition-all duration-500"
+<section class="min-h-screen flex items-center justify-center relative overflow-hidden transition-all duration-500"
          [class.text-white]="isDark"
          [class.text-gray-900]="!isDark"
          [style.background]="isDark
@@ -150,7 +164,9 @@
            : 'linear-gradient(135deg, #e8f4fd, #f0f4ff, #e8eeff, #f5f0ff)'"
          style="background-size: 400% 400%; animation: gradientMove 20s ease infinite;">
 
-  <div class="flex items-center justify-center gap-16 flex-wrap max-w-6xl w-full -translate-y-8">
+  <!-- ✅ padding-top sur le container pour dégager la navbar -->
+  <div class="flex items-center justify-center gap-16 flex-wrap max-w-6xl w-full px-8
+              pt-28 pb-10 md:pt-8 md:pb-0 md:-translate-y-4">
 
     <!-- Photo -->
     <div class="photo-container flex-1 flex justify-center relative min-w-64">
@@ -184,9 +200,11 @@
         <!-- Contenu animé -->
         <div class="role-content" [class.fade-out]="isAnimating">
           <h2 class="role-title" [style.color]="isDark ? '#ff79c6' : '#cc0077'">
-            <span class="role-tag" [style.color]="isDark ? 'rgba(0,224,255,0.6)' : 'rgba(0,102,204,0.6)'">&lt;</span>
+            <span class="role-tag"
+                  [style.color]="isDark ? 'rgba(0,224,255,0.6)' : 'rgba(0,102,204,0.6)'">&lt;</span>
             {{ lang === 'fr' ? currentRole.titleFr : currentRole.titleEn }}
-            <span class="role-tag" [style.color]="isDark ? 'rgba(0,224,255,0.6)' : 'rgba(0,102,204,0.6)'">/&gt;</span>
+            <span class="role-tag"
+                  [style.color]="isDark ? 'rgba(0,224,255,0.6)' : 'rgba(0,102,204,0.6)'">/&gt;</span>
           </h2>
           <p class="role-desc" [style.color]="isDark ? '#d4d4d4' : '#444455'">
             {{ lang === 'fr' ? currentRole.descFr : currentRole.descEn }}
@@ -238,8 +256,8 @@
                 class="px-8 py-3 rounded-full font-semibold transition-all duration-300 cursor-pointer border-none"
                 [style.background]="isDark ? '#00e0ff' : '#0066cc'"
                 style="color: #000;"
-                onmouseover="this.style.boxShadow='0 0 20px currentColor'; this.style.transform='translateY(-3px)'"
-                onmouseout="this.style.boxShadow='none'; this.style.transform='none'">
+                onmouseover="this.style.transform='translateY(-3px)'"
+                onmouseout="this.style.transform='none'">
           📄 {{ 'home.telecharger_cv' | translate }}
         </button>
       </div>
