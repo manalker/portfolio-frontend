@@ -12,6 +12,7 @@ import { ContactComponent } from './app/components/contact/contact.component';
 import { provideHttpClient, withFetch, HttpClient } from '@angular/common/http'; // ← ajoute HttpClient
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';          // ← ajoute
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';                // ← ajoute
+import { inject } from '@vercel/analytics';
 
 import 'zone.js';
 
@@ -47,3 +48,6 @@ bootstrapApplication(AppComponent, {
     )
   ]
 });
+
+// Initialize Vercel Analytics
+inject();
