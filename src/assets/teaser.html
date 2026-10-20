@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Manal Kerroumi — Accès Secret</title>
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    :root{
+      --cyan:#00e0ff;
+      --cyan-dim:#00e0ff33;
+      --cyan-mid:#00e0ff88;
+      --bg:#0a0e1a;
+      --bg2:#0d1117;
+      --bg3:#1a1f2e;
+      --text:#ffffff;
+      --text-dim:#ffffff55;
+      --text-muted:#ffffff99;
+      --green:#00ff88;
+      --yellow:#ffcc00;
+      --red:#ff4466;
+    }
+    html,body{height:100%;background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;overflow-x:hidden}
+    body{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;padding:1rem}
+
+    /* NAV DOTS */
+    .nav-dots{display:flex;gap:8px;margin-bottom:2rem}
+    .nav-dot{width:7px;height:7px;border-radius:50%;background:#ffffff22;transition:background .3s,transform .3s}
+    .nav-dot.active{background:var(--cyan);transform:scale(1.3)}
+
+    /* SCREENS */
+    .screen{display:none;width:100%;max-width:560px;flex-direction:column;align-items:center;animation:fadeIn .4s ease}
+    .screen.active{display:flex}
+    @keyframes fadeIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+
+    .screen-title{font-size:clamp(18px,4vw,24px);font-weight:600;text-align:center;margin-bottom:.4rem}
+    .screen-sub{color:var(--text-dim);font-size:clamp(11px,2.5vw,13px);text-align:center;margin-bottom:2rem;letter-spacing:1px;text-transform:uppercase}
+
+    /* SCREEN 0 — CODE */
+    .code-box{border:1px solid var(--cyan-dim);border-radius:12px;padding:clamp(1rem,4vw,2rem);text-align:center;width:100%}
+    .code-label{color:var(--cyan-mid);font-size:11px;letter-spacing:3px;text-transform:uppercase;margin-bottom:1rem;font-family:monospace}
+    .code-value{color:var(--cyan);font-size:clamp(28px,8vw,48px);font-weight:700;letter-spacing:clamp(4px,2vw,10px);font-family:monospace}
+    .code-hint{color:var(--text-dim);font-size:12px;margin-top:.8rem;font-family:monospace}
+    .decode-area{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:center;margin-top:1.5rem}
+    .decode-area input{background:var(--bg);border:1px solid var(--cyan-dim);color:var(--cyan);padding:10px 16px;border-radius:8px;font-family:monospace;font-size:20px;width:120px;text-align:center;outline:none;letter-spacing:4px;transition:border .2s}
+    .decode-area input:focus{border-color:var(--cyan)}
+    .err{color:var(--red);font-size:12px;margin-top:8px;min-height:18px;font-family:monospace;text-align:center}
+
+    /* SCREEN 1 — TERMINAL */
+    .terminal{width:100%;border-radius:10px;overflow:hidden}
+    .term-bar{background:var(--bg3);padding:10px 16px;display:flex;align-items:center;gap:6px}
+    .dot{width:12px;height:12px;border-radius:50%}
+    .term-title{color:var(--text-dim);font-size:12px;margin-left:8px;font-family:monospace}
+    .term-body{background:var(--bg2);border:1px solid var(--cyan-dim);border-top:none;border-radius:0 0 10px 10px;padding:1.5rem;min-height:200px}
+    .term-line{color:var(--cyan);font-size:clamp(12px,2.5vw,14px);line-height:1.9;opacity:0;font-family:monospace;transition:opacity .3s}
+    .term-line.show{opacity:1}
+    .term-line .prompt{color:var(--cyan-mid)}
+    .term-line .ok{color:var(--green)}
+    .term-line .warn{color:var(--yellow)}
+    .cursor{display:inline-block;width:8px;height:14px;background:var(--cyan);animation:blink 1s infinite;vertical-align:middle;margin-left:2px}
+    @keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+
+    /* SCREEN 2 — ENVELOPPE */
+    .env-scene{perspective:800px;cursor:pointer;margin:1rem 0}
+    .envelope{width:clamp(180px,50vw,240px);height:clamp(110px,32vw,155px);background:var(--bg3);border:1px solid var(--cyan-dim);border-radius:6px;position:relative;transform-style:preserve-3d;transition:transform .2s}
+    .env-scene:hover .envelope{transform:scale(1.03)}
+    .env-flap{position:absolute;top:0;left:0;width:0;height:0;border-left:clamp(90px,25vw,120px) solid transparent;border-right:clamp(90px,25vw,120px) solid transparent;border-top:clamp(55px,15vw,78px) solid var(--bg2);transition:transform .7s cubic-bezier(.4,0,.2,1);transform-origin:top center;z-index:2}
+    .env-flap.open{transform:rotateX(180deg)}
+    .env-letter{position:absolute;background:var(--bg);border:1px solid var(--cyan-dim);border-radius:4px;width:85%;left:7.5%;padding:clamp(8px,2vw,12px);font-size:clamp(10px,2vw,12px);color:var(--cyan-mid);line-height:1.8;top:15px;opacity:0;transition:top .7s ease,opacity .6s ease;font-family:monospace;z-index:1}
+    .env-letter.open{top:-75px;opacity:1}
+    .env-seal{position:absolute;bottom:16px;left:50%;transform:translateX(-50%);width:32px;height:32px;border:2px solid var(--cyan-dim);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--cyan);font-size:14px}
+    .env-hint{color:var(--text-dim);font-size:12px;margin-top:1rem;text-align:center;font-family:monospace}
+
+    /* SCREEN 3 — EGGS */
+    .eggs-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(8px,2vw,14px);width:100%}
+    @media(max-width:380px){.eggs-grid{grid-template-columns:1fr}}
+    .egg-card{background:var(--bg2);border:1px solid var(--cyan-dim);border-radius:10px;padding:clamp(.8rem,2.5vw,1.2rem);text-align:center;opacity:.4;transition:all .3s;cursor:pointer}
+    .egg-card:hover{opacity:.6;border-color:var(--cyan-mid)}
+    .egg-card.found{opacity:1;border-color:var(--cyan-mid);background:#00e0ff0d}
+    .egg-icon{font-size:clamp(22px,5vw,30px);margin-bottom:8px}
+    .egg-name{color:var(--cyan);font-size:clamp(10px,2vw,12px);letter-spacing:1px;font-family:monospace}
+    .egg-desc{color:var(--text-dim);font-size:10px;margin-top:4px;line-height:1.4}
+    .egg-status{font-size:10px;margin-top:6px;color:#ffffff33;font-family:monospace}
+    .egg-card.found .egg-status{color:var(--green)}
+    .progress-wrap{width:100%;margin-top:1.2rem}
+    .progress-bar{background:var(--bg3);border-radius:4px;height:4px;overflow:hidden}
+    .progress-fill{height:100%;background:var(--cyan);border-radius:4px;transition:width .5s ease;width:0%}
+    .prog-label{font-size:11px;color:var(--text-dim);font-family:monospace;margin-top:6px;text-align:center}
+
+    /* SCREEN 4 — SUCCESS */
+    .success-ring{width:80px;height:80px;border-radius:50%;border:2px solid var(--cyan);display:flex;align-items:center;justify-content:center;margin-bottom:1.5rem;animation:pulse 2s infinite}
+    @keyframes pulse{0%,100%{box-shadow:0 0 0 0 var(--cyan-dim)}50%{box-shadow:0 0 0 12px transparent}}
+    .success-icon{font-size:32px}
+    .cta-btn{display:inline-flex;align-items:center;gap:8px;background:var(--cyan);color:#0a0e1a;padding:14px 28px;border-radius:8px;font-size:15px;font-weight:700;text-decoration:none;transition:transform .2s,opacity .2s;margin-top:1.5rem}
+    .cta-btn:hover{transform:scale(1.04);opacity:.9}
+
+    /* SHARED BTN */
+    .btn{background:transparent;border:1px solid var(--cyan);color:var(--cyan);padding:10px 22px;border-radius:8px;cursor:pointer;font-size:13px;font-family:monospace;transition:background .2s;margin-top:1.5rem}
+    .btn:hover{background:var(--cyan-dim)}
+    .hidden{display:none!important}
+
+    /* PARTICLES */
+    #particles{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:0}
+    .particle{position:absolute;width:2px;height:2px;background:var(--cyan);border-radius:50%;opacity:0;animation:float linear infinite}
+    @keyframes float{0%{transform:translateY(100vh) translateX(0);opacity:0}10%{opacity:.6}90%{opacity:.2}100%{transform:translateY(-10vh) translateX(var(--dx));opacity:0}}
+    #app{position:relative;z-index:1;width:100%;display:flex;flex-direction:column;align-items:center}
+  </style>
+</head>
+<body>
+<div id="particles"></div>
+<div id="app">
+  <div class="nav-dots">
+    <div class="nav-dot active" id="d0"></div>
+    <div class="nav-dot" id="d1"></div>
+    <div class="nav-dot" id="d2"></div>
+    <div class="nav-dot" id="d3"></div>
+    <div class="nav-dot" id="d4"></div>
+  </div>
+
+  <!-- S0: DECODE -->
+  <div class="screen active" id="s0">
+    <div class="screen-title">Tu as regardé la vidéo...</div>
+    <div class="screen-sub">mais ce n'est que la surface</div>
+    <div class="code-box">
+      <div class="code-label">Décode pour accéder</div>
+      <div class="code-value">01001101</div>
+      <div class="code-hint">binaire → chiffre décimal → c'est ton accès</div>
+    </div>
+    <div class="decode-area">
+      <input type="text" id="decode-input" placeholder="??" maxlength="3" autocomplete="off"/>
+      <button class="btn" onclick="checkCode()">Entrer →</button>
+    </div>
+    <div class="err" id="err-msg"></div>
+  </div>
+
+  <!-- S1: TERMINAL -->
+  <div class="screen" id="s1">
+    <div class="screen-title">Accès accordé</div>
+    <div class="screen-sub">analyse du visiteur en cours</div>
+    <div class="terminal">
+      <div class="term-bar">
+        <div class="dot" style="background:#ff5f57"></div>
+        <div class="dot" style="background:#ffbd2e"></div>
+        <div class="dot" style="background:#28c840"></div>
+        <span class="term-title">portfolio_scan.sh — visitor@secret</span>
+      </div>
+      <div class="term-body">
+        <div class="term-line" id="tl0"><span class="prompt">$ </span>initializing scan...</div>
+        <div class="term-line" id="tl1"><span class="ok">[✓]</span> connexion sécurisée établie</div>
+        <div class="term-line" id="tl2"><span class="ok">[✓]</span> curiosité détectée : <span style="color:#ffcc00">niveau élevé</span></div>
+        <div class="term-line" id="tl3"><span class="ok">[✓]</span> profil identifié : <span style="color:#00e0ff">explorateur confirmé</span></div>
+        <div class="term-line" id="tl4"><span class="warn">[!]</span> 3 zones secrètes localisées dans le portfolio</div>
+        <div class="term-line" id="tl5"><span class="warn">[!]</span> easter eggs non collectés : <span style="color:#ff4466">3 / 3</span></div>
+        <div class="term-line" id="tl6"><span class="prompt">$ </span>chargement de l'invitation...<span class="cursor"></span></div>
+      </div>
+    </div>
+    <button class="btn hidden" id="term-next" onclick="goTo(2)">Ouvrir l'invitation →</button>
+  </div>
+
+  <!-- S2: ENVELOPE -->
+  <div class="screen" id="s2">
+    <div class="screen-title">Une invitation t'attend</div>
+    <div class="screen-sub">réservée aux rares qui ont décodé</div>
+    <div class="env-scene" onclick="openEnvelope()">
+      <div class="envelope" id="env">
+        <div class="env-flap" id="env-flap"></div>
+        <div class="env-letter" id="env-letter">
+          Tu fais partie des rares<br>
+          personnes à avoir décodé l'accès.<br><br>
+          3 secrets t'attendent<br>
+          dans le portfolio.<br><br>
+          Sauras-tu tous les trouver ?<br><br>
+          — Manal
+        </div>
+        <div class="env-seal">🔒</div>
+      </div>
+    </div>
+    <div class="env-hint" id="env-hint">cliquer pour ouvrir</div>
+    <button class="btn hidden" id="env-next" onclick="goTo(3)">Voir les secrets →</button>
+  </div>
+
+  <!-- S3: EASTER EGGS -->
+  <div class="screen" id="s3">
+    <div class="screen-title">3 secrets cachés dans le portfolio</div>
+    <div class="screen-sub">clique pour découvrir chaque indice</div>
+    <div class="eggs-grid">
+      <div class="egg-card" id="egg0" onclick="revealEgg(0)">
+        <div class="egg-icon">🎮</div>
+        <div class="egg-name">Konami Code</div>
+        <div class="egg-desc">Un combo clavier légendaire déclenche quelque chose...</div>
+        <div class="egg-status" id="es0">non trouvé</div>
+      </div>
+      <div class="egg-card" id="egg1" onclick="revealEgg(1)">
+        <div class="egg-icon">👁</div>
+        <div class="egg-name">Click secret</div>
+        <div class="egg-desc">Un élément discret attend 3 clics précis...</div>
+        <div class="egg-status" id="es1">non trouvé</div>
+      </div>
+      <div class="egg-card" id="egg2" onclick="revealEgg(2)">
+        <div class="egg-icon">⌨️</div>
+        <div class="egg-name">Console dev</div>
+        <div class="egg-desc">Ouvre F12 et lis ce que les devs trouvent...</div>
+        <div class="egg-status" id="es2">non trouvé</div>
+      </div>
+    </div>
+    <div class="progress-wrap">
+      <div class="progress-bar"><div class="progress-fill" id="prog"></div></div>
+      <div class="prog-label" id="prog-label">0 / 3 secrets découverts</div>
+    </div>
+    <button class="btn hidden" id="visit-btn" onclick="window.open('https://manal-kerroumi.vercel.app/','_blank')">
+      Visiter le portfolio →
+    </button>
+  </div>
+
+  <!-- S4: SUCCESS -->
+  <div class="screen" id="s4">
+    <div class="success-ring"><div class="success-icon">✨</div></div>
+    <div class="screen-title">Tu connais tous les secrets !</div>
+    <div class="screen-sub">maintenant va les trouver pour de vrai</div>
+    <p style="color:var(--text-muted);font-size:14px;text-align:center;line-height:1.7;max-width:360px">
+      Le portfolio de Manal cache bien plus que ce que la vidéo montre.<br>
+      Explore, clique, teste — tout est là pour les curieux.
+    </p>
+    <a href="https://manal-kerroumi.vercel.app/" target="_blank" class="cta-btn">
+      🚀 Découvrir le portfolio
+    </a>
+  </div>
+</div>
+
+<script>
+  // PARTICLES
+  const pc = document.getElementById('particles');
+  for(let i=0;i<25;i++){
+    const p=document.createElement('div');
+    p.className='particle';
+    p.style.cssText=`left:${Math.random()*100}%;--dx:${(Math.random()-0.5)*80}px;animation-duration:${6+Math.random()*10}s;animation-delay:${Math.random()*8}s;`;
+    pc.appendChild(p);
+  }
+
+  // NAVIGATION
+  function goTo(n){
+    for(let i=0;i<5;i++){
+      document.getElementById('s'+i).classList.remove('active');
+      const d=document.getElementById('d'+i);
+      if(d) d.classList.remove('active');
+    }
+    document.getElementById('s'+n).classList.add('active');
+    const dn=document.getElementById('d'+n);
+    if(dn) dn.classList.add('active');
+    if(n===1) startTerminal();
+  }
+
+  // SCREEN 0 — DECODE
+  // 01001101 = 77
+  function checkCode(){
+    const v=document.getElementById('decode-input').value.trim();
+    const err=document.getElementById('err-msg');
+    if(v==='77'){err.textContent='';goTo(1);}
+    else if(v===''){err.textContent='entre le résultat du décodage binaire';}
+    else{err.textContent='incorrect — indice : convertis chaque groupe de bits en décimal';}
+  }
+  document.getElementById('decode-input').addEventListener('keydown',e=>{if(e.key==='Enter')checkCode();});
+
+  // SCREEN 1 — TERMINAL
+  function startTerminal(){
+    ['tl0','tl1','tl2','tl3','tl4','tl5','tl6'].forEach((id,i)=>{
+      setTimeout(()=>{
+        document.getElementById(id).classList.add('show');
+        if(i===6) setTimeout(()=>document.getElementById('term-next').classList.remove('hidden'),600);
+      },i*550);
+    });
+  }
+
+  // SCREEN 2 — ENVELOPE
+  let envDone=false;
+  function openEnvelope(){
+    if(envDone)return;
+    envDone=true;
+    document.getElementById('env-flap').classList.add('open');
+    document.getElementById('env-letter').classList.add('open');
+    document.getElementById('env-hint').textContent='';
+    setTimeout(()=>document.getElementById('env-next').classList.remove('hidden'),900);
+  }
+
+  // SCREEN 3 — EGGS
+  const found=[false,false,false];
+  let count=0;
+  function revealEgg(i){
+    if(found[i])return;
+    found[i]=true;count++;
+    document.getElementById('egg'+i).classList.add('found');
+    document.getElementById('es'+i).textContent='✓ indice révélé';
+    const pct=Math.round((count/3)*100);
+    document.getElementById('prog').style.width=pct+'%';
+    document.getElementById('prog-label').textContent=count+' / 3 secrets découverts'+(count===3?' — tu es prêt·e !':'');
+    if(count===3){
+      document.getElementById('visit-btn').classList.remove('hidden');
+      setTimeout(()=>goTo(4),1800);
+    }
+  }
+
+  // CONSOLE EGG (visible dès que la page charge)
+  console.log('%c👾 Hey toi, le dev curieux !', 'color:#00e0ff;font-size:18px;font-weight:bold');
+  console.log('%cTu as trouvé le secret console. Bien joué.', 'color:#ffffff99;font-size:13px');
+  console.log('%cMaintenant trouve les 2 autres easter eggs sur le portfolio 👉 https://manal-kerroumi.vercel.app/', 'color:#00e0ff88;font-size:12px');
+</script>
+</body>
+</html>

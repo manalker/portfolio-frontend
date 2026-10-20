@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { environment } from "../../environments/environment";
 
 export interface Project {
   showDescription: boolean;
@@ -18,11 +17,11 @@ export interface Project {
   providedIn: 'root'
 })
 export class ProjectService {
-  private apiUrl = `${environment.apiUrl}/api/projects`;
+  private dataUrl = 'data/projects.json';
 
   constructor(private http: HttpClient) {}
 
   getProjects(): Observable<Project[]> {
-    return this.http.get<Project[]>(this.apiUrl);
+    return this.http.get<Project[]>(this.dataUrl);
   }
 }

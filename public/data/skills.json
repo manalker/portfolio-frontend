@@ -1,0 +1,87 @@
+[
+  {
+    "name": "Langages de programmation",
+    "nameEn": "Programming Languages",
+    "skills": [
+      { "name": "C", "icon": "devicon-c-plain colored" },
+      { "name": "C++", "icon": "devicon-cplusplus-plain colored" },
+      { "name": "C#", "icon": "devicon-csharp-plain colored" },
+      { "name": "PHP", "icon": "devicon-php-plain colored" },
+      { "name": "Java", "icon": "devicon-java-plain colored" },
+      { "name": "J2EE", "icon": "devicon-java-plain colored" },
+      { "name": "JavaScript", "icon": "devicon-javascript-plain colored" },
+      { "name": "TypeScript", "icon": "devicon-typescript-plain colored" },
+      { "name": "Dart", "icon": "devicon-dart-plain colored" }
+    ]
+  },
+  {
+    "name": "Frameworks Frontend",
+    "nameEn": "Frontend Frameworks",
+    "skills": [
+      { "name": "Angular", "icon": "devicon-angularjs-plain colored" },
+      { "name": "React", "icon": "devicon-react-original colored" },
+      { "name": "Vue.js", "icon": "devicon-vuejs-plain colored" },
+      { "name": "Next.js", "icon": "devicon-nextjs-plain colored" },
+      { "name": "Nuxt.js", "icon": "devicon-nuxtjs-plain colored" },
+      { "name": "HTML", "icon": "devicon-html5-plain colored" },
+      { "name": "CSS", "icon": "devicon-css3-plain colored" }
+    ]
+  },
+  {
+    "name": "UI / Design",
+    "nameEn": "UI / Design",
+    "skills": [
+      { "name": "Tailwind CSS", "icon": "devicon-tailwindcss-plain colored" },
+      { "name": "Bootstrap", "icon": "devicon-bootstrap-plain colored" },
+      { "name": "Vuetify", "icon": "devicon-vuetify-plain colored" },
+      { "name": "shadcn/ui", "icon": "devicon-react-original colored" }
+    ]
+  },
+  {
+    "name": "Frameworks Backend",
+    "nameEn": "Backend Frameworks",
+    "skills": [
+      { "name": "Laravel", "icon": "devicon-laravel-plain colored" },
+      { "name": "Spring Boot", "icon": "devicon-spring-plain colored" },
+      { "name": "Node.js", "icon": "devicon-nodejs-plain colored" },
+      { "name": "Flutter", "icon": "devicon-flutter-plain colored" }
+    ]
+  },
+  {
+    "name": "Bases de données",
+    "nameEn": "Databases",
+    "skills": [
+      { "name": "MySQL", "icon": "devicon-mysql-plain colored" },
+      { "name": "PostgreSQL", "icon": "devicon-postgresql-plain colored" },
+      { "name": "MongoDB", "icon": "devicon-mongodb-plain colored" },
+      { "name": "SQL Server", "icon": "devicon-microsoftsqlserver-plain colored" },
+      { "name": "SQLite", "icon": "devicon-sqlite-plain colored" },
+      { "name": "Oracle / PL-SQL", "icon": "devicon-oracle-original colored" },
+      { "name": "Supabase", "icon": "devicon-supabase-plain colored" },
+      { "name": "Liquibase", "icon": "devicon-liquibase-plain colored" }
+    ]
+  },
+  {
+    "name": "DevOps / Déploiement",
+    "nameEn": "DevOps / Deployment",
+    "skills": [
+      { "name": "Git", "icon": "devicon-git-plain colored" },
+      { "name": "GitHub", "icon": "devicon-github-original colored" },
+      { "name": "GitLab", "icon": "devicon-gitlab-plain colored" },
+      { "name": "Vercel", "icon": "devicon-vercel-plain colored" },
+      { "name": "Railway", "icon": "devicon-railway-plain colored" },
+      { "name": "Azure", "icon": "devicon-azure-plain colored" },
+      { "name": "Docker", "icon": "devicon-docker-plain colored" }
+    ]
+  },
+  {
+    "name": "Modélisation / Architecture",
+    "nameEn": "Modelling / Architecture",
+    "skills": [
+      { "name": "UML", "icon": "devicon-uml-plain colored" },
+      { "name": "Merise", "icon": "devicon-database-plain colored" },
+      { "name": "Big Data", "icon": "devicon-hadoop-plain colored" },
+      { "name": "Data Warehouse", "icon": "devicon-snowflake-plain colored" }
+    ]
+  }
+]

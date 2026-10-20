@@ -1,0 +1,18 @@
+[
+  {
+    "id": 1,
+    "diplome": "Diplôme d'ingénieur en informatique et réseaux (Option : MIAGE)",
+    "etablissement": "École Marocaine des Sciences de l'Ingénieur, Rabat",
+    "periode": "2020-2025",
+    "diplomeEn": "Engineering Degree in Computer Science and Networks (MIAGE track)",
+    "etablissementEn": "École Marocaine des Sciences de l'Ingénieur, Rabat"
+  },
+  {
+    "id": 2,
+    "diplome": "Baccalauréat Science Physique",
+    "etablissement": "Al Jil Essaid, Fkih Ben Salah",
+    "periode": "2019-2020",
+    "diplomeEn": "Baccalaureate in Physical Sciences",
+    "etablissementEn": "Al Jil Essaid, Fkih Ben Salah"
+  }
+]

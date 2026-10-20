@@ -6,7 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { TranslatePipe } from '@ngx-translate/core';
 import { LanguageService } from '../../services/language.service';
 import { ThemeService } from '../../services/theme.service';
-import { environment } from '../../../environments/environment';
+//import { environment } from '../../../environments/environment';
 
 interface Contact {
   id: number;
@@ -44,8 +44,9 @@ export class ContactComponent implements OnInit {
   closeMenu()        { this.menuOpen = false; }
 
   ngOnInit(): void {
-    this.http.get<Contact[]>(`${environment.apiUrl}/api/contacts`).subscribe(data => {
-      this.contact = data[0];
+    this.http.get<Contact[]>('data/contacts.json').subscribe({
+      next: (data) => this.contact = data[0],
+      error: (err) => console.error('Erreur chargement JSON:', err)
     });
   }
 

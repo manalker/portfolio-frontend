@@ -1,0 +1,122 @@
+[
+  {
+    "id": 1,
+    "title": "JUnit 5, Mockito, PowerMock, TDD, BDD & ATTD",
+    "issuer": "Udemy",
+    "description": "Formation sur les tests unitaires et pratiques TDD / BDD",
+    "dateObtained": "04/2025",
+    "pdfUrl": "assets/certifications/Tests.pdf",
+    "titleEn": "JUnit 5, Mockito, PowerMock, TDD, BDD & ATTD",
+    "descriptionEn": "Training on unit testing and TDD / BDD practices"
+  },
+  {
+    "id": 2,
+    "title": "Angular The complete guide '2025 Edition'",
+    "issuer": "Udemy",
+    "description": "Formation complète sur Angular 2025",
+    "dateObtained": "04/2025",
+    "pdfUrl": "assets/certifications/Angular.pdf",
+    "titleEn": "Angular The Complete Guide '2025 Edition'",
+    "descriptionEn": "Complete Angular 2025 training course"
+  },
+  {
+    "id": 3,
+    "title": "Les fondements de la gestion de projet agile",
+    "issuer": "LinkedIn Learning",
+    "description": "Formation sur la gestion de projet agile",
+    "dateObtained": "03/2025",
+    "pdfUrl": "assets/certifications/Agile.pdf",
+    "titleEn": "Fundamentals of Agile Project Management",
+    "descriptionEn": "Training on agile project management"
+  },
+  {
+    "id": 4,
+    "title": "Building Scalable Java Microservices with Spring Boot and Spring Cloud",
+    "issuer": "Coursera, formation de Google Cloud",
+    "description": "Création de microservices Java évolutifs",
+    "dateObtained": "11/2024",
+    "pdfUrl": "assets/certifications/MS_Java.pdf",
+    "titleEn": "Building Scalable Java Microservices with Spring Boot and Spring Cloud",
+    "descriptionEn": "Building scalable Java microservices"
+  },
+  {
+    "id": 5,
+    "title": "React Native",
+    "issuer": "Coursera, Meta",
+    "description": "Formation au développement mobile avec React Native",
+    "dateObtained": "04/2024",
+    "pdfUrl": "assets/certifications/Reacte.pdf",
+    "titleEn": "React Native",
+    "descriptionEn": "Mobile development training with React Native"
+  },
+  {
+    "id": 6,
+    "title": "Software Engineering: Modeling Software Systems using UML",
+    "issuer": "Coursera, The Hong Kong University Of Science",
+    "description": "Modélisation des systèmes logiciels avec UML",
+    "dateObtained": "04/2023",
+    "pdfUrl": "assets/certifications/Uml.pdf",
+    "titleEn": "Software Engineering: Modeling Software Systems using UML",
+    "descriptionEn": "Modeling software systems with UML"
+  },
+  {
+    "id": 7,
+    "title": "Spécialisation Python for Everybody",
+    "issuer": "Coursera, Université du Michigan",
+    "description": "Incluant Python Data Structures, Using Databases with Python, Using Python to Access Web Data, et Capstone Project",
+    "dateObtained": "05/2023",
+    "pdfUrl": "assets/certifications/Python.pdf",
+    "titleEn": "Python for Everybody Specialization",
+    "descriptionEn": "Including Python Data Structures, Using Databases with Python, Using Python to Access Web Data, and Capstone Project"
+  },
+  {
+    "id": 8,
+    "title": "Virtual Networks in Azure",
+    "issuer": "Coursera, Whizlabs",
+    "description": "Formation sur la conception, la configuration et la gestion de réseaux virtuels dans Microsoft Azure, incluant les sous-réseaux, les pare-feux et la connectivité hybride.",
+    "dateObtained": "04/2024",
+    "pdfUrl": "assets/certifications/Azure.pdf",
+    "titleEn": "Virtual Networks in Azure",
+    "descriptionEn": "Training on designing, configuring and managing virtual networks in Microsoft Azure, including subnets, firewalls and hybrid connectivity."
+  },
+  {
+    "id": 9,
+    "title": "Introduction to Big Data with Spark and Hadoop",
+    "issuer": "Coursera, IBM",
+    "description": "Formation sur les principes du Big Data et l'utilisation de frameworks comme Apache Hadoop et Apache Spark pour le traitement distribué et l'analyse de données à grande échelle.",
+    "dateObtained": "11/2024",
+    "pdfUrl": "assets/certifications/BigData.pdf",
+    "titleEn": "Introduction to Big Data with Spark and Hadoop",
+    "descriptionEn": "Training on Big Data principles and the use of frameworks like Apache Hadoop and Apache Spark for distributed processing and large-scale data analysis."
+  },
+  {
+    "id": 10,
+    "title": "L'essentiel de Spring Boot",
+    "issuer": "LinkedIn Learning",
+    "description": "Formation pratique sur le framework Spring Boot, abordant la création d'applications Java robustes, la configuration, les services RESTful et l'intégration avec Spring Data JPA.",
+    "dateObtained": "03/2025",
+    "pdfUrl": "assets/certifications/SpringBoot.pdf",
+    "titleEn": "Spring Boot Essentials",
+    "descriptionEn": "Hands-on training on the Spring Boot framework, covering the creation of robust Java applications, configuration, RESTful services and integration with Spring Data JPA."
+  },
+  {
+    "id": 11,
+    "title": "Neural Networks and Deep Learning",
+    "issuer": "Coursera, DeepLearning.AI",
+    "description": "Introduction approfondie aux réseaux de neurones et aux concepts fondamentaux du Deep Learning, incluant les fonctions d'activation, la rétropropagation et l'entraînement de modèles IA.",
+    "dateObtained": "11/2024",
+    "pdfUrl": "assets/certifications/DL.pdf",
+    "titleEn": "Neural Networks and Deep Learning",
+    "descriptionEn": "In-depth introduction to neural networks and core Deep Learning concepts, including activation functions, backpropagation and AI model training."
+  },
+  {
+    "id": 12,
+    "title": "Introduction to Java and Object-Oriented Programming",
+    "issuer": "Coursera, University of Pennsylvania",
+    "description": "Formation complète sur les bases du langage Java et les principes de la programmation orientée objet, incluant les classes, l'héritage, le polymorphisme et la gestion des exceptions.",
+    "dateObtained": "11/2023",
+    "pdfUrl": "assets/certifications/Java.pdf",
+    "titleEn": "Introduction to Java and Object-Oriented Programming",
+    "descriptionEn": "Complete training on Java fundamentals and object-oriented programming principles, including classes, inheritance, polymorphism and exception handling."
+  }
+]

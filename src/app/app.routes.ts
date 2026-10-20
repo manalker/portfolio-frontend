@@ -17,4 +17,12 @@ export const routes: Routes = [
   { path: 'certification', component: CertificationComponent },
   { path: 'skills', component: SkillsComponent },
   { path: 'contact', component: ContactComponent },
+
+  {
+    path: 'secret',
+    loadComponent: () =>
+      import('./teaser/teaser.component').then(
+        (m) => m.TeaserComponent
+      ),
+  },
 ];

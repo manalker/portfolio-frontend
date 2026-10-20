@@ -1,0 +1,180 @@
+:host {
+  --cyan: #00e0ff;
+  --cyan-dim: #00e0ff33;
+  --cyan-mid: #00e0ff88;
+  --bg: #05080f;
+  --bg2: #0a0e1a;
+}
+
+.teaser-wrapper {
+  @apply min-h-screen flex items-center justify-center;
+  background: var(--bg);
+}
+
+.screen {
+  @apply w-full;
+  animation: fadeIn 0.5s ease;
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* ════════════════════════════════
+   SCREEN 0 — TORCH
+════════════════════════════════ */
+.torch-scene {
+  @apply relative w-full flex items-center justify-center overflow-hidden;
+  min-height: 100vh;
+  background: var(--bg);
+  cursor: crosshair;
+}
+
+.hidden-content {
+  @apply relative z-10 flex flex-col items-center text-center gap-4 px-6;
+  pointer-events: none;
+}
+
+.hc-name {
+  @apply font-mono font-bold tracking-widest text-[#00e0ff];
+  font-size: clamp(28px, 6vw, 52px);
+  letter-spacing: clamp(4px, 1.5vw, 12px);
+}
+
+.hc-role {
+  @apply font-mono tracking-[3px] text-[#00e0ff88];
+  font-size: clamp(11px, 2vw, 14px);
+}
+
+.hc-hint {
+  @apply font-mono text-white/30 mt-2;
+  font-size: 12px;
+}
+
+.hc-pills {
+  @apply flex flex-wrap gap-2 justify-center mt-2;
+}
+
+.pill {
+  @apply border border-[#00e0ff22] rounded-full px-4 py-1 font-mono text-[#00e0ff55];
+  font-size: 11px;
+}
+
+.btn-reveal {
+  @apply mt-4 border border-[#00e0ff] text-[#00e0ff] bg-transparent
+  px-6 py-2.5 rounded-lg font-mono text-sm cursor-pointer
+  transition-all duration-200;
+  pointer-events: all;
+}
+.btn-reveal:hover {
+  background: #00e0ff;
+  color: #05080f;
+}
+
+.torch-overlay {
+  @apply absolute inset-0 z-20 pointer-events-none transition-none;
+}
+
+.torch-hint {
+  @apply absolute bottom-6 left-0 right-0 text-center text-white/20
+  font-mono text-xs z-30 transition-opacity duration-300;
+}
+.torch-hint.hidden { @apply opacity-0; }
+
+/* ════════════════════════════════
+   SCREEN 1 — GLITCH
+════════════════════════════════ */
+.screen-glitch {
+  @apply relative flex items-center justify-center overflow-hidden;
+  min-height: 100vh;
+  background: var(--bg);
+}
+
+.scanlines {
+  @apply absolute inset-0 pointer-events-none;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 224, 255, 0.015) 2px,
+    rgba(0, 224, 255, 0.015) 4px
+  );
+  z-index: 1;
+}
+
+.glitch-wrap {
+  @apply relative z-10 flex flex-col items-center text-center px-6 gap-4;
+}
+
+.glitch-title {
+  @apply font-mono font-bold text-[#00e0ff] relative inline-block;
+  font-size: clamp(28px, 6vw, 52px);
+  letter-spacing: clamp(4px, 1.5vw, 12px);
+}
+
+.glitch-title::before,
+.glitch-title::after {
+  content: attr(data-text);
+  position: absolute;
+  inset: 0;
+}
+.glitch-title::before {
+  color: #ff004f;
+  clip-path: polygon(0 0, 100% 0, 100% 33%, 0 33%);
+  transform: translateX(-3px);
+  animation: glitch1 2.5s infinite;
+}
+.glitch-title::after {
+  color: #00ffea;
+  clip-path: polygon(0 60%, 100% 60%, 100% 100%, 0 100%);
+  transform: translateX(3px);
+  animation: glitch2 2.5s infinite;
+}
+@keyframes glitch1 {
+  0%,90%,100% { transform: translateX(-3px); clip-path: polygon(0 0, 100% 0, 100% 33%, 0 33%); }
+  92% { transform: translateX(5px) skewX(-5deg); clip-path: polygon(0 10%, 100% 10%, 100% 42%, 0 42%); }
+  94% { transform: translateX(-4px); }
+  96% { transform: translateX(2px) skewX(3deg); clip-path: polygon(0 5%, 100% 5%, 100% 28%, 0 28%); }
+}
+@keyframes glitch2 {
+  0%,88%,100% { transform: translateX(3px); clip-path: polygon(0 60%, 100% 60%, 100% 100%, 0 100%); }
+  90% { transform: translateX(-5px) skewX(4deg); clip-path: polygon(0 65%, 100% 65%, 100% 90%, 0 90%); }
+  93% { transform: translateX(3px); }
+  95% { transform: translateX(-2px) skewX(-3deg); clip-path: polygon(0 70%, 100% 70%, 100% 95%, 0 95%); }
+}
+
+.glitch-sub {
+  @apply font-mono text-[#00e0ff77] tracking-[3px];
+  font-size: clamp(11px, 2vw, 14px);
+}
+
+.glitch-msg {
+  @apply font-mono text-white/30 leading-relaxed max-w-sm opacity-0;
+  font-size: 13px;
+  transition: opacity 0.8s ease, transform 0.8s ease;
+  transform: translateY(8px);
+}
+.glitch-msg.show { @apply opacity-100; transform: translateY(0); }
+
+.glitch-eggs {
+  @apply flex flex-wrap gap-3 justify-center opacity-0;
+  transition: opacity 0.8s ease 0.2s, transform 0.8s ease 0.2s;
+  transform: translateY(8px);
+}
+.glitch-eggs.show { @apply opacity-100; transform: translateY(0); }
+
+.glitch-egg {
+  @apply font-mono text-[#00e0ff66] border border-[#00e0ff22]
+  rounded-lg px-3 py-1.5;
+  font-size: 11px;
+}
+
+.cta-btn {
+  @apply inline-flex items-center gap-2 bg-[#00e0ff] text-[#05080f]
+  font-bold px-8 py-4 rounded-xl text-base no-underline
+  opacity-0 mt-2;
+  transition: opacity 0.8s ease 0.3s, transform 0.2s;
+  transform: translateY(8px);
+}
+.cta-btn.show { @apply opacity-100; transform: translateY(0); }
+.cta-btn:hover { transform: scale(1.04); }

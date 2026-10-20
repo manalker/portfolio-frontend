@@ -6,7 +6,7 @@ import { TranslatePipe } from '@ngx-translate/core';
 import { OrderByDatePipe } from "../../order-by.pipe";
 import { LanguageService } from '../../services/language.service';
 import { ThemeService } from '../../services/theme.service';
-import { environment } from '../../../environments/environment';
+//import { environment } from '../../../environments/environment';
 
 export interface Certification {
   id: number;
@@ -44,10 +44,10 @@ export class CertificationComponent implements OnInit {
   closeMenu() { this.menuOpen = false; }
 
   ngOnInit(): void {
-    this.http.get<Certification[]>(`${environment.apiUrl}/api/certifications`)
+    this.http.get<Certification[]>('data/certifications.json')
       .subscribe({
         next: (data) => this.certifications = data,
-        error: (err) => console.error('Erreur API:', err)
+        error: (err) => console.error('Erreur chargement JSON:', err)
       });
   }
 }

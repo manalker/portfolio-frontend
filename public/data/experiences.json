@@ -1,0 +1,67 @@
+[
+  {
+    "id": 1,
+    "title": "Développement et maintenance d'applications web (Frontend et Backend)",
+    "company": "Manaos Consulting - Casablanca",
+    "startDate": "03/03/2026",
+    "endDate": "25/05/2026",
+    "type": "Développeuse full-stack & QA",
+    "tasks": "Développement et maintenance d'applications web (Frontend et Backend);Implémentation d'APIs, gestion de bases de données et résolution de bugs;Réalisation de tests QA pour garantir la qualité et la performance des applications",
+    "technologies": "PHP / Laravel / MySQL / NuxtJS / API Rest / Postman / GitLab / WordPress",
+    "titleEn": "Web application development and maintenance (Frontend and Backend)",
+    "tasksEn": "Web application development and maintenance (Frontend and Backend);API implementation, database management and bug fixing;QA testing to ensure application quality and performance",
+    "typeEn": "Full-stack developer & QA"
+  },
+  {
+    "id": 2,
+    "title": "Participation au développement et à la maintenance de solutions web multi-projets (développeuse full-stack)",
+    "company": "Manaos Consulting - Casablanca",
+    "startDate": "03/11/2025",
+    "endDate": "03/03/2026",
+    "type": "Stage",
+    "tasks": "Analyse des besoins fonctionnels et non fonctionnels des projets;Participation à la phase de tests (tests fonctionnels et validation);Développement et maintenance de sites web sous WordPress;Intégration de solutions tierces (ex : Zenchef pour la réservation de restaurants);Développement full-stack d'une plateforme e-commerce de matériels médicaux (back-office / front-end / back-end);Correction de bugs, optimisation des performances et amélioration de l'expérience utilisateur;Travail en environnement collaboratif avec gestion de versions",
+    "technologies": "PHP / Laravel / MySQL / Vue JS / NextJS / TypeScript / Pinia / HTML / CSS / JS / API Rest / Postman / GitLab / WordPress",
+    "titleEn": "Participation in the development and maintenance of multi-project web solutions (full-stack developer)",
+    "tasksEn": "Analysis of functional and non-functional project requirements;Participation in the testing phase (functional tests and validation);Development and maintenance of WordPress websites;Integration of third-party solutions (e.g. Zenchef for restaurant reservations);Full-stack development of a medical equipment e-commerce platform (back-office / front-end / back-end);Bug fixing, performance optimization and user experience improvement;Collaborative work environment with version management",
+    "typeEn": "Internship"
+  },
+  {
+    "id": 3,
+    "title": "Refonte et amélioration technique d'une solution digitale de gestion de Pipeline commerciale (Si-Gestion)",
+    "company": "DXC Technology - Technopolis",
+    "startDate": "03/03/2025",
+    "endDate": "03/09/2025",
+    "type": "Stage de fin d'études",
+    "tasks": "Analyse de l'existant et rédaction des spécifications fonctionnelles et techniques;Développement back-end (Spring Boot, JPA, API REST) et optimisation des accès aux données;Refonte des interfaces front-end avec Angular (dashboards, formulaires, filtres);Gestion des migrations de base de données avec Liquibase;Réalisation de tests unitaires et d'intégration (JUnit, Mockito);Suivi agile du projet via Azure DevOps et gestion du code source sur GitHub",
+    "technologies": "Java / Spring Boot / Angular / Postman / IntelliJ IDEA / PostgreSQL / Azure DevOps / GitHub / Microsoft Teams / Liquibase / NPM / Maven / UML",
+    "titleEn": "redesign and technical improvement of a digital commercial pipeline management solution (Si-Gestion)",
+    "tasksEn": "Analysis of existing system and writing functional and technical specifications;Back-end development (Spring Boot, JPA, REST API) and data access optimization;Front-end redesign with Angular (dashboards, forms, filters);Database migration management with Liquibase;Unit and integration testing (JUnit, Mockito);Agile project tracking via Azure DevOps and source code management on GitHub",
+    "typeEn": "Final year internship"
+  },
+  {
+    "id": 4,
+    "title": "Conception, développement et réalisation d'une application web de gestion des tickets",
+    "company": "Ministère de l'Équipement et de l'Eau - Rabat",
+    "startDate": "01/07/2024",
+    "endDate": "30/08/2024",
+    "type": "Stage",
+    "tasks": "Étude des processus existants de gestion des tickets;Conception de la base de données et mise en place du modèle relationnel;Réalisation des maquettes avec Figma;Développement des modules de création, suivi et clôture de tickets;Intégration de l'authentification et gestion des profils utilisateurs",
+    "technologies": "PHP / Laravel / MySQL / HTML / CSS / Bootstrap / GitHub / UML",
+    "titleEn": "redesign, development and implementation of a web ticket management application",
+    "tasksEn": "Study of existing ticket management processes;Database design and relational model setup;Wireframe creation with Figma;Development of ticket creation, tracking and closure modules;Authentication integration and user profile management",
+    "typeEn": "Internship"
+  },
+  {
+    "id": 5,
+    "title": "Conception et mise en œuvre d'une application web pour la gestion des contentieux",
+    "company": "Agence Nationale des Eaux et Forêts - Rabat",
+    "startDate": "01/07/2023",
+    "endDate": "31/08/2023",
+    "type": "Stage d'application",
+    "tasks": "Analyse des besoins métier et rédaction des spécifications fonctionnelles;Conception de la base de données et modélisation UML;Développement des interfaces web (front-end et back-end);Intégration des fonctionnalités de gestion et suivi des contentieux;Réalisation des tests unitaires et validation fonctionnelle",
+    "technologies": "Python / Django / HTML / CSS / Bootstrap / SQLite / UML",
+    "titleEn": "Conception and implementation of a web application for litigation management",
+    "tasksEn": "Business needs analysis and functional specifications writing;Database design and UML modeling;Web interface development (front-end and back-end);Integration of litigation management and tracking features;Unit testing and functional validation",
+    "typeEn": "Application internship"
+  }
+]

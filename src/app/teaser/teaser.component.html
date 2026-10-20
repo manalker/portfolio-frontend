@@ -1,0 +1,59 @@
+<div class="teaser-wrapper">
+
+  <!-- ─── SCREEN 0 : TORCH (intro) ─── -->
+  <div class="screen" *ngIf="currentScreen === 0">
+    <div class="torch-scene"
+         (mousemove)="onMouseMove($event)"
+         (mouseenter)="onMouseEnter()"
+         (mouseleave)="onMouseLeave()"
+         (touchmove)="onTouchMove($event)"
+         (touchstart)="onMouseEnter()">
+
+      <div class="hidden-content">
+        <div class="hc-name">MANAL KERROUMI</div>
+        <div class="hc-role">FULLSTACK DEVELOPER</div>
+        <div class="hc-hint">3 secrets t'attendent dans le portfolio</div>
+        <div class="hc-pills">
+          <span class="pill">🎮 Konami Code</span>
+          <span class="pill">👁 Click secret</span>
+          <span class="pill">⌨️ Console dev</span>
+        </div>
+        <button class="btn-reveal" (click)="goTo(1)">Révéler →</button>
+      </div>
+
+      <div class="torch-overlay" [style]="torchStyle"></div>
+      <div class="torch-hint" [class.hidden]="torchActive">
+        ☝ déplace ta souris pour révéler
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── SCREEN 1 : GLITCH REVEAL ─── -->
+  <div class="screen screen-glitch" *ngIf="currentScreen === 1">
+    <div class="scanlines"></div>
+
+    <div class="glitch-wrap">
+      <div class="glitch-title" [attr.data-text]="'MANAL KERROUMI'">
+        MANAL KERROUMI
+      </div>
+      <div class="glitch-sub">FULLSTACK DEVELOPER</div>
+      <div class="glitch-msg" [class.show]="glitchStep >= 1">
+        3 secrets t'attendent dans le portfolio.<br/>
+        Explore, clique, teste — tout est là pour les curieux.
+      </div>
+
+      <div class="glitch-eggs" [class.show]="glitchStep >= 2">
+        <div class="glitch-egg" *ngFor="let egg of eggs; let i = index"
+             [style.animation-delay]="(i * 0.2) + 's'">
+          {{ egg.icon }} {{ egg.name }}
+        </div>
+      </div>
+
+      <a href="https://manal-kerroumi.vercel.app/" target="_blank"
+         class="cta-btn" [class.show]="glitchStep >= 3">
+        🚀 Découvrir le portfolio
+      </a>
+    </div>
+  </div>
+
+</div>

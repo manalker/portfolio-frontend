@@ -5,7 +5,7 @@ import { RouterModule } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
 import { LanguageService } from '../../services/language.service';
 import { ThemeService } from '../../services/theme.service';
-import { environment } from '../../../environments/environment';
+//import { environment } from '../../../environments/environment';
 
 export interface Experience {
   id: number;
@@ -47,10 +47,10 @@ export class ExperienceComponent implements OnInit {
   closeMenu()        { this.menuOpen = false; }
 
   ngOnInit(): void {
-    this.http.get<Experience[]>(`${environment.apiUrl}/api/experiences`)
+    this.http.get<Experience[]>('data/experiences.json')
       .subscribe({
         next: (data) => this.experiences = data.map(e => ({ ...e, showDetails: false })),
-        error: (err) => console.error('Erreur API:', err)
+        error: (err) => console.error('Erreur chargement JSON:', err)
       });
   }
 

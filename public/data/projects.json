@@ -1,0 +1,65 @@
+[
+  {
+    "id": 1,
+    "title": "Portfolio Website",
+    "description": "Création de mon portfolio personnel pour présenter mes projets, compétences, formations et expériences.",
+    "technologies": "Java, SpringBoot, Angular, Tailwind CSS, PostgreSQL, Supabase, Railway, Vercel, Groq AI, shadcn/ui",
+    "imageUrl": "assets/uploads/portfolio.png",
+    "titleEn": "Portfolio Website",
+    "descriptionEn": "Creation of my personal portfolio to showcase my projects, skills, education and experiences."
+  },
+  {
+    "id": 2,
+    "title": "Agenda étudiant",
+    "description": "Développement d'une application mobile To-Do List pour aider les étudiants à gérer leurs tâches et événements académiques. Permet la création, modification et suppression des tâches, gére les tâches selon leur priorité et permet les notifications en temps réel ainssi qu'uen gestion des notes.",
+    "technologies": "Flutter, Dart, Node.js, MongoDB, Firebase, Postman, Figma, UML, GitHub, VSCode",
+    "imageUrl": "assets/uploads/agenda.png",
+    "titleEn": "Student Agenda",
+    "descriptionEn": "Development of a mobile To-Do List application to help students manage their academic tasks and events. Supports task creation, editing and deletion, priority management, real-time notifications and note management."
+  },
+  {
+    "id": 3,
+    "title": "Évaluation de faisabilité d'un projet entrepreuneurial",
+    "description": "Application permettant d'évaluer la faisabilité d'un projet entrepreneurial.Fournit une analyse complète et un rapport sur les aspects techniques, financiers et marketing,et permet au client de bien analyser la faisabilité de leurs projets pour une meilleur prise de décision",
+    "technologies": "Python, Flask, Anaconda, VSCode, GitHub, Postman, React, MySQL",
+    "imageUrl": "assets/uploads/evaluation.png",
+    "titleEn": "Entrepreneurial Project Feasibility Assessment",
+    "descriptionEn": "Application to evaluate the feasibility of an entrepreneurial project. Provides a comprehensive analysis and report on technical, financial and marketing aspects, helping clients make informed decisions about their projects."
+  },
+  {
+    "id": 4,
+    "title": "Gestion des RH",
+    "description": "Développement d'une application web pour gérer les ressources humaines d'une entreprise : employés, congés, salaires et suivi des performances.",
+    "technologies": "Java, JEE, React, Bootstrap, SpringBoot, Spring Data, Spring MVC, Thymeleaf, MySQL, IntelliJ IDEA",
+    "imageUrl": "assets/uploads/rh.png",
+    "titleEn": "HR Management",
+    "descriptionEn": "Development of a web application to manage company human resources: employees, leave requests, salaries and performance tracking."
+  },
+  {
+    "id": 5,
+    "title": "Autopartage",
+    "description": "Application mobile permettant aux utilisateurs de partager leurs voitures.Les utilisateurs peuvent réserver, suivre et gérer des trajets via l'application.",
+    "technologies": "Flutter, Dart, Node.js, MongoDB, Firebase, Postman, Figma, UML, GitHub, VSCode",
+    "imageUrl": "assets/uploads/autopartage.png",
+    "titleEn": "Car Sharing",
+    "descriptionEn": "Mobile application allowing users to share their cars. Users can book, track and manage trips through the application."
+  },
+  {
+    "id": 6,
+    "title": "Gestion des factures",
+    "description": "Développement d'une application web pour gérer les factures des clients et leur paiement: création, envoi et suivi des paiements, avec tableau de bord pour l'administration.",
+    "technologies": "Python, Django, Bootstrap, JavaScript, HTML, CSS, VSCode",
+    "imageUrl": "assets/uploads/factures.png",
+    "titleEn": "Invoice Management",
+    "descriptionEn": "Development of a web application to manage client invoices and payments: creation, sending and payment tracking, with an admin dashboard."
+  },
+  {
+    "id": 7,
+    "title": "Gestion des commandes ",
+    "description": "Application de gestion des commandes basée sur une architecture microservices. Permet le suivi, traitement et notification des commandes de manière scalable.",
+    "technologies": "IntelliJ IDEA, Microservices, SpringBoot, Spring Cloud, Eureka, GitHub, UML",
+    "imageUrl": "assets/uploads/commandes.png",
+    "titleEn": "Order Management",
+    "descriptionEn": "Order management application based on a microservices architecture. Enables scalable order tracking, processing and notification."
+  }
+]

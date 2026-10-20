@@ -35,8 +35,8 @@ export default class ProjectComponent implements OnInit {
 
   ngOnInit(): void {
     this.projectService.getProjects().subscribe({
-      next: (data) => this.projects = data,
-      error: (err) => console.error('Erreur API:', err)
+      next: (data) => this.projects = data.map(p => ({ ...p, showDescription: false })),
+      error: (err) => console.error('Erreur chargement JSON:', err)
     });
   }
 
